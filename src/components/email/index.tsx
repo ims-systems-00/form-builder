@@ -5,15 +5,20 @@ import {
   Input,
   InputGroup,
   Label,
+  DrawerContextProvider,
+  DrawerOpener,
+  DrawerRight,
 } from "@ims-systems-00/ims-ui-kit";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoDuplicateOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
+import { PlaceholderUpdate } from "./placeholder-update";
 
 interface EmailProps {
   label: string;
   subLabel?: string;
+  placeholder?: string;
   builderMode?: boolean;
   isSubLabelVisibility?: boolean;
   isRequired?: boolean;
@@ -22,9 +27,10 @@ interface EmailProps {
   onLabelChange?(text: string): void;
   onSubLabelChange?(text: string): void;
   onResponseChange?(text: string): void;
-  onHandleDelete?(): void;
-  onHandleDuplicate?(): void;
-  onHandleSettings?(): void;
+  onChangePlaceholder?(text: string): void;
+  onDelete?(): void;
+  onDuplicate?(): void;
+  onSettings?(): void;
 }
 
 export enum LABEL_MODES {
@@ -35,6 +41,7 @@ export enum LABEL_MODES {
 export const Email: React.FC<EmailProps> = ({
   label,
   subLabel = "",
+  placeholder = "",
   isRequired = false,
   isSubLabelVisibility = false,
   builderMode = false,
@@ -43,12 +50,14 @@ export const Email: React.FC<EmailProps> = ({
   onLabelChange,
   onSubLabelChange,
   onResponseChange,
-  onHandleDelete,
-  onHandleDuplicate,
-  onHandleSettings,
+  onChangePlaceholder,
+  onDelete,
+  onDuplicate,
+  onSettings,
 }) => {
   const [labelState, setLabelState] = useState("");
   const [subLabelState, setSubLabelState] = useState("");
+  const [placeholderState, setPlaceholderState] = useState("");
   const [modeLabel, setModeLabel] = useState<LABEL_MODES>(LABEL_MODES.VIEW);
   const [modeSubLabel, setModeSubLabel] = useState<LABEL_MODES>(
     LABEL_MODES.VIEW
@@ -64,207 +73,227 @@ export const Email: React.FC<EmailProps> = ({
     }
   }, [subLabel]);
 
+  useEffect(() => {
+    setPlaceholderState(placeholder);
+  }, [placeholder]);
+
   return (
-    <FormGroup>
-      {modeLabel === LABEL_MODES.VIEW && (
-        <Label>
-          {label}
-          {isRequired && (
-            <span style={{ color: "red", marginLeft: "0.25rem" }}>*</span>
-          )}
-        </Label>
-      )}
-
-      {modeLabel === LABEL_MODES.EDIT && (
-        <InputGroup>
-          <Input
-            className="d-inline bg-transparent border-0 px-1"
-            type="text"
-            value={labelState}
-            onChange={(e) => {
-              setLabelState(e.currentTarget.value);
-            }}
-          />
-          <Button
-            size="sm"
-            color="success"
-            outline
-            className="border-0"
-            onClick={() => {
-              setModeLabel(LABEL_MODES.VIEW);
-              if (typeof onLabelChange === "function")
-                onLabelChange(labelState);
-            }}
-          >
-            Save
-          </Button>
-          <Button
-            size="sm"
-            color="danger"
-            outline
-            className="border-0"
-            onClick={() => {
-              setLabelState(label);
-              setModeLabel(LABEL_MODES.VIEW);
-            }}
-          >
-            Cancel
-          </Button>
-        </InputGroup>
-      )}
-
-      {modeLabel === LABEL_MODES.VIEW && builderMode && (
-        <Button
-          className="pull-right border-0 mb-1"
-          size="sm"
-          outline
-          onClick={() => {
-            setModeLabel(LABEL_MODES.EDIT);
-          }}
-        >
-          <CiEdit className="me-1" size={14} />
-          Edit
-        </Button>
-      )}
-
-      <Input
-        type="email"
-        onChange={(e) => {
-          if (typeof onResponseChange === "function") {
-            onResponseChange(e.currentTarget.value);
-          }
-        }}
-        required={isRequired}
-      />
-
-      {isSubLabelVisibility && modeSubLabel === LABEL_MODES.VIEW && (
-        <>
+    <DrawerContextProvider>
+      <FormGroup>
+        {modeLabel === LABEL_MODES.VIEW && (
           <Label>
-            <small>{subLabel}</small>
+            {label}
+            {isRequired && (
+              <span style={{ color: "red", marginLeft: "0.25rem" }}>*</span>
+            )}
           </Label>
+        )}
 
-          {builderMode && (
+        {modeLabel === LABEL_MODES.EDIT && (
+          <InputGroup>
+            <Input
+              className="d-inline bg-transparent border-0 px-1"
+              type="text"
+              value={labelState}
+              onChange={(e) => {
+                setLabelState(e.currentTarget.value);
+              }}
+            />
             <Button
-              className="pull-right border-0 mb-1"
               size="sm"
+              color="success"
               outline
+              className="border-0"
               onClick={() => {
-                setModeSubLabel(LABEL_MODES.EDIT);
+                setModeLabel(LABEL_MODES.VIEW);
+                if (typeof onLabelChange === "function")
+                  onLabelChange(labelState);
               }}
             >
-              <CiEdit className="me-1" size={14} />
-              Edit
+              Save
             </Button>
-          )}
-        </>
-      )}
+            <Button
+              size="sm"
+              color="danger"
+              outline
+              className="border-0"
+              onClick={() => {
+                setLabelState(label);
+                setModeLabel(LABEL_MODES.VIEW);
+              }}
+            >
+              Cancel
+            </Button>
+          </InputGroup>
+        )}
 
-      {isSubLabelVisibility && modeSubLabel === LABEL_MODES.EDIT && (
-        <InputGroup>
-          <Input
-            className="d-inline bg-transparent border-0 px-1"
-            type="text"
-            value={subLabelState}
-            onChange={(e) => {
-              setSubLabelState(e.currentTarget.value);
-            }}
-          />
+        {modeLabel === LABEL_MODES.VIEW && builderMode && (
           <Button
+            className="pull-right border-0 mb-1"
             size="sm"
-            color="success"
             outline
-            className="border-0"
             onClick={() => {
-              setModeSubLabel(LABEL_MODES.VIEW);
-              if (typeof onSubLabelChange === "function")
-                onSubLabelChange(subLabelState);
+              setModeLabel(LABEL_MODES.EDIT);
             }}
           >
-            Save
+            <CiEdit className="me-1" size={14} />
+            Edit
           </Button>
-          <Button
-            size="sm"
-            color="danger"
-            outline
-            className="border-0"
-            onClick={() => {
-              if (typeof subLabel === "string") {
-                setSubLabelState(subLabel);
+        )}
+
+        <Input
+          type="email"
+          placeholder={placeholderState}
+          onChange={(e) => {
+            if (typeof onResponseChange === "function") {
+              onResponseChange(e.currentTarget.value);
+            }
+          }}
+          required={isRequired}
+        />
+
+        {isSubLabelVisibility && modeSubLabel === LABEL_MODES.VIEW && (
+          <>
+            <Label>
+              <small>{subLabel}</small>
+            </Label>
+
+            {builderMode && (
+              <Button
+                className="pull-right border-0 mb-1"
+                size="sm"
+                outline
+                onClick={() => {
+                  setModeSubLabel(LABEL_MODES.EDIT);
+                }}
+              >
+                <CiEdit className="me-1" size={14} />
+                Edit
+              </Button>
+            )}
+          </>
+        )}
+
+        {isSubLabelVisibility && modeSubLabel === LABEL_MODES.EDIT && (
+          <InputGroup>
+            <Input
+              className="d-inline bg-transparent border-0 px-1"
+              type="text"
+              value={subLabelState}
+              onChange={(e) => {
+                setSubLabelState(e.currentTarget.value);
+              }}
+            />
+            <Button
+              size="sm"
+              color="success"
+              outline
+              className="border-0"
+              onClick={() => {
                 setModeSubLabel(LABEL_MODES.VIEW);
-              }
-            }}
-          >
-            Cancel
-          </Button>
-        </InputGroup>
-      )}
+                if (typeof onSubLabelChange === "function")
+                  onSubLabelChange(subLabelState);
+              }}
+            >
+              Save
+            </Button>
+            <Button
+              size="sm"
+              color="danger"
+              outline
+              className="border-0"
+              onClick={() => {
+                if (typeof subLabel === "string") {
+                  setSubLabelState(subLabel);
+                  setModeSubLabel(LABEL_MODES.VIEW);
+                }
+              }}
+            >
+              Cancel
+            </Button>
+          </InputGroup>
+        )}
 
-      {/* Control */}
-      <div className="border-top mt-4">
-        <div className="pt-3 d-flex justify-content-between align-items-center">
-          <div className="d-flex gap-2">
-            <FormGroup switch>
-              <Input
-                type="switch"
-                checked={isSubLabelVisibility}
-                onChange={() => {
-                  if (typeof onSubLabelVisibilityChange === "function") {
-                    onSubLabelVisibilityChange(!isSubLabelVisibility);
-                  }
-                }}
-              />
-            </FormGroup>
-            <Label>Sub Label</Label>
-          </div>
-
-          <div className="d-flex gap-4 align-items-center">
-            <div className="d-flex align-items-center gap-4 border-end pe-3 mb-2">
-              <RiDeleteBin6Line
-                role="button"
-                size={18}
-                onClick={() => {
-                  if (typeof onHandleDelete === "function") {
-                    onHandleDelete();
-                  }
-                }}
-              />
-              <IoDuplicateOutline
-                role="button"
-                size={18}
-                onClick={() => {
-                  if (typeof onHandleDuplicate === "function") {
-                    onHandleDuplicate();
-                  }
-                }}
-              />
-              <IoSettingsOutline
-                role="button"
-                size={18}
-                onClick={() => {
-                  if (typeof onHandleSettings === "function") {
-                    onHandleSettings();
-                  }
-                }}
-              />
-            </div>
-
-            <div className="d-flex gap-3">
-              <Label>Required</Label>
+        {/* Control */}
+        <div className="border-top mt-4">
+          <div className="pt-3 d-flex justify-content-between align-items-center">
+            <div className="d-flex gap-2">
               <FormGroup switch>
                 <Input
                   type="switch"
-                  checked={isRequired}
+                  checked={isSubLabelVisibility}
                   onChange={() => {
-                    if (typeof onRequiredChange === "function") {
-                      onRequiredChange(!isRequired);
+                    if (typeof onSubLabelVisibilityChange === "function") {
+                      onSubLabelVisibilityChange(!isSubLabelVisibility);
                     }
                   }}
                 />
               </FormGroup>
+              <Label>Sub Label</Label>
+            </div>
+
+            <div className="d-flex gap-4 align-items-center">
+              <div className="d-flex align-items-center gap-4 border-end pe-3 mb-2">
+                <RiDeleteBin6Line
+                  role="button"
+                  size={18}
+                  onClick={() => {
+                    if (typeof onDelete === "function") {
+                      onDelete();
+                    }
+                  }}
+                />
+                <IoDuplicateOutline
+                  role="button"
+                  size={18}
+                  onClick={() => {
+                    if (typeof onDuplicate === "function") {
+                      onDuplicate();
+                    }
+                  }}
+                />
+                <DrawerOpener drawerId="unique-id-email">
+                  <IoSettingsOutline
+                    role="button"
+                    size={18}
+                    onClick={() => {
+                      if (typeof onSettings === "function") {
+                        onSettings();
+                      }
+                    }}
+                  />
+                </DrawerOpener>
+              </div>
+
+              <div className="d-flex gap-3">
+                <Label>Required</Label>
+                <FormGroup switch>
+                  <Input
+                    type="switch"
+                    checked={isRequired}
+                    onChange={() => {
+                      if (typeof onRequiredChange === "function") {
+                        onRequiredChange(!isRequired);
+                      }
+                    }}
+                  />
+                </FormGroup>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </FormGroup>
+      </FormGroup>
+      <DrawerRight drawerId="unique-id-email">
+        <PlaceholderUpdate
+          value={placeholderState}
+          onChange={(e) => {
+            setPlaceholderState(e.currentTarget.value);
+            if (typeof onChangePlaceholder === "function") {
+              onChangePlaceholder(e.currentTarget.value);
+            }
+          }}
+        />
+      </DrawerRight>
+    </DrawerContextProvider>
   );
 };

@@ -7,6 +7,7 @@ export const path = "email";
 export function Documentation() {
   const [label, setLabel] = useState("Email");
   const [subLabel, setSubLabel] = useState("Enter your email address");
+  const [placeholder, setPlaceholder] = useState("Enter your email address");
   const [isSubLabelVisible, setIsSubLabelVisible] = useState(false);
   const [isRequired, setIsRequired] = useState(false);
 
@@ -20,6 +21,7 @@ export function Documentation() {
               label={label}
               subLabel={subLabel}
               isSubLabelVisibility={isSubLabelVisible}
+              placeholder={placeholder}
               isRequired={isRequired}
               onSubLabelVisibilityChange={(vis) => {
                 setIsSubLabelVisible(vis);
@@ -38,9 +40,13 @@ export function Documentation() {
                 setIsRequired(req);
                 console.log("Required Updated:", req);
               }}
-              onHandleDelete={() => console.log("Email Deleted")}
-              onHandleDuplicate={() => console.log("Email Duplicated")}
-              onHandleSettings={() => console.log("Settings Opened")}
+              onChangePlaceholder={(text: string) => {
+                setPlaceholder(text);
+                console.log("Placeholder Updated:", text);
+              }}
+              onDelete={() => console.log("Email Deleted")}
+              onDuplicate={() => console.log("Email Duplicated")}
+              onSettings={() => {}}
             />
           </CardBody>
         </Card>
