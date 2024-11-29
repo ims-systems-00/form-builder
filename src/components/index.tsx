@@ -1,2 +1,2 @@
 export { TextInput } from "./text-input";
-export { EmailInput } from "./email-input";
+export { TextAreaInput } from "./text-area";
