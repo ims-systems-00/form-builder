@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <Container className="py-4">
         <Outlet />
       </Container>

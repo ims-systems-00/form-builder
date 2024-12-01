@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
+  DrawerContextProvider,
+  DrawerOpener,
+  DrawerRight,
   FormGroup,
   Input,
   InputGroup,
@@ -40,86 +43,99 @@ export const TextInput: React.FC<TextInputProps> = ({
     set_ShowSubLebel(showSubLebel);
   }, [showSubLebel]);
   return (
-    <FormGroup>
-      {modeLabel === LABEL_MODES.VIEW && <Label>{label}</Label>}
-      {modeLabel === LABEL_MODES.EDIT && (
-        <InputGroup>
-          <Input
-            className="d-inline bg-transparent border-0 px-1"
-            type="text"
-            value={updatedLabel}
-            onChange={(e) => {
-              setUpdatedLabel(e.currentTarget.value);
-            }}
-          />
+    <DrawerContextProvider>
+      <FormGroup>
+        {modeLabel === LABEL_MODES.VIEW && <Label>{label}</Label>}
+        {modeLabel === LABEL_MODES.EDIT && (
+          <InputGroup>
+            <Input
+              className="d-inline bg-transparent border-0 px-1"
+              type="text"
+              value={updatedLabel}
+              onChange={(e) => {
+                setUpdatedLabel(e.currentTarget.value);
+              }}
+            />
+            <Button
+              size="sm"
+              color="success"
+              outline
+              className="border-0"
+              onClick={() => {
+                setModeLabel(LABEL_MODES.VIEW);
+                if (typeof onLabelChange === "function")
+                  onLabelChange(updatedLabel);
+              }}
+            >
+              Save
+            </Button>
+            <Button
+              size="sm"
+              color="danger"
+              outline
+              className="border-0"
+              onClick={() => {
+                setUpdatedLabel(label);
+                setModeLabel(LABEL_MODES.VIEW);
+              }}
+            >
+              Cancel
+            </Button>
+          </InputGroup>
+        )}
+
+        {modeLabel === LABEL_MODES.VIEW && builderMode && (
           <Button
+            className="pull-right border-0 mb-1"
             size="sm"
-            color="success"
             outline
-            className="border-0"
             onClick={() => {
-              setModeLabel(LABEL_MODES.VIEW);
-              if (typeof onLabelChange === "function")
-                onLabelChange(updatedLabel);
+              setModeLabel(LABEL_MODES.EDIT);
             }}
           >
-            Save
+            Edit
           </Button>
-          <Button
-            size="sm"
-            color="danger"
-            outline
-            className="border-0"
-            onClick={() => {
-              setUpdatedLabel(label);
-              setModeLabel(LABEL_MODES.VIEW);
-            }}
-          >
-            Cancel
-          </Button>
-        </InputGroup>
-      )}
+        )}
 
-      {modeLabel === LABEL_MODES.VIEW && builderMode && (
-        <Button
-          className="pull-right border-0 mb-1"
-          size="sm"
-          outline
-          onClick={() => {
-            setModeLabel(LABEL_MODES.EDIT);
-          }}
-        >
-          Edit
-        </Button>
-      )}
-
-      <Input
-        type="text"
-        onChange={(e) => {
-          if (typeof onResponseChange === "function")
-            onResponseChange(e.currentTarget.value);
-        }}
-      />
-      {showSubLebel && (
-        <Label>
-          <small>{subLebel ? subLebel : "Edit this"}</small>
-        </Label>
-      )}
-      <hr style={{ background: "red" }}></hr>
-      <FormGroup switch>
         <Input
-          type="switch"
-          checked={_showSubLebel}
-          onChange={() => {
-            set_ShowSubLebel((state) => {
-              if (typeof onChangeSubLebelVisibility === "function")
-                onChangeSubLebelVisibility(!state);
-              return !state;
-            });
+          type="text"
+          onChange={(e) => {
+            if (typeof onResponseChange === "function")
+              onResponseChange(e.currentTarget.value);
           }}
-        />{" "}
-        <Label>Sub lebel</Label>
+        />
+        {showSubLebel && (
+          <Label>
+            <small>{subLebel ? subLebel : "Edit this"}</small>
+          </Label>
+        )}
+
+        {builderMode && (
+          <React.Fragment>
+            <hr style={{ background: "red" }}></hr>
+            <FormGroup switch>
+              <Input
+                type="switch"
+                checked={_showSubLebel}
+                onChange={() => {
+                  set_ShowSubLebel((state) => {
+                    if (typeof onChangeSubLebelVisibility === "function")
+                      onChangeSubLebelVisibility(!state);
+                    return !state;
+                  });
+                }}
+              />{" "}
+              <Label>Sub lebel</Label>
+            </FormGroup>
+          </React.Fragment>
+        )}
+        <DrawerOpener drawerId="form-text-element">
+          <Button>Settings</Button>
+        </DrawerOpener>
       </FormGroup>
-    </FormGroup>
+      <DrawerRight size={20} drawerId="form-text-element">
+        Editable properties
+      </DrawerRight>
+    </DrawerContextProvider>
   );
 };
