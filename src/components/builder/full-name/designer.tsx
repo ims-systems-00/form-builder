@@ -15,7 +15,7 @@ export function Designer({ formElement }: DesignerProps) {
     <FormGroup>
       <h4>Full Name</h4>
       <div className="d-flex">
-        <div className="mr-2 flex-grow-1">
+        <div className="mr-2 flex-grow-1 p-3">
           <Label>
             {attributes.firstNameLabel} {attributes.required && "*"}
           </Label>
@@ -26,7 +26,7 @@ export function Designer({ formElement }: DesignerProps) {
             defaultValue={attributes.defaultFirstNameValue}
           />
         </div>
-        <div className="flex-grow-1">
+        <div className="flex-grow-1 p-3">
           <Label>
             {attributes.lastNameLabel} {attributes.required && "*"}
           </Label>

@@ -10,7 +10,9 @@ export type ElementType =
   | "TextArea"
   | "LongText"
   | "FullName"
-  | "Header";
+  | "Header"
+  | "Divider";
+
 export type ValidateFunction = (
   formElement: FormElementInstance,
   currectValue: string

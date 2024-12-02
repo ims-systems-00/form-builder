@@ -6,19 +6,19 @@ import {
   Label,
   Select,
 } from "@ims-systems-00/ims-ui-kit";
-import { FormElementInstance, OnProperSaveFunction } from "../types";
+import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
-  onPropertiesSave: OnProperSaveFunction;
+  onAttributeSave: OnAttributeSaveFunction;
 };
 
 type Custom = FormElementInstance & {
   attributes: Attributes;
 };
 
-export function Properties({ formElement, onPropertiesSave }: PropertiesProps) {
+export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   const element = formElement as Custom;
   const { text, level, alignment } = element.attributes;
 
@@ -27,7 +27,7 @@ export function Properties({ formElement, onPropertiesSave }: PropertiesProps) {
   const [localAlignment, setLocalAlignment] = React.useState(alignment);
 
   const saveProperties = () => {
-    onPropertiesSave(formElement.id, {
+    onAttributeSave(formElement.id, {
       text: localText,
       level: localLevel,
       alignment: localAlignment,

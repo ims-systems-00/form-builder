@@ -8,10 +8,16 @@ import {
   Row,
 } from "@ims-systems-00/ims-ui-kit";
 import { Box } from "./components/box";
-import { TextInput } from "./components";
+import { TextInput, Header, LongText, FullName, Divider } from "./components";
 import { FormElement } from "./components/builder/types";
 
-const elements: FormElement[] = [TextInput, TextInput];
+const elements: FormElement[] = [
+  TextInput,
+  LongText,
+  Header,
+  Divider,
+  FullName,
+];
 
 export function Form() {
   return (
@@ -33,9 +39,7 @@ export function Form() {
                   <DrawerRight size={20} drawerId={id}>
                     <PropertiesComponent
                       formElement={Element}
-                      onAttributeSave={() => {
-                        
-                      }}
+                      onAttributeSave={() => {}}
                     />
                   </DrawerRight>
                 </Box>
