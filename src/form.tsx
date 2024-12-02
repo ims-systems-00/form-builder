@@ -9,14 +9,15 @@ import {
 } from "@ims-systems-00/ims-ui-kit";
 import { Box } from "./components/box";
 import { TextInput, Header, LongText, FullName, Divider } from "./components";
-import { FormElement } from "./components/builder/types";
+import { FormElementInstance } from "./components/builder/types";
 
-const elements: FormElement[] = [
-  TextInput,
-  LongText,
-  Header,
-  Divider,
-  FullName,
+const elements: FormElementInstance[] = [
+  TextInput.construct("unique-id-1"),
+  TextInput.construct("unique-id-2"),
+  LongText.construct("unique-id-3"),
+  Header.construct("unique-id-4"),
+  Divider.construct("unique-id-5"),
+  FullName.construct("unique-id-6"),
 ];
 
 export function Form() {
@@ -25,18 +26,17 @@ export function Form() {
       <Container className="py-4">
         <Row>
           <Col md="8">
-            {elements.map((element: FormElement, index: number) => {
-              const DesignerComponent = element.DesignerComponent;
-              const PropertiesComponent = element.PropertiesComponent;
-              const id = "unique-id-" + index;
-              const Element = element.construct(id);
+            {elements.map((element: FormElementInstance) => {
+              const DesignerComponent = TextInput.DesignerComponent;
+              const PropertiesComponent = TextInput.PropertiesComponent;
+              const Element = element;
               return (
                 <Box>
                   <DesignerComponent formElement={Element} />
-                  <DrawerOpener drawerId={id}>
+                  <DrawerOpener drawerId={element.id}>
                     <Button size="sm">Properties</Button>
                   </DrawerOpener>
-                  <DrawerRight size={20} drawerId={id}>
+                  <DrawerRight size={20} drawerId={element.id}>
                     <PropertiesComponent
                       formElement={Element}
                       onAttributeSave={() => {}}
