@@ -2,12 +2,6 @@ import React from "react";
 
 export type ElementType =
   | "TextInput"
-  | "Heading"
-  | "Paragraph"
-  | "Spacer"
-  | "Select"
-  | "DatePicker"
-  | "TextArea"
   | "LongText"
   | "FullName"
   | "Header"
@@ -49,4 +43,7 @@ export type FormElementInstance = {
   id: string;
   type: ElementType;
   attributes: Record<string, unknown>;
+};
+export type FormElementTypes = {
+  [key in ElementType]: FormElement;
 };

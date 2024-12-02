@@ -1,19 +1,20 @@
 import React from "react";
-import { FormElement } from "../types";
+import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
 import { Properties } from "./properties";
 export {} from "./types";
+const type: ElementType = "LongText"
 export const LongText: FormElement = {
-  type: "LongText",
+  type,
   designerButtton: {
     icon: <React.Fragment>L</React.Fragment>,
     text: "Long Text",
   },
   construct: (id: string) => ({
     id,
-    type: "LongText",
+    type,
     attributes: attributes,
   }),
 

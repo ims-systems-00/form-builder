@@ -1,19 +1,21 @@
 import React from "react";
-import { FormElement } from "../types";
+import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
 import { Properties } from "./properties";
 export {} from "./types";
+const type: ElementType = "FullName";
+
 export const FullName: FormElement = {
-  type: "FullName",
+  type,
   designerButtton: {
     icon: <React.Fragment>F</React.Fragment>,
     text: "Full Name",
   },
   construct: (id: string) => ({
     id,
-    type: "FullName",
+    type,
     attributes: attributes,
   }),
 

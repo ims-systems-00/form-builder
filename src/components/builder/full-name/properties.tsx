@@ -1,4 +1,10 @@
-import { Button, FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import {
+  Button,
+  FormGroup,
+  Input,
+  Label,
+  FormText,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import React from "react";
@@ -18,7 +24,7 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   return (
     <React.Fragment>
       <FormGroup>
-        <FormText>First Name Label</FormText>
+        <Label>First Name Label</Label>
         <Input defaultValue={attributes.firstNameLabel} />
         <FormText>
           This text will be displayed above the first name field

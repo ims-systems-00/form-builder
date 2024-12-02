@@ -8,15 +8,15 @@ import {
   Row,
 } from "@ims-systems-00/ims-ui-kit";
 import { Box } from "./components/box";
-import { TextInput, Header, LongText, FullName, Divider } from "./components";
-import { FormElementInstance } from "./components/builder/types";
+import { FormElements } from "./components";
+import { FormElement, FormElementInstance } from "./components/builder/types";
 
 const elements: FormElementInstance[] = [
-  TextInput.construct("unique-id-1"),
-  LongText.construct("unique-id-2"),
-  Header.construct("unique-id-3"),
-  Divider.construct("unique-id-4"),
-  FullName.construct("unique-id-5"),
+  FormElements.TextInput.construct("unique-id-1"),
+  FormElements.LongText.construct("unique-id-2"),
+  FormElements.Header.construct("unique-id-3"),
+  FormElements.Divider.construct("unique-id-4"),
+  FormElements.FullName.construct("unique-id-5"),
 ];
 
 export function Form() {
@@ -26,18 +26,19 @@ export function Form() {
         <Row>
           <Col md="8">
             {elements.map((element: FormElementInstance) => {
-              const DesignerComponent = TextInput.DesignerComponent;
-              const PropertiesComponent = TextInput.PropertiesComponent;
-              const Element = element;
+              const Element = FormElements[element.type] as FormElement;
+              const DesignerComponent = Element.DesignerComponent;
+              const PropertiesComponent = Element.PropertiesComponent;
+              // const Element = element;
               return (
                 <Box>
-                  <DesignerComponent formElement={Element} />
+                  <DesignerComponent formElement={element} />
                   <DrawerOpener drawerId={element.id}>
                     <Button size="sm">Properties</Button>
                   </DrawerOpener>
                   <DrawerRight size={20} drawerId={element.id}>
                     <PropertiesComponent
-                      formElement={Element}
+                      formElement={element}
                       onAttributeSave={() => {}}
                     />
                   </DrawerRight>
@@ -48,8 +49,8 @@ export function Form() {
           <Col md="4">
             <Box height={70} width={70}>
               <div className="d-flex justiy-content-center align-items-center flex-column">
-                {TextInput.designerButtton.icon}
-                <span> {TextInput.designerButtton.text}</span>
+                {FormElements.TextInput.designerButtton.icon}
+                <span> {FormElements.TextInput.designerButtton.text}</span>
               </div>
             </Box>
           </Col>
