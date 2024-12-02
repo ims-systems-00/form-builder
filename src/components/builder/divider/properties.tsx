@@ -3,7 +3,7 @@ import {
   Button,
   FormGroup,
   Input,
-  Label,
+  FormText,
   Select,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
@@ -38,7 +38,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   return (
     <React.Fragment>
       <FormGroup>
-        <Label>Top Padding</Label>
+        <FormText>Top Padding</FormText>
         <Select
           value={localPaddingTop}
           onChange={(newValue: unknown) => {
@@ -57,7 +57,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Bottom Padding</Label>
+        <FormText>Bottom Padding</FormText>
         <Select
           value={localPaddingBottom}
           onChange={(newValue: unknown) => {
@@ -76,7 +76,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Divider Color</Label>
+        <FormText>Divider Color</FormText>
         <Input
           type="color"
           value={localColor}

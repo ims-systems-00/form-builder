@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Input, FormText, Row, Col } from "reactstrap";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 
@@ -31,33 +31,35 @@ export function Response({ formElement, onResponse, isValid }: ResponseProps) {
 
   return (
     <FormGroup>
-      <div className="d-flex">
-        <div className="mr-2 flex-grow-1">
-          <Label>
+      <Row>
+        <Col md={6}>
+          <FormText>
             {attributes.firstNameLabel} {attributes.required && "*"}
-          </Label>
+          </FormText>
           <Input
             placeholder={attributes.firstNamePlaceholder}
             defaultValue={attributes.defaultFirstNameValue}
             onChange={handleFirstNameChange}
             invalid={isValid === false}
           />
-        </div>
-        <div className="flex-grow-1">
-          <Label>
+        </Col>
+        <Col md={6}>
+          <FormText>
             {attributes.lastNameLabel} {attributes.required && "*"}
-          </Label>
+          </FormText>
           <Input
             placeholder={attributes.lastNamePlaceholder}
             defaultValue={attributes.defaultLastNameValue}
             onChange={handleLastNameChange}
             invalid={isValid === false}
           />
-        </div>
-      </div>
-      <Label>
-        <small>{attributes.subLabel}</small>
-      </Label>
+        </Col>
+      </Row>
+      {attributes.subLabel && (
+        <FormText>
+          <small>{attributes.subLabel}</small>
+        </FormText>
+      )}
     </FormGroup>
   );
 }

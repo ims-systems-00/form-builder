@@ -1,6 +1,8 @@
-import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import React from "react";
+import { FormGroup, Input, FormText, Row, Col } from "reactstrap";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
+
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
@@ -8,40 +10,43 @@ export type DesignerProps = {
 type Custom = FormElementInstance & {
   attributes: Attributes;
 };
+
 export function Designer({ formElement }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
+
   return (
     <FormGroup>
       <h4>Full Name</h4>
-      <div className="d-flex">
-        <div className="mr-2 flex-grow-1 p-3">
-          <Label>
+      <Row>
+        <Col md={6} className="p-3">
+          <FormText>
             {attributes.firstNameLabel} {attributes.required && "*"}
-          </Label>
+          </FormText>
           <Input
             type="text"
             disabled
             placeholder={attributes.firstNamePlaceholder}
             defaultValue={attributes.defaultFirstNameValue}
           />
-        </div>
-        <div className="flex-grow-1 p-3">
-          <Label>
+        </Col>
+        <Col md={6} className="p-3">
+          <FormText>
             {attributes.lastNameLabel} {attributes.required && "*"}
-          </Label>
+          </FormText>
           <Input
             type="text"
             disabled
             placeholder={attributes.lastNamePlaceholder}
             defaultValue={attributes.defaultLastNameValue}
           />
-        </div>
-      </div>
-
-      <Label>
-        <small>{attributes.subLabel}</small>
-      </Label>
+        </Col>
+      </Row>
+      {attributes.subLabel && (
+        <FormText>
+          <small>{attributes.subLabel}</small>
+        </FormText>
+      )}
     </FormGroup>
   );
 }

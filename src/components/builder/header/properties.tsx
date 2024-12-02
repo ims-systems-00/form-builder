@@ -3,7 +3,7 @@ import {
   Button,
   FormGroup,
   Input,
-  Label,
+  FormText,
   Select,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
@@ -37,7 +37,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   return (
     <React.Fragment>
       <FormGroup>
-        <Label>Header Text</Label>
+        <FormText>Header Text</FormText>
         <Input
           value={localText}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -46,7 +46,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Header Level</Label>
+        <FormText>Header Level</FormText>
         <Select
           value={localLevel}
           onChange={(newValue: unknown) => {
@@ -65,7 +65,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Alignment</Label>
+        <FormText>Alignment</FormText>
         <Select
           value={localAlignment}
           onChange={(newValue: unknown) => {

@@ -13,11 +13,10 @@ import { FormElementInstance } from "./components/builder/types";
 
 const elements: FormElementInstance[] = [
   TextInput.construct("unique-id-1"),
-  TextInput.construct("unique-id-2"),
-  LongText.construct("unique-id-3"),
-  Header.construct("unique-id-4"),
-  Divider.construct("unique-id-5"),
-  FullName.construct("unique-id-6"),
+  LongText.construct("unique-id-2"),
+  Header.construct("unique-id-3"),
+  Divider.construct("unique-id-4"),
+  FullName.construct("unique-id-5"),
 ];
 
 export function Form() {
