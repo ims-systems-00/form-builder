@@ -18,6 +18,7 @@ export function Designer({ formElement }: DesignerProps) {
         {attributes.label} {attributes.required && "*"}
       </Label>
       <Input
+        type="text"
         disabled
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}

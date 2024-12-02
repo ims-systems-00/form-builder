@@ -5,6 +5,9 @@ export type ElementType =
   | "Heading"
   | "Paragraph"
   | "Spacer"
+  | "Select"
+  | "DatePicker"
+  | "TextArea"
   | "LongText"
   | "FullName"
   | "Header";

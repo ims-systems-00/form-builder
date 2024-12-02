@@ -34,6 +34,7 @@ export function Properties({ formElement, onPropertiesSave }: DesignerProps) {
         </Label>
       </FormGroup>
       <Button
+        block
         onClick={() => {
           if (typeof onPropertiesSave === "function")
             onPropertiesSave(formElement.id, { key: "value" });
