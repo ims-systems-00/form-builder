@@ -9,7 +9,8 @@ export type ElementType =
   | "DatePicker"
   | "TextArea"
   | "LongText"
-  | "FullName";
+  | "FullName"
+  | "NumberInput";
 export type ValidateFunction = (
   formElement: FormElementInstance,
   currectValue: string
