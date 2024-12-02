@@ -1,6 +1,12 @@
 import React from "react";
 
-export type ElementType = "TextInput" | "Heading" | "Paragraph" | "Spacer";
+export type ElementType =
+  | "TextInput"
+  | "Heading"
+  | "Paragraph"
+  | "Spacer"
+  | "LongText"
+  | "FullName";
 export type ValidateFunction = (
   formElement: FormElementInstance,
   currectValue: string
