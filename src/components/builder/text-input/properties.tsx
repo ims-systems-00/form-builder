@@ -14,11 +14,11 @@ export type DesignerProps = {
   onAttributeSave?: OnAttributeSaveFunction;
 };
 
-type Custom = FormElementInstance & {
+type TextElementInstance = FormElementInstance & {
   attributes: Attributes;
 };
 export function Properties({ formElement, onAttributeSave }: DesignerProps) {
-  const element = formElement as Custom;
+  const element = formElement as TextElementInstance;
   const attributes = element.attributes;
   return (
     <React.Fragment>
