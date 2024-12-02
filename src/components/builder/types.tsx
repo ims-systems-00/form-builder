@@ -1,6 +1,13 @@
 import React from "react";
 
-export type ElementType = "TextInput" | "Heading" | "Paragraph" | "Spacer";
+export type ElementType =
+  | "TextInput"
+  | "Heading"
+  | "Paragraph"
+  | "Spacer"
+  | "Select"
+  | "DatePicker"
+  | "TextArea";
 export type ValidateFunction = (
   formElement: FormElementInstance,
   currectValue: string

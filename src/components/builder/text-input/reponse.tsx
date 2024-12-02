@@ -18,6 +18,7 @@ export function Response({ formElement, onResponse }: DesignerProps) {
         {attributes.label} {attributes.required && "*"}
       </Label>
       <Input
+        type="text"
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}
         onChange={(e) => {
