@@ -3,7 +3,7 @@ import {
   FormGroup,
   Input,
   Label,
-  FormText,
+  FormText
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
@@ -26,33 +26,33 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
       <FormGroup>
         <Label>First Name Label</Label>
         <Input defaultValue={attributes.firstNameLabel} />
-        <FormText>
+        <Label>
           This text will be displayed above the first name field
-        </FormText>
+        </Label>
       </FormGroup>
       <FormGroup>
-        <FormText>First Name Placeholder</FormText>
+        <Label>First Name Placeholder</Label>
         <Input defaultValue={attributes.firstNamePlaceholder} />
-        <FormText>
+        <Label>
           This text will be displayed as a hint in the first name field
-        </FormText>
+        </Label>
       </FormGroup>
       <FormGroup>
-        <FormText>Last Name Label</FormText>
+        <Label>Last Name Label</Label>
         <Input defaultValue={attributes.lastNameLabel} />
-        <FormText>
+        <Label>
           This text will be displayed above the last name field
-        </FormText>
+        </Label>
       </FormGroup>
       <FormGroup>
-        <FormText>Last Name Placeholder</FormText>
+        <Label>Last Name Placeholder</Label>
         <Input defaultValue={attributes.lastNamePlaceholder} />
-        <FormText>
+        <Label>
           This text will be displayed as a hint in the last name field
-        </FormText>
+        </Label>
       </FormGroup>
       <FormGroup>
-        <FormText>Sub label</FormText>
+        <Label>Sub label</Label>
         <Input defaultValue={attributes.subLabel} />
         <FormText>
           This text will be displayed at the bottom of the input fields

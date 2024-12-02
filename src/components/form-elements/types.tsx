@@ -17,14 +17,14 @@ export type OnAttributeSaveFunction = (
   key: string,
   attributes: Record<string, unknown>
 ) => void;
-
+export type DesingerButtonType = {
+  icon: React.FC<{ size?: number }>;
+  text: string;
+};
 export type FormElement = {
   type: ElementType;
   construct: (id: string) => FormElementInstance;
-  designerButtton: {
-    icon: React.ReactNode;
-    text: string;
-  };
+  designerButtton: DesingerButtonType;
   DesignerComponent: React.FC<{
     formElement: FormElementInstance;
   }>;

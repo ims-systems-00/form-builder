@@ -1,4 +1,6 @@
 import React from "react";
+import { LuTextCursorInput } from "react-icons/lu";
+
 import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -9,7 +11,9 @@ const type: ElementType = "TextInput";
 export const TextInput: FormElement = {
   type,
   designerButtton: {
-    icon: <React.Fragment>T</React.Fragment>,
+    icon: ({ size }: { size?: number }) => (
+      <LuTextCursorInput size={size} />
+    ),
     text: "Text input",
   },
   construct: (id: string) => ({

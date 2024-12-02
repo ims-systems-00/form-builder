@@ -6,6 +6,6 @@ export type Attributes = {
 
 export const attributes: Attributes = {
   text: "Header Text",
-  level: "h2",
+  level: "h3",
   alignment: "left",
 };

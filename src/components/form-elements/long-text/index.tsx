@@ -4,18 +4,22 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
 import { Properties } from "./properties";
-const type: ElementType = "Divider";
-export const Divider: FormElement = {
+export {} from "./types";
+import { LuText } from "react-icons/lu";
+
+const type: ElementType = "LongText";
+export const LongText: FormElement = {
   type,
   designerButtton: {
-    icon: <span style={{ fontWeight: "bold", fontSize: "1.2em" }}>—</span>,
-    text: "Divider",
+    icon: ({ size }: { size?: number }) => <LuText size={size} />,
+    text: "Long Text",
   },
   construct: (id: string) => ({
     id,
     type,
     attributes: attributes,
   }),
+
   DesignerComponent: Designer,
   ResponseComponent: Response,
   PropertiesComponent: Properties,

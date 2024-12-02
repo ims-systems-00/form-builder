@@ -1611,6 +1611,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.3.1.tgz#c72a5c76a9fbaf3488e231b13dc52c0da7bab42a"
   integrity sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==
 
+"@ims-systems-00/ims-react-hooks@^1.0.32":
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/@ims-systems-00/ims-react-hooks/-/ims-react-hooks-1.0.32.tgz#a470b27455d4bcb7f38534fc1903d6ee61a611c0"
+  integrity sha512-IX/Rj0ojCdNKg66rY/2WVWu4Vp1FdRVe3LcY6FmDyA1eBN9rPjSPewtvT2EYaVBDiMZbckOiFB69hhxBI0C/sA==
+  optionalDependencies:
+    eslint-plugin-flowtype "8.0.3"
+    typescript "4.9.4"
+
 "@ims-systems-00/ims-ui-kit@^0.0.34":
   version "0.0.34"
   resolved "https://registry.yarnpkg.com/@ims-systems-00/ims-ui-kit/-/ims-ui-kit-0.0.34.tgz#8936a72c2c4e6904605ac08f7b245c1c3c8a6e50"
@@ -3905,7 +3913,7 @@ classnames@2.3.2:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
 
-classnames@^2.2.3, classnames@^2.2.6, classnames@^2.3.2:
+classnames@^2.2.3, classnames@^2.2.6, classnames@^2.3.2, classnames@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
   integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
@@ -10488,6 +10496,11 @@ typescript-eslint@^8.11.0:
     "@typescript-eslint/eslint-plugin" "8.12.2"
     "@typescript-eslint/parser" "8.12.2"
     "@typescript-eslint/utils" "8.12.2"
+
+typescript@4.9.4:
+  version "4.9.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
+  integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
 
 typescript@^5.5.4, typescript@~5.6.2:
   version "5.6.3"

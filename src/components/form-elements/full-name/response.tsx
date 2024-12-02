@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Input, FormText, Row, Col } from "reactstrap";
+import { FormGroup, Input, Label, Row, Col } from "reactstrap";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 
@@ -33,9 +33,9 @@ export function Response({ formElement, onResponse, isValid }: ResponseProps) {
     <FormGroup>
       <Row>
         <Col md={6}>
-          <FormText>
+          <Label>
             {attributes.firstNameLabel} {attributes.required && "*"}
-          </FormText>
+          </Label>
           <Input
             placeholder={attributes.firstNamePlaceholder}
             defaultValue={attributes.defaultFirstNameValue}
@@ -44,9 +44,9 @@ export function Response({ formElement, onResponse, isValid }: ResponseProps) {
           />
         </Col>
         <Col md={6}>
-          <FormText>
+          <Label>
             {attributes.lastNameLabel} {attributes.required && "*"}
-          </FormText>
+          </Label>
           <Input
             placeholder={attributes.lastNamePlaceholder}
             defaultValue={attributes.defaultLastNameValue}
@@ -56,9 +56,9 @@ export function Response({ formElement, onResponse, isValid }: ResponseProps) {
         </Col>
       </Row>
       {attributes.subLabel && (
-        <FormText>
+        <Label>
           <small>{attributes.subLabel}</small>
-        </FormText>
+        </Label>
       )}
     </FormGroup>
   );

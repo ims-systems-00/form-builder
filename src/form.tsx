@@ -1,15 +1,14 @@
 import {
-  Button,
   Col,
   Container,
   DrawerContextProvider,
-  DrawerOpener,
-  DrawerRight,
   Row,
 } from "@ims-systems-00/ims-ui-kit";
-import { Box } from "./components/box";
 import { FormElements } from "./components";
-import { FormElement, FormElementInstance } from "./components/builder/types";
+import { DesginerElement } from "./components/builder/designer-element";
+import { FormElementInstance } from "./components/form-elements/types";
+import { DesingerButton } from "./components/builder/designer-button";
+import { DropableContainer } from "./components/builder/dropable-container";
 
 const elements: FormElementInstance[] = [
   FormElements.TextInput.construct("unique-id-1"),
@@ -25,34 +24,21 @@ export function Form() {
       <Container className="py-4">
         <Row>
           <Col md="8">
-            {elements.map((element: FormElementInstance) => {
-              const Element = FormElements[element.type] as FormElement;
-              const DesignerComponent = Element.DesignerComponent;
-              const PropertiesComponent = Element.PropertiesComponent;
-              // const Element = element;
-              return (
-                <Box>
-                  <DesignerComponent formElement={element} />
-                  <DrawerOpener drawerId={element.id}>
-                    <Button size="sm">Properties</Button>
-                  </DrawerOpener>
-                  <DrawerRight size={20} drawerId={element.id}>
-                    <PropertiesComponent
-                      formElement={element}
-                      onAttributeSave={() => {}}
-                    />
-                  </DrawerRight>
-                </Box>
-              );
-            })}
+            <DropableContainer>
+              {elements.map((element: FormElementInstance) => {
+                return <DesginerElement formElement={element} />;
+              })}
+            </DropableContainer>
           </Col>
           <Col md="4">
-            <Box height={70} width={70}>
-              <div className="d-flex justiy-content-center align-items-center flex-column">
-                {FormElements.TextInput.designerButtton.icon}
-                <span> {FormElements.TextInput.designerButtton.text}</span>
-              </div>
-            </Box>
+            <DesingerButton
+              shape="square"
+              {...FormElements.TextInput.designerButtton}
+            />
+            <DesingerButton
+              shape="square"
+              {...FormElements.LongText.designerButtton}
+            />
           </Col>
         </Row>
       </Container>

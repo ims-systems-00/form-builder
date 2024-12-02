@@ -14,11 +14,12 @@ export function Response({ formElement, onResponse }: DesignerProps) {
   const attributes = element.attributes;
   return (
     <FormGroup>
-      <FormText>
+      <Label>
         {attributes.label} {attributes.required && "*"}
-      </FormText>
+      </Label>
       <Input
-        type="text"
+        type="textarea"
+        rows={4}
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}
         onChange={(e) => {
@@ -26,9 +27,9 @@ export function Response({ formElement, onResponse }: DesignerProps) {
             onResponse(formElement.id, e.currentTarget.value);
         }}
       />
-      <FormText>
+      <Label>
         <small>{attributes.subLabel}</small>
-      </FormText>
+      </Label>
     </FormGroup>
   );
 }

@@ -1,4 +1,4 @@
-import { FormGroup, Input, FormText } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 export type DesignerProps = {
@@ -14,12 +14,11 @@ export function Response({ formElement, onResponse }: DesignerProps) {
   const attributes = element.attributes;
   return (
     <FormGroup>
-      <FormText>
+      <Label>
         {attributes.label} {attributes.required && "*"}
-      </FormText>
+      </Label>
       <Input
-        type="textarea"
-        rows={4}
+        type="text"
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}
         onChange={(e) => {
@@ -27,9 +26,9 @@ export function Response({ formElement, onResponse }: DesignerProps) {
             onResponse(formElement.id, e.currentTarget.value);
         }}
       />
-      <FormText>
+      <Label>
         <small>{attributes.subLabel}</small>
-      </FormText>
+      </Label>
     </FormGroup>
   );
 }

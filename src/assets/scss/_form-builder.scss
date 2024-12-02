@@ -1,0 +1,21 @@
+.designer-button-square {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $card-bg;
+  border-radius: $border-radius-lg;
+  border: $primary 1px solid;
+  cursor: pointer;
+  margin-bottom: $margin-base-vertical;
+}
+.desinger-element {
+  transition: all 0.3s ease;
+  border: transparent 2px dashed;
+  padding: $padding-base-horizontal $padding-base-vertical;
+  &.hover {
+    border: $primary 2px dashed;
+  }
+}
