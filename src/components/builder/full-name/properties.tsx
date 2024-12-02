@@ -1,18 +1,18 @@
 import { Button, FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
-import { FormElementInstance, OnProperSaveFunction } from "../types";
+import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
-  onPropertiesSave?: OnProperSaveFunction;
+  onAttributeSave?: OnAttributeSaveFunction;
 };
 
 type Custom = FormElementInstance & {
   attributes: Attributes;
 };
 
-export function Properties({ formElement, onPropertiesSave }: DesignerProps) {
+export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
   return (
@@ -50,8 +50,8 @@ export function Properties({ formElement, onPropertiesSave }: DesignerProps) {
       </FormGroup>
       <Button
         onClick={() => {
-          if (typeof onPropertiesSave === "function")
-            onPropertiesSave(formElement.id, { key: "value" });
+          if (typeof onAttributeSave === "function")
+            onAttributeSave(formElement.id, { key: "value" });
         }}
       >
         Save

@@ -13,9 +13,9 @@ export function Designer({ formElement }: DesignerProps) {
   const attributes = element.attributes;
   return (
     <FormGroup>
-      <h4>Text Field</h4>
+      <h5>Text Input</h5>
       <Label>
-        {attributes.label} {attributes.required && "*"}
+        {attributes.label} {attributes.required && <span className="text-danger">*</span>}
       </Label>
       <Input
         type="text"
