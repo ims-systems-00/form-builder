@@ -10,8 +10,9 @@ import {
 import { Box } from "./components/box";
 import { TextInput } from "./components";
 import { FormElement } from "./components/builder/types";
+import { NumberInput } from "./components";
 
-const elements: FormElement[] = [TextInput, TextInput];
+const elements: FormElement[] = [TextInput, TextInput, NumberInput];
 
 export function Form() {
   return (
@@ -33,9 +34,7 @@ export function Form() {
                   <DrawerRight size={20} drawerId={id}>
                     <PropertiesComponent
                       formElement={Element}
-                      onAttributeSave={() => {
-                        
-                      }}
+                      onAttributeSave={() => {}}
                     />
                   </DrawerRight>
                 </Box>
@@ -47,6 +46,12 @@ export function Form() {
               <div className="d-flex justiy-content-center align-items-center flex-column">
                 {TextInput.designerButtton.icon}
                 <span> {TextInput.designerButtton.text}</span>
+              </div>
+            </Box>
+            <Box height={70} width={70}>
+              <div className="d-flex justiy-content-center align-items-center flex-column">
+                {NumberInput.designerButtton.icon}
+                <span> {NumberInput.designerButtton.text}</span>
               </div>
             </Box>
           </Col>
