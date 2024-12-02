@@ -17,9 +17,9 @@ export type ValidateFunction = (
 ) => boolean;
 
 export type OnResponseFunction = (key: string, currectValue: string) => void;
-export type OnProperSaveFunction = (
+export type OnAttributeSaveFunction = (
   key: string,
-  properties: Record<string, unknown>
+  attributes: Record<string, unknown>
 ) => void;
 
 export type FormElement = {
@@ -39,7 +39,7 @@ export type FormElement = {
   }>;
   PropertiesComponent: React.FC<{
     formElement: FormElementInstance;
-    onPropertiesSave: OnProperSaveFunction;
+    onAttributeSave: OnAttributeSaveFunction;
   }>;
   validate: ValidateFunction;
 };

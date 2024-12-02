@@ -1,17 +1,23 @@
-import { Button, FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
-import { FormElementInstance, OnProperSaveFunction } from "../types";
+import {
+  Button,
+  FormGroup,
+  FormText,
+  Input,
+  Label,
+} from "@ims-systems-00/ims-ui-kit";
+import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
-  onPropertiesSave?: OnProperSaveFunction;
+  onAttributeSave?: OnAttributeSaveFunction;
 };
 
 type Custom = FormElementInstance & {
   attributes: Attributes;
 };
-export function Properties({ formElement, onPropertiesSave }: DesignerProps) {
+export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
   return (
@@ -19,25 +25,29 @@ export function Properties({ formElement, onPropertiesSave }: DesignerProps) {
       <FormGroup>
         <Label>Lebel</Label>
         <Input defaultValue={attributes.label} />
-        <Label>This text will be displayed at the top of the input field</Label>
+        <FormText>
+          This text will be displayed at the top of the input field
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label>Placeholder</Label>
         <Input defaultValue={attributes.placeholder} />
-        <Label>This text will be displayed as a hint in the input field</Label>
+        <FormText>
+          This text will be displayed as a hint in the input field
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label>Sub lebel</Label>
         <Input defaultValue={attributes.subLabel} />
-        <Label>
+        <FormText>
           This text will be displayed at the bottom of the input field
-        </Label>
+        </FormText>
       </FormGroup>
       <Button
         block
         onClick={() => {
-          if (typeof onPropertiesSave === "function")
-            onPropertiesSave(formElement.id, { key: "value" });
+          if (typeof onAttributeSave === "function")
+            onAttributeSave(formElement.id, { key: "value" });
         }}
       >
         Save

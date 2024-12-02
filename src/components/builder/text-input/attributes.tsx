@@ -10,5 +10,5 @@ export const attributes: Attributes = {
   placeholder: "[Place holder]",
   defaultValue: "[Default value]",
   subLabel: "[Helper text about this field]",
-  required: false,
+  required: true,
 };

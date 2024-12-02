@@ -1,2 +1,1 @@
-export { TextInput } from "./text-input";
-export { Email } from "./email";
+export { TextInput } from "./builder/text-input";
