@@ -1,4 +1,10 @@
-import { Button, FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import {
+  Button,
+  FormGroup,
+  Input,
+  Label,
+  FormText,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import React from "react";
@@ -20,33 +26,37 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
       <FormGroup>
         <Label>First Name Label</Label>
         <Input defaultValue={attributes.firstNameLabel} />
-        <Label>This text will be displayed above the first name field</Label>
+        <FormText>
+          This text will be displayed above the first name field
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <Label>First Name Placeholder</Label>
+        <FormText>First Name Placeholder</FormText>
         <Input defaultValue={attributes.firstNamePlaceholder} />
-        <Label>
+        <FormText>
           This text will be displayed as a hint in the first name field
-        </Label>
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <Label>Last Name Label</Label>
+        <FormText>Last Name Label</FormText>
         <Input defaultValue={attributes.lastNameLabel} />
-        <Label>This text will be displayed above the last name field</Label>
+        <FormText>
+          This text will be displayed above the last name field
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <Label>Last Name Placeholder</Label>
+        <FormText>Last Name Placeholder</FormText>
         <Input defaultValue={attributes.lastNamePlaceholder} />
-        <Label>
+        <FormText>
           This text will be displayed as a hint in the last name field
-        </Label>
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <Label>Sub label</Label>
+        <FormText>Sub label</FormText>
         <Input defaultValue={attributes.subLabel} />
-        <Label>
+        <FormText>
           This text will be displayed at the bottom of the input fields
-        </Label>
+        </FormText>
       </FormGroup>
       <Button
         onClick={() => {

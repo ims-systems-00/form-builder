@@ -1,4 +1,4 @@
-import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Input, FormText } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 export type DesignerProps = {
@@ -14,9 +14,9 @@ export function Designer({ formElement }: DesignerProps) {
   return (
     <FormGroup>
       <h4>Long Text</h4>
-      <Label>
+      <FormText>
         {attributes.label} {attributes.required && "*"}
-      </Label>
+      </FormText>
       <Input
         type="textarea"
         rows={4}
@@ -24,9 +24,9 @@ export function Designer({ formElement }: DesignerProps) {
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}
       />
-      <Label>
+      <FormText>
         <small>{attributes.subLabel}</small>
-      </Label>
+      </FormText>
     </FormGroup>
   );
 }

@@ -4,13 +4,12 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
 import { Properties } from "./properties";
-export {} from "./types";
-const type: ElementType = "LongText"
-export const LongText: FormElement = {
+const type: ElementType = "Header";
+export const Header: FormElement = {
   type,
   designerButtton: {
-    icon: <React.Fragment>L</React.Fragment>,
-    text: "Long Text",
+    icon: <React.Fragment>H</React.Fragment>,
+    text: "Header",
   },
   construct: (id: string) => ({
     id,

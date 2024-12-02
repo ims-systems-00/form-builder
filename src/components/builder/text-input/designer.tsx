@@ -1,4 +1,4 @@
-import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Input, FormText } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 export type DesignerProps = {
@@ -14,18 +14,19 @@ export function Designer({ formElement }: DesignerProps) {
   return (
     <FormGroup>
       <h5>Text Input</h5>
-      <Label>
-        {attributes.label} {attributes.required && <span className="text-danger">*</span>}
-      </Label>
+      <FormText>
+        {attributes.label}{" "}
+        {attributes.required && <span className="text-danger">*</span>}
+      </FormText>
       <Input
         type="text"
         disabled
         placeholder={attributes.placeholder}
         defaultValue={attributes.defaultValue}
       />
-      <Label>
+      <FormText>
         <small>{attributes.subLabel}</small>
-      </Label>
+      </FormText>
     </FormGroup>
   );
 }

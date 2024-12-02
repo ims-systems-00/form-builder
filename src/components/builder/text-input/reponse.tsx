@@ -14,9 +14,9 @@ export function Response({ formElement, onResponse }: DesignerProps) {
   const attributes = element.attributes;
   return (
     <FormGroup>
-      <Label>
+      <FormText>
         {attributes.label} {attributes.required && "*"}
-      </Label>
+      </FormText>
       <Input
         type="text"
         placeholder={attributes.placeholder}
@@ -26,9 +26,9 @@ export function Response({ formElement, onResponse }: DesignerProps) {
             onResponse(formElement.id, e.currentTarget.value);
         }}
       />
-      <Label>
+      <FormText>
         <small>{attributes.subLabel}</small>
-      </Label>
+      </FormText>
     </FormGroup>
   );
 }
