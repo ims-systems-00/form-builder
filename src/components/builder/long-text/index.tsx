@@ -2,7 +2,7 @@ import React from "react";
 import { FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./reponse";
+import { Response } from "./response";
 import { Properties } from "./properties";
 export {} from "./types";
 export const LongText: FormElement = {

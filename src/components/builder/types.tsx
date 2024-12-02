@@ -6,7 +6,8 @@ export type ElementType =
   | "Paragraph"
   | "Spacer"
   | "LongText"
-  | "FullName";
+  | "FullName"
+  | "Header";
 export type ValidateFunction = (
   formElement: FormElementInstance,
   currectValue: string
