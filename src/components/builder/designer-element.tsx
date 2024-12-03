@@ -35,13 +35,14 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
     data: {
       type: formElement.type,
       elementId: formElement.id,
-      isBttomHalfDesignerElement: true,
+      isBottomHalfDesignerElement: true,
     },
   });
   const dragable = useDraggable({
-    id: "desinger-element-" + formElement.type,
+    id: "desinger-element-" + formElement.id,
     data: {
       type: formElement.type,
+      elementId: formElement.id,
       isDesignerElement: true,
     },
   });
@@ -124,7 +125,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
               <Button size="sm" className="border-0" outline>
                 <IoDuplicateOutline />
               </Button>
-              <Button size="sm" className="border-0" outline>
+              <Button color="danger" size="sm" className="border-0" outline>
                 <RiDeleteBin6Line />
               </Button>
             </div>
