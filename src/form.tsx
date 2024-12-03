@@ -18,6 +18,10 @@ const elements: FormElementInstance[] = [
   FormElements.Header.construct("unique-id-3"),
   FormElements.Divider.construct("unique-id-4"),
   FormElements.FullName.construct("unique-id-5"),
+  FormElements.Email.construct("unique-id-6"),
+  FormElements.Address.construct("unique-id-7"),
+  FormElements.PhoneNumber.construct("unique-id-8"),
+  FormElements.MultipleChoice.construct("unique-id-9"),
 ];
 
 export function Form() {
@@ -36,15 +40,19 @@ export function Form() {
             <Col md="4">
               <DesingerButton
                 shape="square"
-                formElement={FormElements.TextInput.construct("short-text-button")}
+                formElement={FormElements.TextInput.construct(
+                  "short-text-button"
+                )}
               />
               <DesingerButton
                 shape="square"
-                formElement={FormElements.LongText.construct("long-text-button")}
+                formElement={FormElements.LongText.construct(
+                  "long-text-button"
+                )}
               />
             </Col>
           </Row>
-          <DragOverLay/>
+          <DragOverLay />
         </DesignProvider>
       </Container>
     </DrawerContextProvider>

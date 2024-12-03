@@ -1,5 +1,5 @@
 import React from "react";
-import { ElementType, FormElement } from "../../builder/types";
+import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
