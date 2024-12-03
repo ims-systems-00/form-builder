@@ -90,13 +90,13 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             <div
               ref={topHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 top-0", {
-                "bg-success opacity-25": topHalf.isOver,
+                // "bg-success opacity-25": topHalf.isOver,
               })}
             ></div>
             <div
               ref={bottomHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 bottom-0", {
-                "bg-danger  opacity-25": bottomHalf.isOver,
+                // "bg-danger  opacity-25": bottomHalf.isOver,
               })}
             ></div>
             <div
@@ -114,21 +114,13 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
                 " invisible ": !isHovering,
               }
             )}
-            onClick={(e) => e.stopPropagation()}
           >
             <div className="d-flex flex-row-reverse">
-              <Button
-                size="sm"
-                className="border-0"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                outline
-              >
-                <DrawerOpener drawerId={formElement.id}>
+              <DrawerOpener drawerId={formElement.id}>
+                <Button size="sm" className="border-0" outline>
                   <IoSettingsOutline />
-                </DrawerOpener>
-              </Button>
+                </Button>
+              </DrawerOpener>
               <Button size="sm" className="border-0" outline>
                 <IoDuplicateOutline />
               </Button>

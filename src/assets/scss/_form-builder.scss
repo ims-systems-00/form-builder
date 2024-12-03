@@ -12,6 +12,7 @@
 .desginer-dropable-container {
   border: transparent 1px solid;
   transition: all 0.3s ease;
+  min-height: 80vh;
   &.over {
     border: $primary 1px solid;
   }
