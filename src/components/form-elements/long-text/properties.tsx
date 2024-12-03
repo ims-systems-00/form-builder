@@ -1,13 +1,11 @@
-import {
-  Button,
-  FormGroup,
-  Input,
-  Label,
-  FormText,
-} from "@ims-systems-00/ims-ui-kit";
+import { Button } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
-import { Attributes } from "./attributes";
-import React from "react";
+import { Attributes, validationSchema } from "./attributes";
+import {
+  FormikForm,
+  SubmitButton,
+  TextFieldWithDataValidation,
+} from "../../formik";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
@@ -20,37 +18,41 @@ type Custom = FormElementInstance & {
 export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
+
   return (
-    <React.Fragment>
-      <FormGroup>
-        <Label>Lebel</Label>
-        <Input defaultValue={attributes.label} />
-        <FormText>
-          This text will be displayed at the top of the input field
-        </FormText>
-      </FormGroup>
-      <FormGroup>
-        <Label>Placeholder</Label>
-        <Input defaultValue={attributes.placeholder} />
-        <FormText>
-          This text will be displayed as a hint in the input field
-        </FormText>
-      </FormGroup>
-      <FormGroup>
-        <Label>Sub lebel</Label>
-        <Input defaultValue={attributes.subLabel} />
-        <FormText>
-          This text will be displayed at the bottom of the input field
-        </FormText>
-      </FormGroup>
-      <Button
-        onClick={() => {
-          if (typeof onAttributeSave === "function")
-            onAttributeSave(formElement.id, { key: "value" });
-        }}
-      >
-        Save
-      </Button>
-    </React.Fragment>
+    <FormikForm
+      initialValues={attributes}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        if (typeof onAttributeSave === "function") {
+          onAttributeSave(formElement.id, values);
+        }
+      }}
+    >
+      <TextFieldWithDataValidation
+        name="label"
+        label="Label"
+        type="text"
+        hintText="This text will be displayed at the top of the input field"
+      />
+
+      <TextFieldWithDataValidation
+        name="placeholder"
+        label="Placeholder"
+        type="text"
+        hintText="This text will be displayed as a hint in the input field"
+      />
+
+      <TextFieldWithDataValidation
+        name="subLabel"
+        label="Sub Label"
+        type="text"
+        hintText="This text will be displayed at the bottom of the input field"
+      />
+
+      <SubmitButton>
+        <Button block>Save</Button>
+      </SubmitButton>
+    </FormikForm>
   );
 }
