@@ -50,33 +50,36 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
           />
         </div>
       )}
-      <DrawerContextProvider>
-        <div className="position-relative">
-          <div
-            ref={topHalf.setNodeRef}
-            className={classNames("position-absolute h-50 w-100 top-0", {
-              // "bg-success opacity-25": topHalf.isOver,
-            })}
-          ></div>
-          <div
-            ref={bottomHalf.setNodeRef}
-            className={classNames("position-absolute h-50 w-100 bottom-0", {
-              // "bg-danger  opacity-25": bottomHalf.isOver,
-            })}
-          ></div>
-          <div
-            className={classNames("desinger-element my-1 rounded-3", {
-              hover: isHovering,
-            })}
-            onMouseOver={() => toggle()}
-            onMouseOut={() => toggle()}
-          >
-            <DesignerComponent formElement={formElement} />
-            <div className={classNames({ " invisible ": !isHovering })}>
-              <hr
-                className="my-1 bg-secondary rouded-3"
-                style={{ height: 2 }}
-              />
+      <div onMouseOver={() => toggle()} onMouseOut={() => toggle()}>
+        <DrawerContextProvider>
+          <div className="position-relative">
+            <div
+              ref={topHalf.setNodeRef}
+              className={classNames("position-absolute h-50 w-100 top-0", {
+                "bg-success opacity-25": topHalf.isOver,
+              })}
+            ></div>
+            <div
+              ref={bottomHalf.setNodeRef}
+              className={classNames("position-absolute h-50 w-100 bottom-0", {
+                "bg-danger  opacity-25": bottomHalf.isOver,
+              })}
+            ></div>
+            <div
+              className={classNames("desinger-element my-1 rounded-3", {
+                hover: isHovering,
+              })}
+            >
+              <DesignerComponent formElement={formElement} />
+            </div>
+            <div
+              className={classNames(
+                "position-absolute bg-light m-2 rounded-3 top-0 right-0",
+                {
+                  " invisible ": !isHovering,
+                }
+              )}
+            >
               <div className="d-flex flex-row-reverse">
                 <DrawerOpener drawerId={formElement.id}>
                   <Button size="sm" className="border-0" outline>
@@ -98,8 +101,8 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
               </DrawerRight>
             </div>
           </div>
-        </div>
-      </DrawerContextProvider>
+        </DrawerContextProvider>
+      </div>
       {bottomHalf.isOver && (
         <div className="opacity-25 p-2 my-1 rounded-3">
           <FormElements.TextInput.DesignerComponent
