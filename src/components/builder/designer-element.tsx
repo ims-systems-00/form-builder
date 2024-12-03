@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { FormElementInstance } from "../form-elements/types";
+import { ElementType, FormElementInstance } from "../form-elements/types";
 import {
   DrawerContextProvider,
   DrawerOpener,
@@ -13,7 +13,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoDuplicateOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useDualStateController } from "@ims-systems-00/ims-react-hooks";
-import { useDroppable } from "@dnd-kit/core";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 export type DesginerElementProps = {
   formElement: FormElementInstance;
 };
@@ -38,19 +38,50 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
       isBttomHalfDesignerElement: true,
     },
   });
+  const dragable = useDraggable({
+    id: "desinger-element-" + formElement.type,
+    data: {
+      type: formElement.type,
+      isDesignerElement: true,
+    },
+  });
+  let elementPreviewTop = null;
+  let elementPreviewBottom = null;
 
+  if (topHalf.isOver) {
+    const type = bottomHalf.active?.data?.current?.type as ElementType;
+    const Element = FormElements[type];
+    elementPreviewTop = (
+      <div className="opacity-25 p-2 my-1 rounded-3">
+        <Element.DesignerComponent
+          formElement={Element.construct(formElement.id + "-top-drop-preview")}
+        />
+      </div>
+    );
+  }
+  if (bottomHalf.isOver) {
+    const type = bottomHalf.active?.data?.current?.type as ElementType;
+    const Element = FormElements[type];
+    elementPreviewBottom = (
+      <div className="opacity-25 p-2 my-1 rounded-3">
+        <Element.DesignerComponent
+          formElement={Element.construct(
+            formElement.id + "-bottom-drop-preview"
+          )}
+        />
+      </div>
+    );
+  }
   return (
     <React.Fragment>
-      {topHalf.isOver && (
-        <div className="opacity-25 p-2 my-1 rounded-3">
-          <FormElements.TextInput.DesignerComponent
-            formElement={FormElements.TextInput.construct(
-              formElement.id + "-top-drop-preview"
-            )}
-          />
-        </div>
-      )}
-      <div onMouseOver={() => toggle()} onMouseOut={() => toggle()}>
+      {elementPreviewTop}
+      <div
+        ref={dragable.setNodeRef}
+        {...dragable.listeners}
+        {...dragable.attributes}
+        onMouseOver={() => toggle()}
+        onMouseOut={() => toggle()}
+      >
         <DrawerContextProvider>
           <div className="position-relative">
             <div
@@ -103,15 +134,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
           </div>
         </DrawerContextProvider>
       </div>
-      {bottomHalf.isOver && (
-        <div className="opacity-25 p-2 my-1 rounded-3">
-          <FormElements.TextInput.DesignerComponent
-            formElement={FormElements.TextInput.construct(
-              formElement.id + "-bottom-drop-preview"
-            )}
-          />
-        </div>
-      )}
+      {elementPreviewBottom}
     </React.Fragment>
   );
 }

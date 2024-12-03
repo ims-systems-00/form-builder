@@ -18,7 +18,7 @@
   flex-direction: column;
   background-color: $card-bg;
   border-radius: $border-radius-lg;
-  cursor: pointer;
+  cursor: grab;
   margin-bottom: $margin-base-vertical;
   border: transparent 1px solid;
   transition: all 0.3s ease;
@@ -30,6 +30,7 @@
   transition: all 0.3s ease;
   border: $secondary-light 2px dashed;
   padding: $padding-base-horizontal $padding-base-vertical;
+  cursor: grab;
   &.hover {
     border: $primary 2px dashed;
   }
