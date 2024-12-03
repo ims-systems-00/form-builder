@@ -7,7 +7,7 @@ interface FormikFormProps<T = FormikValues> {
   onSubmit?: (
     values: T,
     formikHelpers: FormikHelpers<T>
-  ) => void | Promise<any>;
+  ) => void | Promise<unknown>;
   validationSchema: AnySchema;
   children: React.ReactNode;
   validateOnChange?: boolean;
