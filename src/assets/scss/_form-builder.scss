@@ -1,3 +1,10 @@
+.desginer-dropable-container {
+  border: transparent 1px solid;
+  transition: all 0.3s ease;
+  &.over {
+    border: $primary 1px solid;
+  }
+}
 .designer-button-square {
   height: 100px;
   width: 100px;
@@ -7,11 +14,11 @@
   flex-direction: column;
   background-color: $card-bg;
   border-radius: $border-radius-lg;
-  border: transparent 1px solid;
   cursor: pointer;
   margin-bottom: $margin-base-vertical;
+  border: transparent 1px solid;
   transition: all 0.3s ease;
-  &:hover{
+  &:hover {
     border: $primary 1px solid;
   }
 }

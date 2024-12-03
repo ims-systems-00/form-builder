@@ -15,9 +15,9 @@ import { DragOverLay } from "./components/builder/drag-overlay";
 const elements: FormElementInstance[] = [
   FormElements.TextInput.construct("unique-id-1"),
   FormElements.LongText.construct("unique-id-2"),
-  FormElements.Header.construct("unique-id-3"),
-  FormElements.Divider.construct("unique-id-4"),
-  FormElements.FullName.construct("unique-id-5"),
+  // FormElements.Header.construct("unique-id-3"),
+  // FormElements.Divider.construct("unique-id-4"),
+  // FormElements.FullName.construct("unique-id-5"),
 ];
 
 export function Form() {
