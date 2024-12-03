@@ -1,29 +1,7 @@
-import React, { useCallback, useContext, useState } from "react";
-import { DndContext } from "@dnd-kit/core";
-import { FormElementInstance } from "../form-elements/types";
-type AddElementParams = {
-  element: FormElementInstance;
-  beforeElement: FormElementInstance;
-  afterElement: FormElementInstance;
-};
-
-type BuilderUtils = {
-  elements: FormElementInstance[];
-  addElement: (params: AddElementParams) => void;
-  updateElement: (params: { element: FormElementInstance }) => void;
-  deleteElement: (params: { element: FormElementInstance }) => void;
-};
-export const Context = React.createContext<BuilderUtils>({
-  elements: [],
-  addElement: () => {},
-  updateElement: () => {},
-  deleteElement: () => {},
-});
-
-export type FormBuilderProps = {
-  children?: React.ReactNode;
-};
-export function FormBuilder({ children }: FormBuilderProps) {
+import { useCallback, useState } from "react";
+import { FormElementInstance } from "../../form-elements/types";
+import { AddElementParams, BuilderUtils } from "./Context";
+export function useStore(): BuilderUtils {
   const [elements, setElements] = useState<FormElementInstance[]>([]);
   const addElement = useCallback(
     ({ element, beforeElement, afterElement }: AddElementParams) => {
@@ -73,16 +51,10 @@ export function FormBuilder({ children }: FormBuilderProps) {
     },
     []
   );
-  return (
-    <DndContext>
-      <Context.Provider
-        value={{ elements, addElement, updateElement, deleteElement }}
-      >
-        {children}
-      </Context.Provider>
-    </DndContext>
-  );
-}
-export function useFormBuilder(): BuilderUtils {
-  return useContext(Context);
+  return {
+    elements,
+    addElement,
+    updateElement,
+    deleteElement,
+  };
 }

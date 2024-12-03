@@ -90,13 +90,13 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             <div
               ref={topHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 top-0", {
-                // "bg-success opacity-25": topHalf.isOver,
+                "bg-success opacity-25": topHalf.isOver,
               })}
             ></div>
             <div
               ref={bottomHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 bottom-0", {
-                // "bg-danger  opacity-25": bottomHalf.isOver,
+                "bg-danger  opacity-25":  bottomHalf.isOver,
               })}
             ></div>
             <div
