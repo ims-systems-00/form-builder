@@ -5,7 +5,11 @@ export type ElementType =
   | "LongText"
   | "FullName"
   | "Header"
-  | "Divider";
+  | "Divider"
+  | "Email"
+  | "Address"
+  | "PhoneNumber"
+  | "MultipleChoice";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,

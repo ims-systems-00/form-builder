@@ -6,12 +6,12 @@ import { Designer } from "./designer";
 import { Response } from "./reponse";
 import { Properties } from "./properties";
 export {} from "./types";
-const type: ElementType = "TextInput";
-export const TextInput: FormElement = {
+const type: ElementType = "MultipleChoice";
+export const MultipleChoice: FormElement = {
   type,
   designerButtton: {
     icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
-    text: "Text input",
+    text: "MultipleChoice",
   },
   construct: (id: string) => ({
     id,
