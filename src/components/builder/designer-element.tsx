@@ -32,7 +32,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
       >
         <DesignerComponent formElement={formElement} />
         <div className={classNames({ " invisible ": !isHovering })}>
-          <hr className="my-1 bg-secondary" style={{ height: 2 }} />
+          <hr className="my-1 bg-secondary rouded-3" style={{ height: 2 }} />
           <div className="d-flex flex-row-reverse">
             <DrawerOpener drawerId={formElement.id}>
               <Button size="sm" className="border-0" outline>

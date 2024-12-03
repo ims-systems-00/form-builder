@@ -1,4 +1,10 @@
-import { Button, FormGroup, Label, Input } from "@ims-systems-00/ims-ui-kit";
+import {
+  Button,
+  FormGroup,
+  Label,
+  FormText,
+  Input,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import React from "react";
@@ -19,23 +25,23 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
       <FormGroup>
         <Label>Lebel</Label>
         <Input defaultValue={attributes.label} />
-        <Label>
+        <FormText>
           This text will be displayed at the top of the input field
-        </Label>
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label>Placeholder</Label>
         <Input defaultValue={attributes.placeholder} />
-        <Label>
+        <FormText>
           This text will be displayed as a hint in the input field
-        </Label>
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label>Sub lebel</Label>
         <Input defaultValue={attributes.subLabel} />
-        <Label>
+        <FormText>
           This text will be displayed at the bottom of the input field
-        </Label>
+        </FormText>
       </FormGroup>
       <Button
         block
