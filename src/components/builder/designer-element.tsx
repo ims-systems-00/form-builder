@@ -45,7 +45,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
         <div className="opacity-25 p-2 my-1 rounded-3">
           <FormElements.TextInput.DesignerComponent
             formElement={FormElements.TextInput.construct(
-              formElement.id + "-drop-preview"
+              formElement.id + "-top-drop-preview"
             )}
           />
         </div>
@@ -104,7 +104,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
         <div className="opacity-25 p-2 my-1 rounded-3">
           <FormElements.TextInput.DesignerComponent
             formElement={FormElements.TextInput.construct(
-              formElement.id + "-drop-preview"
+              formElement.id + "-bottom-drop-preview"
             )}
           />
         </div>
