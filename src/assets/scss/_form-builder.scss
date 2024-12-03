@@ -13,7 +13,7 @@
 }
 .desinger-element {
   transition: all 0.3s ease;
-  border: transparent 2px dashed;
+  border: $secondary-light 2px dashed;
   padding: $padding-base-horizontal $padding-base-vertical;
   &.hover {
     border: $primary 2px dashed;
