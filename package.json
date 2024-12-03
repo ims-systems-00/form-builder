@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
+    "@formkit/auto-animate": "^0.8.2",
     "@ims-systems-00/ims-react-hooks": "^1.0.32",
     "@ims-systems-00/ims-ui-kit": "^0.0.34",
     "classnames": "^2.5.1",
+    "formik": "^2.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",

@@ -2,7 +2,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { FormElementInstance } from "../form-elements/types";
 import { FormElements } from "../form-elements";
 // function Square({ icon, text }: DesingerButtonType) {
-//   const dragganble = useDraggable({
+//   const dragable = useDraggable({
 //     id: "desinger-btn-" + text,
 //     data: {
 //       isDesignerButtonElement: true,
@@ -11,10 +11,10 @@ import { FormElements } from "../form-elements";
 //   const Icon = icon;
 //   return (
 //     <div
-//       ref={dragganble.setNodeRef}
+//       ref={dragable.setNodeRef}
 //       className="designer-button-square"
-//       {...dragganble.listeners}
-//       {...dragganble.attributes}
+//       {...dragable.listeners}
+//       {...dragable.attributes}
 //     >
 //       <span className="m-2">
 //         <Icon size={30} />
@@ -28,7 +28,7 @@ export type DesingerButtonProps = {
   formElement: FormElementInstance;
 };
 export function DesingerButton({ formElement }: DesingerButtonProps) {
-  const dragganble = useDraggable({
+  const dragable = useDraggable({
     id: "desinger-btn-" + formElement.type,
     data: {
       type: formElement.type,
@@ -40,10 +40,10 @@ export function DesingerButton({ formElement }: DesingerButtonProps) {
 
   return (
     <div
-      ref={dragganble.setNodeRef}
+      ref={dragable.setNodeRef}
       className="designer-button-square"
-      {...dragganble.listeners}
-      {...dragganble.attributes}
+      {...dragable.listeners}
+      {...dragable.attributes}
     >
       <span className="m-2">
         <Icon size={30} />

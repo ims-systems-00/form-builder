@@ -27,5 +27,17 @@ export function DragOverLay() {
       />
     );
   }
+  const isDesignerElement = draggedItem?.data?.current?.isDesignerElement;
+  if (isDesignerElement) {
+    const type = draggedItem?.data?.current?.type as ElementType;
+    const FormElement = FormElements[type];
+    node = (
+      <div className="desinger-element my-1 rounded-3 bg-light">
+        <FormElement.DesignerComponent
+          formElement={FormElement.construct(draggedItem.id.toString())}
+        />
+      </div>
+    );
+  }
   return <DndKitDragOverLay>{node}</DndKitDragOverLay>;
 }
