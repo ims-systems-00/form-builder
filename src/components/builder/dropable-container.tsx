@@ -25,7 +25,7 @@ export function DropableContainer({ children }: DropableContainerProps) {
     >
       <div ref={setAutoAnimateNode}>
         {dropable.isOver && (
-          <div className="rounded-3 bg-primary-light py-5 text-center">
+          <div className="drop-placeholder rounded-3 py-5 text-center">
             <h4>Drop Elements</h4>
           </div>
         )}
