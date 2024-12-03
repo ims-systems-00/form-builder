@@ -74,16 +74,19 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
   }
   return (
     <React.Fragment>
-      {elementPreviewTop}
-      <div
-        ref={dragable.setNodeRef}
-        {...dragable.listeners}
-        {...dragable.attributes}
-        onMouseOver={() => toggle()}
-        onMouseOut={() => toggle()}
-      >
-        <DrawerContextProvider>
-          <div className="position-relative">
+      <DrawerContextProvider>
+        {elementPreviewTop}
+        <div
+          className="position-relative"
+          onMouseOver={() => toggle()}
+          onMouseOut={() => toggle()}
+        >
+          <div
+            ref={dragable.setNodeRef}
+            {...dragable.listeners}
+            {...dragable.attributes}
+            className="position-relative"
+          >
             <div
               ref={topHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 top-0", {
@@ -103,38 +106,46 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             >
               <DesignerComponent formElement={formElement} />
             </div>
-            <div
-              className={classNames(
-                "position-absolute bg-light m-2 rounded-3 top-0 right-0",
-                {
-                  " invisible ": !isHovering,
-                }
-              )}
-            >
-              <div className="d-flex flex-row-reverse">
-                <DrawerOpener drawerId={formElement.id}>
-                  <Button size="sm" className="border-0" outline>
-                    <IoSettingsOutline />
-                  </Button>
-                </DrawerOpener>
-                <Button size="sm" className="border-0" outline>
-                  <IoDuplicateOutline />
-                </Button>
-                <Button size="sm" className="border-0" outline>
-                  <RiDeleteBin6Line />
-                </Button>
-              </div>
-              <DrawerRight size={20} drawerId={formElement.id}>
-                <PropertiesComponent
-                  formElement={formElement}
-                  onAttributeSave={() => {}}
-                />
-              </DrawerRight>
-            </div>
           </div>
-        </DrawerContextProvider>
-      </div>
-      {elementPreviewBottom}
+          <div
+            className={classNames(
+              "position-absolute bg-light m-2 rounded-3 top-0 right-0",
+              {
+                " invisible ": !isHovering,
+              }
+            )}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="d-flex flex-row-reverse">
+              <Button
+                size="sm"
+                className="border-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                outline
+              >
+                <DrawerOpener drawerId={formElement.id}>
+                  <IoSettingsOutline />
+                </DrawerOpener>
+              </Button>
+              <Button size="sm" className="border-0" outline>
+                <IoDuplicateOutline />
+              </Button>
+              <Button size="sm" className="border-0" outline>
+                <RiDeleteBin6Line />
+              </Button>
+            </div>
+            <DrawerRight size={20} drawerId={formElement.id}>
+              <PropertiesComponent
+                formElement={formElement}
+                onAttributeSave={() => {}}
+              />
+            </DrawerRight>
+          </div>
+        </div>
+        {elementPreviewBottom}
+      </DrawerContextProvider>
     </React.Fragment>
   );
 }
