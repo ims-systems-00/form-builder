@@ -1,17 +1,18 @@
 import { useDroppable } from "@dnd-kit/core";
-import classNames from "classnames";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
+import classNames from "classnames";
 export type DropableContainerProps = {
   children?: React.ReactNode;
 };
 export function DropableContainer({ children }: DropableContainerProps) {
   const dropable = useDroppable({
     id: "designer-dropable-container",
-    data:{
-      isDesignerDropArea: true
-    }
+    data: {
+      isDesignerDropArea: true,
+    },
   });
-  console.log(dropable.isOver)
+  const [setAutoAnimateNode] = useAutoAnimate();
   return (
     <div
       ref={dropable.setNodeRef}
@@ -22,9 +23,13 @@ export function DropableContainer({ children }: DropableContainerProps) {
         }
       )}
     >
-      {children}
-      <div className="rounded-3 bg-primary-light py-5 text-center">
-        <h4>Drop Elements</h4>
+      <div ref={setAutoAnimateNode}>
+        {dropable.isOver && (
+          <div className="rounded-3 bg-primary-light py-5 text-center">
+            <h4>Drop Elements</h4>
+          </div>
+        )}
+        {children}
       </div>
     </div>
   );
