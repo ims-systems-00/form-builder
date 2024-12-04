@@ -56,7 +56,7 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
       <TextFieldWithDataValidation
         name="consent"
         label="Consent"
-        type="text"
+        type="textarea"
         hintText="This text will be displayed to the user"
       />
 

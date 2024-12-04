@@ -5,7 +5,7 @@ import { FormGroup, Input, Label, FormText } from "@ims-systems-00/ims-ui-kit";
 interface TextFieldWithDataValidationProps {
   name: string;
   label?: string;
-  type: "text" | "number" | "email" | "password" | "color";
+  type: "text" | "number" | "email" | "password" | "color" | "textarea";
   hintText?: string;
   className?: string;
   [key: string]: any;
