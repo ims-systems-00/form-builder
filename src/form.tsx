@@ -25,18 +25,20 @@ export function Form() {
                 </DropableContainer>
               </Col>
               <Col md="4">
-                <DesingerButton
-                  shape="square"
-                  formElement={FormElements.TextInput.construct(
-                    "short-text-button"
-                  )}
-                />
-                <DesingerButton
-                  shape="square"
-                  formElement={FormElements.LongText.construct(
-                    "long-text-button"
-                  )}
-                />
+                <div className="position-sticky top-0 right-0">
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.TextInput.construct(
+                      "short-text-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.LongText.construct(
+                      "long-text-button"
+                    )}
+                  />
+                </div>
               </Col>
             </Row>
             <DragOverLay />
