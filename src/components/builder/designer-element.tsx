@@ -18,6 +18,29 @@ import { useFormBuilder } from "./form-builder/useFormBuilder";
 export type DesginerElementProps = {
   formElement: FormElementInstance;
 };
+function DesignerElementDropPreview({
+  formElement,
+}: {
+  formElement: FormElement;
+}) {
+  const Element = formElement;
+  return (
+    <div className="position-relative">
+      <div className="p-2 my-1 rounded-3">
+        <Element.DesignerComponent
+          formElement={Element.construct("unique-id" + "-drop-preview")}
+        />
+      </div>
+      <div
+        className={classNames(
+          "position-absolute top-0 h-100 w-100 bg-primary opacity-25 rounded-3 d-flex justify-content-center align-items-center"
+        )}
+      >
+        <h3>Drop Preview</h3>
+      </div>
+    </div>
+  );
+}
 export function DesginerElement({ formElement }: DesginerElementProps) {
   const { updateElement, deleteElement } = useFormBuilder();
   const Element = FormElements[formElement.type] as FormElement;
@@ -52,29 +75,16 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
   let elementPreviewBottom = null;
 
   if (topHalf.isOver) {
-    const type = bottomHalf.active?.data?.current?.type as ElementType;
+    const type = topHalf.active?.data?.current?.type as ElementType;
     const Element = FormElements[type];
-    elementPreviewTop = (
-      <div className="opacity-25 p-2 my-1 rounded-3">
-        <Element.DesignerComponent
-          formElement={Element.construct(formElement.id + "-top-drop-preview")}
-        />
-      </div>
-    );
+    elementPreviewTop = <DesignerElementDropPreview formElement={Element} />;
   }
   if (bottomHalf.isOver) {
     const type = bottomHalf.active?.data?.current?.type as ElementType;
     const Element = FormElements[type];
-    elementPreviewBottom = (
-      <div className="opacity-25 p-2 my-1 rounded-3">
-        <Element.DesignerComponent
-          formElement={Element.construct(
-            formElement.id + "-bottom-drop-preview"
-          )}
-        />
-      </div>
-    );
+    elementPreviewBottom = <DesignerElementDropPreview formElement={Element} />;
   }
+
   return (
     <React.Fragment>
       <DrawerContextProvider>
@@ -93,15 +103,25 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             <div
               ref={topHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 top-0", {
-                "bg-success opacity-25": topHalf.isOver,
+                // "bg-success opacity-25": topHalf.isOver && !dragable.isDragging,
               })}
             ></div>
             <div
               ref={bottomHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 bottom-0", {
-                "bg-danger  opacity-25": bottomHalf.isOver,
+                // "bg-success opacity-25":
+                //   bottomHalf.isOver && !dragable.isDragging,
               })}
             ></div>
+            {dragable.isDragging && (
+              <div
+                className={classNames(
+                  "position-absolute top-0 h-100 w-100 bg-warning opacity-25 rounded-3 d-flex justify-content-center align-items-center"
+                )}
+              >
+                <h3>Current Position</h3>
+              </div>
+            )}
             <div
               className={classNames("desinger-element my-1 rounded-3", {
                 hover: isHovering,
