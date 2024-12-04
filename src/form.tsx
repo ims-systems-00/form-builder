@@ -68,6 +68,7 @@ export function Form() {
               </Col>
               <Col md="8" className="my-2">
                 <Box>
+                  <h4 className="text-center rounded bg-secondary-light py-2 mb-4">Form Preview</h4>
                   <FormPreviewRenderer />
                 </Box>
               </Col>

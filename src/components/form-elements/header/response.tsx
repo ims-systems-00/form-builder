@@ -17,7 +17,7 @@ export function Response({ formElement }: ResponseProps) {
   const HeaderTag = level.value as keyof JSX.IntrinsicElements;
 
   return (
-    <HeaderTag className={`text-${alignment.value} font-bold m-2`}>
+    <HeaderTag className={`text-${alignment.value} font-bold mb-4`}>
       {text}
     </HeaderTag>
   );

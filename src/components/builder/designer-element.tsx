@@ -19,7 +19,7 @@ export type DesginerElementProps = {
   formElement: FormElementInstance;
 };
 export function DesginerElement({ formElement }: DesginerElementProps) {
-  const { updateElement } = useFormBuilder();
+  const { updateElement, deleteElement } = useFormBuilder();
   const Element = FormElements[formElement.type] as FormElement;
   const DesignerComponent = Element.DesignerComponent;
   const PropertiesComponent = Element.PropertiesComponent;
@@ -127,7 +127,15 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
               <Button size="sm" className="border-0" outline>
                 <IoDuplicateOutline />
               </Button>
-              <Button color="danger" size="sm" className="border-0" outline>
+              <Button
+                color="danger"
+                size="sm"
+                className="border-0"
+                outline
+                onClick={() => {
+                  deleteElement({ element: formElement });
+                }}
+              >
                 <RiDeleteBin6Line />
               </Button>
             </div>

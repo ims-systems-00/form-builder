@@ -19,8 +19,8 @@ export type Attributes = {
 };
 
 export const attributes: Attributes = {
-  text: "Header Text",
-  level: { label: "Header 1", value: "h1" },
+  text: "[Headline of this section]",
+  level: { label: "Header 4", value: "h4" },
   alignment: { label: "Left", value: "left" },
 };
 
