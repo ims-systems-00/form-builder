@@ -18,10 +18,10 @@ type ThisElementInstance = FormElementInstance & {
 export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as ThisElementInstance;
   const attributes = element.attributes;
-
   return (
     <FormikForm
       initialValues={attributes}
+      enableReinitialize
       validationSchema={validationSchema}
       onSubmit={(values) => {
         if (typeof onAttributeSave === "function") {
@@ -51,7 +51,9 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
       />
 
       <SubmitButton>
-        <Button block>Save</Button>
+        <Button color="primary" block>
+          Save
+        </Button>
       </SubmitButton>
     </FormikForm>
   );

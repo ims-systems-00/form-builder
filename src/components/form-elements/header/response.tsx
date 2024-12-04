@@ -14,13 +14,10 @@ export function Response({ formElement }: ResponseProps) {
   const element = formElement as Custom;
   const { text, level, alignment } = element.attributes;
 
-  const HeaderTag = level as keyof JSX.IntrinsicElements;
+  const HeaderTag = level.value as keyof JSX.IntrinsicElements;
 
   return (
-    <HeaderTag
-      className={`text-${alignment} font-bold`}
-      style={{ margin: "0.5em 0" }}
-    >
+    <HeaderTag className={`text-${alignment.value} font-bold m-2`}>
       {text}
     </HeaderTag>
   );

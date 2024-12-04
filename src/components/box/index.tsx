@@ -22,7 +22,7 @@ export const Box: React.FC<BoxProps> = ({
 }) => {
   return (
     <Card
-      className="w-100 p-2"
+      className="shadow-0 rounded-3 border-0 w-100 p-2"
       style={{
         height,
         width,

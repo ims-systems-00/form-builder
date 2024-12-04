@@ -22,8 +22,7 @@ export function Designer({ formElement }: DesignerProps) {
         This element is usually used for headline of a section
       </p>
       <HeaderTag
-        className={`text-${alignment.value} font-bold`}
-        style={{ margin: 0 }}
+        className={`text-${alignment.value} font-bold m-0`}
       >
         {text}
       </HeaderTag>

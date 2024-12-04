@@ -14,10 +14,12 @@ import { IoDuplicateOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useDualStateController } from "@ims-systems-00/ims-react-hooks";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { useFormBuilder } from "./form-builder/useFormBuilder";
 export type DesginerElementProps = {
   formElement: FormElementInstance;
 };
 export function DesginerElement({ formElement }: DesginerElementProps) {
+  const { updateElement } = useFormBuilder();
   const Element = FormElements[formElement.type] as FormElement;
   const DesignerComponent = Element.DesignerComponent;
   const PropertiesComponent = Element.PropertiesComponent;
@@ -97,7 +99,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             <div
               ref={bottomHalf.setNodeRef}
               className={classNames("position-absolute h-50 w-100 bottom-0", {
-                "bg-danger  opacity-25":  bottomHalf.isOver,
+                "bg-danger  opacity-25": bottomHalf.isOver,
               })}
             ></div>
             <div
@@ -132,7 +134,14 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
             <DrawerRight size={20} drawerId={formElement.id}>
               <PropertiesComponent
                 formElement={formElement}
-                onAttributeSave={() => {}}
+                onAttributeSave={(_, attributes) => {
+                  updateElement({
+                    element: {
+                      ...formElement,
+                      attributes,
+                    },
+                  });
+                }}
               />
             </DrawerRight>
           </div>

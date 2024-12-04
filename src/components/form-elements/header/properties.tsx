@@ -24,6 +24,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   return (
     <FormikForm
       initialValues={attributes}
+      enableReinitialize
       validationSchema={validationSchema}
       onSubmit={(values) => {
         if (typeof onAttributeSave === "function") {
@@ -64,7 +65,9 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
       />
 
       <SubmitButton>
-        <Button block>Save</Button>
+        <Button color="primary" block>
+          Save
+        </Button>
       </SubmitButton>
     </FormikForm>
   );

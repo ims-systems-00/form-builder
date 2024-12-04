@@ -11,6 +11,8 @@ import { DragOverLay } from "./components/builder/drag-overlay";
 import { FormBuilderProvider } from "./components/builder/form-builder/form-builder-provider";
 import { FormBuilderBoard } from "./components/builder/board";
 import { FormDesignRenderer } from "./components/builder/form-design-rederer";
+import { FormPreviewRenderer } from "./components/builder/form-preview-renderer";
+import { Box } from "./components/box";
 
 export function Form() {
   return (
@@ -24,21 +26,32 @@ export function Form() {
                   <FormDesignRenderer />
                 </DropableContainer>
               </Col>
-              <Col md="4">
+              <Col md="1">
                 <div className="position-sticky top-0 right-0">
                   <DesingerButton
                     shape="square"
+                    formElement={FormElements.Header.construct(
+                      "header-text-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
                     formElement={FormElements.TextInput.construct(
-                      "short-text-button"
+                      "short-text-sidebard-button"
                     )}
                   />
                   <DesingerButton
                     shape="square"
                     formElement={FormElements.LongText.construct(
-                      "long-text-button"
+                      "long-text-sidebard-button"
                     )}
                   />
                 </div>
+              </Col>
+              <Col md="8" className="my-2">
+                <Box>
+                  <FormPreviewRenderer />
+                </Box>
               </Col>
             </Row>
             <DragOverLay />
