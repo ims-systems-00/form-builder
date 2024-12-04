@@ -1,8 +1,15 @@
 import React from "react";
-import { Button, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  Row,
+  Col,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
-import { FaThLarge, FaTh } from "react-icons/fa"; // Icons for layout selection
+import { FaThLarge, FaTh } from "react-icons/fa";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -12,23 +19,18 @@ export type PropertiesProps = {
 type Custom = FormElementInstance & {
   attributes: Attributes & {
     layout: "full" | "half";
-    inputType: "radio" | "checkbox";
   };
 };
 
 export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   const element = formElement as Custom;
-  const { questionText, options, required, layout, inputType } =
-    element.attributes;
+  const { questionText, options, required, layout } = element.attributes;
 
   const [localQuestionText, setLocalQuestionText] =
     React.useState(questionText);
-  const [localOptions, setLocalOptions] = React.useState(options);
+  const [localOptions, setLocalOptions] = React.useState([...options]);
   const [localRequired, setLocalRequired] = React.useState(required);
   const [localLayout, setLocalLayout] = React.useState<"full" | "half">(layout);
-  const [localInputType, setLocalInputType] = React.useState<
-    "radio" | "checkbox"
-  >(inputType);
 
   const handleAddOption = () => {
     setLocalOptions([
@@ -48,14 +50,14 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   };
 
   const saveProperties = () => {
-    if (typeof onAttributeSave === "function")
+    if (typeof onAttributeSave === "function") {
       onAttributeSave(formElement.id, {
         questionText: localQuestionText,
         options: localOptions,
         required: localRequired,
         layout: localLayout,
-        inputType: localInputType,
       });
+    }
   };
 
   return (
@@ -90,24 +92,6 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         <Button color="primary" onClick={handleAddOption}>
           Add Option
         </Button>
-      </FormGroup>
-
-      <FormGroup>
-        <Label>Input Type</Label>
-        <div>
-          <Button
-            color={localInputType === "radio" ? "primary" : "secondary"}
-            onClick={() => setLocalInputType("radio")}
-          >
-            Radio Button
-          </Button>{" "}
-          <Button
-            color={localInputType === "checkbox" ? "primary" : "secondary"}
-            onClick={() => setLocalInputType("checkbox")}
-          >
-            Checkbox
-          </Button>
-        </div>
       </FormGroup>
 
       <FormGroup>

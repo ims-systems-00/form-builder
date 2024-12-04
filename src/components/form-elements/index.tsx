@@ -6,7 +6,10 @@ import { Divider } from "./divider";
 import { Email } from "./email";
 import { Address } from "./address";
 import { PhoneNumber } from "./phone-number";
-import { MultipleChoice } from "./multiple-choice";
+import { RadioMultipleChoice } from "./radio-multiple-choice";
+import { CheckBoxMultipleChoice } from "./checkbox-multiple-choice";
+import { DropDown } from "./drop-down";
+import { Alert } from "./alert";
 import { FormElementTypes } from "./types";
 export const FormElements: FormElementTypes = {
   TextInput,
@@ -17,5 +20,8 @@ export const FormElements: FormElementTypes = {
   Email,
   Address,
   PhoneNumber,
-  MultipleChoice,
+  RadioMultipleChoice,
+  CheckBoxMultipleChoice,
+  DropDown,
+  Alert,
 };

@@ -1,28 +1,23 @@
 import React from "react";
-import { MdOutlinePersonOutline } from "react-icons/md";
-
-import { ElementType, FormElement } from "../types";
+import { LuTextCursorInput } from "react-icons/lu";
+import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./response";
+import { Response } from "./reponse";
 import { Properties } from "./properties";
 export {} from "./types";
-const type: ElementType = "FullName";
-
-export const FullName: FormElement = {
+const type: ElementType = "DropDown";
+export const DropDown: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => (
-      <MdOutlinePersonOutline size={size} />
-    ),
-    text: "Full Name",
+    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
+    text: "DropDown",
   },
   construct: (id: string) => ({
     id,
     type,
     attributes: attributes,
   }),
-
   DesignerComponent: Designer,
   ResponseComponent: Response,
   PropertiesComponent: Properties,

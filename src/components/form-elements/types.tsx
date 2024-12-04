@@ -9,7 +9,10 @@ export type ElementType =
   | "Email"
   | "Address"
   | "PhoneNumber"
-  | "MultipleChoice";
+  | "RadioMultipleChoice"
+  | "CheckBoxMultipleChoice"
+  | "DropDown"
+  | "Alert";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,

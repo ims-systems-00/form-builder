@@ -18,23 +18,23 @@ export function Form() {
   return (
     <DrawerContextProvider>
       <FormBuilderProvider
-        // onDroppedANewElement={(event) => {
-        //   const { element, previousElement, nextElement } = event;
-        // }}
-        // onElementAttributesSaved={(event) => {
-        //   const { elementId, attributes } = event;
-        // }}
-        // onElementOrderChanged={(event) => {
-        //   const { element, previousElement, nextElement } = event;
-        // }}
-        // onElementRemoved={(event) => {
-        //   const { element } = event;
-        // }}
-        // elements={[
-        //   FormElements.Header.construct("uniqu-ia-123"),
-        //   FormElements.TextInput.construct("uniqu-ia-123"),
-        //   FormElements.LongText.construct("uniqu-ia-123"),
-        // ]}
+      // onDroppedANewElement={(event) => {
+      //   const { element, previousElement, nextElement } = event;
+      // }}
+      // onElementAttributesSaved={(event) => {
+      //   const { elementId, attributes } = event;
+      // }}
+      // onElementOrderChanged={(event) => {
+      //   const { element, previousElement, nextElement } = event;
+      // }}
+      // onElementRemoved={(event) => {
+      //   const { element } = event;
+      // }}
+      // elements={[
+      //   FormElements.Header.construct("uniqu-ia-123"),
+      //   FormElements.TextInput.construct("uniqu-ia-123"),
+      //   FormElements.LongText.construct("uniqu-ia-123"),
+      // ]}
       >
         <FormBuilderBoard>
           <Container className="py-4">
@@ -64,11 +64,61 @@ export function Form() {
                       "long-text-sidebard-button"
                     )}
                   />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.FullName.construct(
+                      "full-name-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.Email.construct(
+                      "email-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.PhoneNumber.construct(
+                      "phone-number-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.Address.construct(
+                      "address-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.RadioMultipleChoice.construct(
+                      "radio-multiple-choice-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.CheckBoxMultipleChoice.construct(
+                      "checkbox-multiple-choice-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.DropDown.construct(
+                      "dropdown-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.Alert.construct(
+                      "alert-sidebard-button"
+                    )}
+                  />
                 </div>
               </Col>
               <Col md="8" className="my-2">
                 <Box>
-                  <h4 className="text-center rounded bg-secondary-light py-2 mb-4">Form Preview</h4>
+                  <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+                    Form Preview
+                  </h4>
                   <FormPreviewRenderer />
                 </Box>
               </Col>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Input, Label, Row, Col } from "reactstrap";
+import { FormGroup, Input, Label, Row, Col } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 

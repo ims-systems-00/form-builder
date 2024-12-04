@@ -1,17 +1,17 @@
 import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { GoTasklist } from "react-icons/go";
 import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./reponse";
 import { Properties } from "./properties";
 export {} from "./types";
-const type: ElementType = "MultipleChoice";
-export const MultipleChoice: FormElement = {
+const type: ElementType = "CheckBoxMultipleChoice";
+export const CheckBoxMultipleChoice: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
-    text: "MultipleChoice",
+    icon: ({ size }: { size?: number }) => <GoTasklist size={size} />,
+    text: "Multiple Choice",
   },
   construct: (id: string) => ({
     id,

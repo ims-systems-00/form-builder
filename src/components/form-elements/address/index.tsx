@@ -1,5 +1,5 @@
 import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { IoLocationOutline } from "react-icons/io5";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,7 +10,7 @@ const type: ElementType = "Address";
 export const Address: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
+    icon: ({ size }: { size?: number }) => <IoLocationOutline size={size} />,
     text: "Address",
   },
   construct: (id: string) => ({

@@ -1,5 +1,5 @@
 import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { LuPhone } from "react-icons/lu";
 import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,8 +10,8 @@ const type: ElementType = "PhoneNumber";
 export const PhoneNumber: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
-    text: "PhoneNumber",
+    icon: ({ size }: { size?: number }) => <LuPhone size={size} />,
+    text: "Phone Number",
   },
   construct: (id: string) => ({
     id,

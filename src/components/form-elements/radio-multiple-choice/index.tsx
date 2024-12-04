@@ -1,28 +1,23 @@
 import React from "react";
-import { MdOutlinePersonOutline } from "react-icons/md";
-
-import { ElementType, FormElement } from "../types";
+import { BsUiRadiosGrid } from "react-icons/bs";
+import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./response";
+import { Response } from "./reponse";
 import { Properties } from "./properties";
 export {} from "./types";
-const type: ElementType = "FullName";
-
-export const FullName: FormElement = {
+const type: ElementType = "RadioMultipleChoice";
+export const RadioMultipleChoice: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => (
-      <MdOutlinePersonOutline size={size} />
-    ),
-    text: "Full Name",
+    icon: ({ size }: { size?: number }) => <BsUiRadiosGrid size={size} />,
+    text: "Single Choice",
   },
   construct: (id: string) => ({
     id,
     type,
     attributes: attributes,
   }),
-
   DesignerComponent: Designer,
   ResponseComponent: Response,
   PropertiesComponent: Properties,

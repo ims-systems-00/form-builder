@@ -1,5 +1,12 @@
 import React from "react";
-import { Row, Col, FormGroup, Label, Input, Button } from "reactstrap";
+import {
+  Row,
+  Col,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 
