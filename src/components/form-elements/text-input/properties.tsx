@@ -31,21 +31,21 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
     >
       <TextFieldWithDataValidation
         name="label"
-        label="Label"
+        label="Question/Label"
         type="text"
         hintText="This text will be displayed at the top of the input field"
       />
 
       <TextFieldWithDataValidation
         name="placeholder"
-        label="Placeholder"
+        label="Hint/Placeholder"
         type="text"
         hintText="This text will be displayed as a hint in the input field"
       />
 
       <TextFieldWithDataValidation
         name="subLabel"
-        label="Sub Label"
+        label="Helper Text/Sub-Label"
         type="text"
         hintText="This text will be displayed at the bottom of the input field"
       />

@@ -36,13 +36,13 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         name="text"
         label="Header Text"
         type="text"
-        hintText="This text will be displayed as the header text"
+        hintText="This text will be displayed as the header of a section."
       />
 
       <SelectFieldWithDataValidation
         name="level"
-        label="Header Level"
-        hintText="This text will be displayed as the header level"
+        label="Header Size"
+        hintText="Controls the font size of the header."
         options={[
           { value: "h1", label: "H1" },
           { value: "h2", label: "H2" },
@@ -56,7 +56,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
       <SelectFieldWithDataValidation
         name="alignment"
         label="Alignment"
-        hintText="This text will be displayed as the header alignment"
+        hintText="Controls the text alignment of the header."
         options={[
           { value: "left", label: "Left" },
           { value: "center", label: "Center" },
