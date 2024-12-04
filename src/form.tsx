@@ -18,6 +18,7 @@ export function Form() {
   return (
     <DrawerContextProvider>
       <FormBuilderProvider
+        googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
         // onDroppedANewElement={(event) => {
         //   const { element, previousElement, nextElement } = event;
         // }}
@@ -64,11 +65,25 @@ export function Form() {
                       "long-text-sidebard-button"
                     )}
                   />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.Location.construct(
+                      "location-sidebar-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
+                    formElement={FormElements.Consent.construct(
+                      "concent-sidebar-button"
+                    )}
+                  />
                 </div>
               </Col>
               <Col md="8" className="my-2">
                 <Box>
-                  <h4 className="text-center rounded bg-secondary-light py-2 mb-4">Form Preview</h4>
+                  <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+                    Form Preview
+                  </h4>
                   <FormPreviewRenderer />
                 </Box>
               </Col>

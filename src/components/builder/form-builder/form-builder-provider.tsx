@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FormElementInstance } from "../../form-elements/types";
 import { AddElementFnParams, Context, ChangeElementFnParams } from "./context";
 import { DndContext } from "@dnd-kit/core";
+import { useGoogle } from "./useGoogle";
 
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
@@ -26,10 +27,12 @@ export type FormBuilderProviderProps = {
     beforeElementId?: string | null;
     afterElementId?: string | null;
   }) => void;
+  googleApiKey?: string;
 };
 export function FormBuilderProvider({
   children,
   elements,
+  googleApiKey,
 }: FormBuilderProviderProps) {
   const [_elements, setElements] = useState<FormElementInstance[]>([]);
   const addElement = useCallback(
@@ -122,6 +125,7 @@ export function FormBuilderProvider({
           updateElement,
           deleteElement,
           changeElementOrder,
+          ...useGoogle(googleApiKey),
         }}
       >
         {children}

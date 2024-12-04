@@ -7,6 +7,8 @@ import { Email } from "./email";
 import { Address } from "./address";
 import { PhoneNumber } from "./phone-number";
 import { MultipleChoice } from "./multiple-choice";
+import { Location } from "./location";
+import { Consent } from "./consent";
 import { FormElementTypes } from "./types";
 export const FormElements: FormElementTypes = {
   TextInput,
@@ -18,4 +20,6 @@ export const FormElements: FormElementTypes = {
   Address,
   PhoneNumber,
   MultipleChoice,
+  Location,
+  Consent,
 };

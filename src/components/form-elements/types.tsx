@@ -9,7 +9,9 @@ export type ElementType =
   | "Email"
   | "Address"
   | "PhoneNumber"
-  | "MultipleChoice";
+  | "MultipleChoice"
+  | "Location"
+  | "Consent";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,

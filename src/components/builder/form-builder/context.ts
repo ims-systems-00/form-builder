@@ -13,6 +13,8 @@ export type ChangeElementFnParams = {
 };
 
 export type BuilderUtils = {
+  isGoogleJsAPILoaded: boolean;
+  googleJsAPIError: Error | undefined;
   elements: FormElementInstance[];
   addElement: (params: AddElementFnParams) => void;
   updateElement: (params: { element: FormElementInstance }) => void;
@@ -20,6 +22,8 @@ export type BuilderUtils = {
   changeElementOrder: (params: ChangeElementFnParams) => void;
 };
 export const Context = React.createContext<BuilderUtils>({
+  isGoogleJsAPILoaded: false,
+  googleJsAPIError: undefined,
   elements: [],
   addElement: () => {},
   updateElement: () => {},
