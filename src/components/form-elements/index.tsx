@@ -9,6 +9,7 @@ import { PhoneNumber } from "./phone-number";
 import { MultipleChoice } from "./multiple-choice";
 import { Location } from "./location";
 import { Consent } from "./consent";
+import { RichContent } from "./rich-content";
 import { FormElementTypes } from "./types";
 export const FormElements: FormElementTypes = {
   TextInput,
@@ -22,4 +23,5 @@ export const FormElements: FormElementTypes = {
   MultipleChoice,
   Location,
   Consent,
+  RichContent,
 };

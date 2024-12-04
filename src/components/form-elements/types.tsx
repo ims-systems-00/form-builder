@@ -11,7 +11,8 @@ export type ElementType =
   | "PhoneNumber"
   | "MultipleChoice"
   | "Location"
-  | "Consent";
+  | "Consent"
+  | "RichContent";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,

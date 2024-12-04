@@ -1,17 +1,15 @@
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { ElementType, FormElement } from "../types";
+import { TbTextCaption } from "react-icons/tb";
+import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Properties } from "./properties";
 import { Response } from "./reponse";
-
-const type: ElementType = "Location";
-
-export const Location: FormElement = {
+import { Properties } from "./properties";
+const type: ElementType = "RichContent";
+export const RichContent: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <HiOutlineLocationMarker size={size} />,
-    text: "Location",
+    icon: ({ size }: { size?: number }) => <TbTextCaption size={size} />,
+    text: "Rich Content",
   },
   construct: (id: string) => ({
     id,

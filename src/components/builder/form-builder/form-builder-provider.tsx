@@ -3,6 +3,7 @@ import { FormElementInstance } from "../../form-elements/types";
 import { AddElementFnParams, Context, ChangeElementFnParams } from "./context";
 import { DndContext } from "@dnd-kit/core";
 import { useGoogle } from "./useGoogle";
+import { DrawerContextProvider } from "@ims-systems-00/ims-ui-kit";
 
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
@@ -118,18 +119,20 @@ export function FormBuilderProvider({
   }, [elements]);
   return (
     <DndContext>
-      <Context.Provider
-        value={{
-          elements: _elements,
-          addElement,
-          updateElement,
-          deleteElement,
-          changeElementOrder,
-          ...useGoogle(googleApiKey),
-        }}
-      >
-        {children}
-      </Context.Provider>
+      <DrawerContextProvider>
+        <Context.Provider
+          value={{
+            elements: _elements,
+            addElement,
+            updateElement,
+            deleteElement,
+            changeElementOrder,
+            ...useGoogle(googleApiKey),
+          }}
+        >
+          {children}
+        </Context.Provider>
+      </DrawerContextProvider>
     </DndContext>
   );
 }

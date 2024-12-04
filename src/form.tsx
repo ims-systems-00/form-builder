@@ -55,6 +55,12 @@ export function Form() {
                   />
                   <DesingerButton
                     shape="square"
+                    formElement={FormElements.RichContent.construct(
+                      "rick-text-content-sidebard-button"
+                    )}
+                  />
+                  <DesingerButton
+                    shape="square"
                     formElement={FormElements.TextInput.construct(
                       "short-text-sidebard-button"
                     )}

@@ -30,7 +30,8 @@ export const attributes: Attributes = {
     label: "Warning",
     value: "warning",
   },
-  disclaimer: "[Disclaimer]",
+  disclaimer:
+    "[Disclaimer]: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta facere assumenda itaque molestiae voluptatibus officiis, consectetur blanditiis explicabo laudantium est corporis deleniti cumque nobis quae vitae facilis quod id incidunt!",
   consent: "[Consent]",
   required: true,
 };
