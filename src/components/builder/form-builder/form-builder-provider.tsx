@@ -1,13 +1,37 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormElementInstance } from "../../form-elements/types";
 import { AddElementFnParams, Context, ChangeElementFnParams } from "./context";
 import { DndContext } from "@dnd-kit/core";
 
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
+  elements?: FormElementInstance[];
+  onDroppedANewElement?: (event: {
+    element: FormElementInstance;
+    beforeElementId?: string | null;
+    afterElementId?: string | null;
+  }) => void;
+  onElementAttributesSaved?: (event: {
+    elementId: string;
+    attributes?: Record<string, unknown>;
+    afterElementId?: string | null;
+  }) => void;
+  onElementOrderChanged?: (event: {
+    element: FormElementInstance;
+    beforeElementId?: string | null;
+    afterElementId?: string | null;
+  }) => void;
+  onElementRemoved?: (event: {
+    element: FormElementInstance;
+    beforeElementId?: string | null;
+    afterElementId?: string | null;
+  }) => void;
 };
-export function FormBuilderProvider({ children }: FormBuilderProviderProps) {
-  const [elements, setElements] = useState<FormElementInstance[]>([]);
+export function FormBuilderProvider({
+  children,
+  elements,
+}: FormBuilderProviderProps) {
+  const [_elements, setElements] = useState<FormElementInstance[]>([]);
   const addElement = useCallback(
     ({ element, beforeElementId, afterElementId }: AddElementFnParams) => {
       setElements((elements: FormElementInstance[]): FormElementInstance[] => {
@@ -86,11 +110,14 @@ export function FormBuilderProvider({ children }: FormBuilderProviderProps) {
     },
     []
   );
+  useEffect(() => {
+    if (elements) setElements(elements);
+  }, [elements]);
   return (
     <DndContext>
       <Context.Provider
         value={{
-          elements,
+          elements: _elements,
           addElement,
           updateElement,
           deleteElement,

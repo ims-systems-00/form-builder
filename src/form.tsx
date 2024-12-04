@@ -17,7 +17,25 @@ import { Box } from "./components/box";
 export function Form() {
   return (
     <DrawerContextProvider>
-      <FormBuilderProvider>
+      <FormBuilderProvider
+        // onDroppedANewElement={(event) => {
+        //   const { element, previousElement, nextElement } = event;
+        // }}
+        // onElementAttributesSaved={(event) => {
+        //   const { elementId, attributes } = event;
+        // }}
+        // onElementOrderChanged={(event) => {
+        //   const { element, previousElement, nextElement } = event;
+        // }}
+        // onElementRemoved={(event) => {
+        //   const { element } = event;
+        // }}
+        // elements={[
+        //   FormElements.Header.construct("uniqu-ia-123"),
+        //   FormElements.TextInput.construct("uniqu-ia-123"),
+        //   FormElements.LongText.construct("uniqu-ia-123"),
+        // ]}
+      >
         <FormBuilderBoard>
           <Container className="py-4">
             <Row>
