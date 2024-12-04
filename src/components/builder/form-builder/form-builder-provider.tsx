@@ -45,12 +45,20 @@ export function FormBuilderProvider({ children }: FormBuilderProviderProps) {
         if (!element) return elements;
         let targetIndex = null;
         if (beforeElementId)
-          targetIndex = elements.findIndex((e) => e.id === beforeElementId);
+          targetIndex = elements.findIndex((e) => e.id === beforeElementId) - 1;
         if (afterElementId)
-          targetIndex = elements.findIndex((e) => e.id === afterElementId) + 1;
+          targetIndex = elements.findIndex((e) => e.id === afterElementId);
 
         if (targetIndex) {
-          console.log(currentIndex, targetIndex);
+          if (targetIndex <= 0) targetIndex = 0;
+          if (targetIndex >= elements.length) targetIndex = elements.length - 1;
+          const [element] = elements.splice(currentIndex, 1);
+          // console.log(element, currentIndex, targetIndex);
+          elements = [
+            ...elements.slice(0, targetIndex),
+            element,
+            ...elements.slice(targetIndex),
+          ];
         }
         return elements;
       });
