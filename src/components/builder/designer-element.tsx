@@ -154,7 +154,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
               <RiDeleteBin6Line />
             </Button>
           </div>
-          <DrawerRight size={20} drawerId={formElement.id}>
+          <DrawerRight size={27} drawerId={formElement.id}>
             <PropertiesComponent
               formElement={formElement}
               onAttributeSave={(_, attributes) => {

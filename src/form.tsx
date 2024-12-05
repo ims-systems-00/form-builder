@@ -96,6 +96,15 @@ export function Form() {
                       {" "}
                       <DesingerButton
                         shape="square"
+                        formElement={FormElements.Divider.construct(
+                          "divider-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
                         formElement={FormElements.PhoneNumber.construct(
                           "phone-number-sidebard-button"
                         )}

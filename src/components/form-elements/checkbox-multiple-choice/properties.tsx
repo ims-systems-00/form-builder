@@ -4,11 +4,13 @@ import {
   FormGroup,
   Label,
   Input,
-  Row,
-  Col,
+  InputGroup,
+  InputGroupText,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { LiaSaveSolid } from "react-icons/lia";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -73,20 +75,37 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
       <FormGroup>
         <Label>Options</Label>
         {localOptions.map((option, index) => (
-          <Row key={index} className="mb-2 align-items-center">
-            <Col xs="8">
-              <Input
-                type="text"
-                value={option}
-                onChange={(e) => handleEditOption(index, e.target.value)}
-              />
-            </Col>
-            <Col xs="2">
-              <Button color="danger" onClick={() => handleRemoveOption(index)}>
-                Remove
+          <InputGroup>
+            <Input
+              type="text"
+              value={option}
+              onChange={(e) => handleEditOption(index, e.target.value)}
+            />
+            <InputGroupText>
+              <Button
+                className="py-0 px-1 border-0"
+                color="danger"
+                outline
+                onClick={() => handleRemoveOption(index)}
+              >
+                <RiDeleteBinLine />
               </Button>
-            </Col>
-          </Row>
+            </InputGroupText>
+          </InputGroup>
+          // <Row key={index} className="mb-2 align-items-center">
+          //   <Col xs="8">
+          //     <Input
+          //       type="text"
+          //       value={option}
+          //       onChange={(e) => handleEditOption(index, e.target.value)}
+          //     />
+          //   </Col>
+          //   <Col xs="2">
+          //     <Button color="danger" onClick={() => handleRemoveOption(index)}>
+          //       Remove
+          //     </Button>
+          //   </Col>
+          // </Row>
         ))}
         <Button color="primary" onClick={handleAddOption}>
           Add Option
@@ -111,20 +130,18 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           </Button>
         </div>
       </FormGroup> */}
-
-      <FormGroup>
-        <Label>
-          <Input
-            type="checkbox"
-            checked={localRequired}
-            onChange={(e) => setLocalRequired(e.target.checked)}
-          />
-          Required
-        </Label>
+      <Label>Optional</Label>
+      <FormGroup switch className="pull-right">
+        <Input
+          type="switch"
+          checked={localRequired}
+          onChange={(e) => setLocalRequired(e.target.checked)}
+        />
+        <Label>Required</Label>
       </FormGroup>
 
-      <Button color="success" onClick={saveProperties}>
-        Save
+      <Button color="success" onClick={saveProperties} block>
+        Save Changes <LiaSaveSolid />
       </Button>
     </React.Fragment>
   );
