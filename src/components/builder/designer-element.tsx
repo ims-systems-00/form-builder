@@ -1,17 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 import { ElementType, FormElementInstance } from "../form-elements/types";
-import {
-  DrawerOpener,
-  DrawerRight,
-  Button,
-} from "@ims-systems-00/ims-ui-kit";
+import { DrawerOpener, DrawerRight, Button } from "@ims-systems-00/ims-ui-kit";
 import { FormElements } from "../form-elements";
 import { FormElement } from "../form-elements/types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoDuplicateOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useDualStateController } from "@ims-systems-00/ims-react-hooks";
+// import { useDualStateController } from "@ims-systems-00/ims-react-hooks";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 export type DesginerElementProps = {
@@ -45,7 +41,8 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
   const Element = FormElements[formElement.type] as FormElement;
   const DesignerComponent = Element.DesignerComponent;
   const PropertiesComponent = Element.PropertiesComponent;
-  const { isOpen: isHovering, toggle } = useDualStateController();
+  // const { isOpen: isHovering, toggle } = useDualStateController();
+  const [isHovering, isSetHovering] = React.useState(false);
   const topHalf = useDroppable({
     id: formElement.id + "-top-drop",
     data: {
@@ -89,8 +86,8 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
       {elementPreviewTop}
       <div
         className="position-relative"
-        onMouseOver={() => toggle()}
-        onMouseOut={() => toggle()}
+        onMouseOver={() => isSetHovering(true)}
+        onMouseOut={() => isSetHovering(false)}
       >
         <div
           ref={dragable.setNodeRef}
