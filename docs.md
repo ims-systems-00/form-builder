@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Guide to Developing a Block in the Form Builder
 
 This guide explains how to create a new block under the `form-elements` folder in the Form Builder. Follow these steps to structure your code and understand the role of each file.
@@ -98,7 +94,7 @@ The main entry point for the block, defining its structure and behavior.
 
 ---
 
-## Export the Block from form-elements index.tsx
+## Export the Block from Root `index.tsx`
 
 - Once the block is implemented, export it from the `index.tsx` file in the root of the `form-elements` folder.
 
