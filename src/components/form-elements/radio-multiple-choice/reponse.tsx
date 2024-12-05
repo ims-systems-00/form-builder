@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Input, Label, Row, Col } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 
@@ -15,9 +15,9 @@ type Custom = FormElementInstance & {
 
 export function Response({ formElement, onResponse, isValid }: ResponseProps) {
   const element = formElement as Custom;
-  const { questionText, options, layout, required } = element.attributes;
+  const { questionText, options, required } = element.attributes;
 
-  const colSize = layout === "half" ? 6 : 12;
+  // const colSize = layout === "half" ? 6 : 12;
 
   const handleChange = (value: string) => {
     if (typeof onResponse === "function") {
@@ -27,21 +27,25 @@ export function Response({ formElement, onResponse, isValid }: ResponseProps) {
 
   return (
     <FormGroup>
-      <Label>{questionText}</Label>
-      <Row>
-        {options.map((option, index) => (
-          <Col key={index} xs={colSize} className="mb-2">
-            <Input
-              type="radio"
-              id={`radio_${formElement.id}_${index}`}
-              name={formElement.id}
-              onChange={() => handleChange(option)}
-              invalid={isValid === false && required}
-            />
-            <Label for={`radio_${formElement.id}_${index}`}>{option}</Label>
-          </Col>
-        ))}
-      </Row>
+      <Label>
+        {questionText} {required && "*"}
+      </Label>
+
+      {options.map((option, index) => (
+        // <Col key={index} xs={colSize} className="mb-2">
+        <FormGroup check>
+          <Input
+            type="radio"
+            id={`radio_${formElement.id}_${index}`}
+            name={formElement.id}
+            onChange={() => handleChange(option)}
+            invalid={isValid === false && required}
+          />
+          <Label className="mb-0">{option}</Label>
+        </FormGroup>
+
+        // </Col>
+      ))}
     </FormGroup>
   );
 }

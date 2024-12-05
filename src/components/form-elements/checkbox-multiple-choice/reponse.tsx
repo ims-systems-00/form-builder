@@ -1,18 +1,20 @@
 import React from "react";
-import { FormGroup, Label, Row, Col, Input } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Label, Input } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnResponseFunction } from "../types";
-
+import { Attributes } from "./attributes";
 export type ResponseProps = {
   formElement: FormElementInstance;
   onResponse?: OnResponseFunction;
 };
-
+type Custom = FormElementInstance & {
+  attributes: Attributes;
+};
 export function Response({ formElement, onResponse }: ResponseProps) {
-  const { attributes } = formElement;
-  const { questionText, options, layout, required } = attributes;
+  const element = formElement as Custom;
+  const { questionText, options, required } = element.attributes;
 
   const handleChange = (option: string) => {
-    if (onResponse) {
+    if (typeof onResponse === "function") {
       onResponse(formElement.id, option);
     }
   };
@@ -22,18 +24,23 @@ export function Response({ formElement, onResponse }: ResponseProps) {
       <Label className="mb-3">
         {questionText} {required && "*"}
       </Label>
-      <Row>
-        {options.map((option, index) => (
-          <Col
-            xs={layout === "half" ? 6 : 12}
-            key={index}
-            className="mb-2 d-flex align-items-center"
-          >
-            <Input type="checkbox" className="mr-2" />
-            <Label className="mb-0">{option}</Label>
-          </Col>
-        ))}
-      </Row>
+
+      {options.map((option) => (
+        // <Col
+        //   xs={layout === "half" ? 6 : 12}
+        //   key={index}
+        //   className="mb-2 d-flex align-items-center"
+        // >
+        <FormGroup check>
+          <Input
+            type="checkbox"
+            onChange={() => handleChange(option)}
+            className="mr-2"
+          />
+          <Label className="mb-0">{option}</Label>
+        </FormGroup>
+        // </Col>
+      ))}
     </FormGroup>
   );
 }

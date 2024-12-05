@@ -9,7 +9,6 @@ import {
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
-import { FaThLarge, FaTh } from "react-icons/fa";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -24,13 +23,13 @@ type Custom = FormElementInstance & {
 
 export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   const element = formElement as Custom;
-  const { questionText, options, required, layout } = element.attributes;
+  const { questionText, options, required } = element.attributes;
 
   const [localQuestionText, setLocalQuestionText] =
     React.useState(questionText);
   const [localOptions, setLocalOptions] = React.useState([...options]);
   const [localRequired, setLocalRequired] = React.useState(required);
-  const [localLayout, setLocalLayout] = React.useState<"full" | "half">(layout);
+  // const [localLayout, setLocalLayout] = React.useState<"full" | "half">(layout);
 
   const handleAddOption = () => {
     setLocalOptions([
@@ -55,7 +54,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         questionText: localQuestionText,
         options: localOptions,
         required: localRequired,
-        layout: localLayout,
+        // layout: localLayout,
       });
     }
   };
@@ -94,7 +93,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         </Button>
       </FormGroup>
 
-      <FormGroup>
+      {/* <FormGroup>
         <Label>Option Layout</Label>
         <div className="d-flex align-items-center">
           <Button
@@ -111,7 +110,7 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
             <FaTh /> Half Screen
           </Button>
         </div>
-      </FormGroup>
+      </FormGroup> */}
 
       <FormGroup>
         <Label>

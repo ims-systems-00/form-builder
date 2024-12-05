@@ -3,17 +3,21 @@ import {
   FormGroup,
   Label,
   Alert,
-  Button,
   UncontrolledAlert,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
+import { Attributes } from "./attributes";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
 
+type Custom = FormElementInstance & {
+  attributes: Attributes;
+};
 export function Designer({ formElement }: DesignerProps) {
-  const { attributes } = formElement;
+  const element = formElement as Custom;
+  const attributes = element.attributes;
   const { message, alertType, dismissible } = attributes;
 
   return (

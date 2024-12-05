@@ -44,74 +44,115 @@ export function Form() {
                   <FormDesignRenderer />
                 </DropableContainer>
               </Col>
-              <Col md="1">
+              <Col md="4">
                 <div className="position-sticky top-0 right-0">
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.Header.construct(
-                      "header-text-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.TextInput.construct(
-                      "short-text-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.LongText.construct(
-                      "long-text-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.FullName.construct(
-                      "full-name-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.Email.construct(
-                      "email-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.PhoneNumber.construct(
-                      "phone-number-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.Address.construct(
-                      "address-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.RadioMultipleChoice.construct(
-                      "radio-multiple-choice-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.CheckBoxMultipleChoice.construct(
-                      "checkbox-multiple-choice-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.DropDown.construct(
-                      "dropdown-sidebard-button"
-                    )}
-                  />
-                  <DesingerButton
-                    shape="square"
-                    formElement={FormElements.Alert.construct(
-                      "alert-sidebard-button"
-                    )}
-                  />
+                  <Row>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Header.construct(
+                          "header-text-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.TextInput.construct(
+                          "short-text-sidebard-button"
+                        )}
+                      />
+                    </Col>
+
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.LongText.construct(
+                          "long-text-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.FullName.construct(
+                          "full-name-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Email.construct(
+                          "email-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.PhoneNumber.construct(
+                          "phone-number-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Address.construct(
+                          "address-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.RadioMultipleChoice.construct(
+                          "radio-multiple-choice-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.CheckBoxMultipleChoice.construct(
+                          "checkbox-multiple-choice-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      {" "}
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.DropDown.construct(
+                          "dropdown-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Alert.construct(
+                          "alert-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.DateInput.construct(
+                          "date-input-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                  </Row>
                 </div>
               </Col>
               <Col md="8" className="my-2">

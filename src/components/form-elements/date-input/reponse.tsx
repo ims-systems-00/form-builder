@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Label, Select } from "@ims-systems-00/ims-ui-kit";
+import { FormGroup, Label, InputDate } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 
@@ -14,28 +14,26 @@ type Custom = FormElementInstance & {
 
 export function Response({ formElement, onResponse }: ResponseProps) {
   const element = formElement as Custom;
-  const attributes = element.attributes;
-  const { questionText, options, required } = attributes;
+  const { label, required } = element.attributes;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: { date: string; label: string }) => {
     if (onResponse) {
-      onResponse(formElement.id, event.target.value);
+      onResponse(formElement.id, e.date);
     }
   };
 
   return (
     <FormGroup>
-      {questionText && (
-        <Label>
-          {questionText} {required && <span className="text-danger">•</span>}
-        </Label>
-      )}
-      <Select
+      <Label>
+        {label} {required && <span className="text-danger">*</span>}
+      </Label>
+      <InputDate
         variant="filled"
-        options={options.map((i) => ({
-          value: i,
-          label: i,
-        }))}
+        inputProps={{
+          placeholder: "DD/MM/YYYY",
+        }}
+        dateFormat={"DD/MM/YYYY"}
+        closeOnSelect
         onChange={handleChange}
       />
     </FormGroup>

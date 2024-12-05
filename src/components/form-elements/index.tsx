@@ -8,6 +8,7 @@ import { Address } from "./address";
 import { PhoneNumber } from "./phone-number";
 import { RadioMultipleChoice } from "./radio-multiple-choice";
 import { CheckBoxMultipleChoice } from "./checkbox-multiple-choice";
+import { DateInput } from "./date-input";
 import { DropDown } from "./drop-down";
 import { Alert } from "./alert";
 import { FormElementTypes } from "./types";
@@ -24,4 +25,5 @@ export const FormElements: FormElementTypes = {
   CheckBoxMultipleChoice,
   DropDown,
   Alert,
+  DateInput,
 };

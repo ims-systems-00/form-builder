@@ -12,7 +12,8 @@ export type ElementType =
   | "RadioMultipleChoice"
   | "CheckBoxMultipleChoice"
   | "DropDown"
-  | "Alert";
+  | "Alert"
+  | "DateInput";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,

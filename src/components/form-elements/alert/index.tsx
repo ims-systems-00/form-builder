@@ -1,5 +1,5 @@
 import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { FiAlertCircle } from "react-icons/fi";
 import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,7 +10,7 @@ const type: ElementType = "Alert";
 export const Alert: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
+    icon: ({ size }: { size?: number }) => <FiAlertCircle size={size} />,
     text: "Alert",
   },
   construct: (id: string) => ({

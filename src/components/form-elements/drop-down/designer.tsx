@@ -2,47 +2,44 @@ import React from "react";
 import {
   FormGroup,
   Label,
-  Input,
+  Select,
   ListGroup,
   ListGroupItem,
 } from "@ims-systems-00/ims-ui-kit";
-
+import { FormElementInstance } from "../types";
+import { Attributes } from "./attributes";
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
 
+type Custom = FormElementInstance & {
+  attributes: Attributes;
+};
+
 export function Designer({ formElement }: DesignerProps) {
-  const { attributes } = formElement;
+  const element = formElement as Custom;
+  const attributes = element.attributes;
   const { questionText, options } = attributes;
 
   return (
-    <div className="dropdown-designer">
-      <FormGroup>
-        {/* Display question text */}
-        <Label>
-          <strong>{questionText}</strong>
-        </Label>
+    <FormGroup>
+      {/* Display question text */}
+      <Label>
+        <strong>{questionText}</strong>
+      </Label>
 
-        {/* Dropdown */}
-        <Input type="select" className="mb-3">
-          <option>Please Select</option>
-          {options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </Input>
+      {/* Non-clickable dropdown */}
+      <Select variant="filled" isDisabled={true}></Select>
 
-        {/* List of Options */}
-        <Label>
-          <strong>Options:</strong>
-        </Label>
-        <ListGroup>
-          {options.map((option, index) => (
-            <ListGroupItem key={index}>{option}</ListGroupItem>
-          ))}
-        </ListGroup>
-      </FormGroup>
-    </div>
+      {/* List of Options */}
+      <Label className="mt-3">
+        <strong>Options:</strong>
+      </Label>
+      <ListGroup>
+        {options.map((option, index) => (
+          <ListGroupItem key={index}>{option}</ListGroupItem>
+        ))}
+      </ListGroup>
+    </FormGroup>
   );
 }
