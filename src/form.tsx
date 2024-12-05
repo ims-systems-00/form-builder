@@ -2,19 +2,24 @@ import {
   Col,
   Container,
   DrawerContextProvider,
+  FormGroup,
+  Input,
   Row,
 } from "@ims-systems-00/ims-ui-kit";
+import { useState } from "react";
 import { FormElements } from "./components";
-import { DesingerButton } from "./components/builder/designer-button";
-import { DropableContainer } from "./components/builder/dropable-container";
-import { DragOverLay } from "./components/builder/drag-overlay";
-import { FormBuilderProvider } from "./components/builder/form-builder/form-builder-provider";
+import { Box } from "./components/box";
 import { FormBuilderBoard } from "./components/builder/board";
+import { CopyFormButton } from "./components/builder/copy-form-button";
+import { DesingerButton } from "./components/builder/designer-button";
+import { DragOverLay } from "./components/builder/drag-overlay";
+import { DropableContainer } from "./components/builder/dropable-container";
+import { FormBuilderProvider } from "./components/builder/form-builder/form-builder-provider";
 import { FormDesignRenderer } from "./components/builder/form-design-rederer";
 import { FormPreviewRenderer } from "./components/builder/form-preview-renderer";
-import { Box } from "./components/box";
 
 export function Form() {
+  const [formElements, setFormElements] = useState([]);
   return (
     <DrawerContextProvider>
       <FormBuilderProvider
@@ -31,15 +36,36 @@ export function Form() {
         // onElementRemoved={(event) => {
         //   const { element } = event;
         // }}
-        // elements={[
-        //   FormElements.Header.construct("uniqu-ia-123"),
-        //   FormElements.TextInput.construct("uniqu-ia-123"),
-        //   FormElements.LongText.construct("uniqu-ia-123"),
-        // ]}
+        elements={formElements}
       >
         <FormBuilderBoard>
           <Container className="py-4">
             <Row>
+              <Col md="8">
+                <Box>
+                  <FormGroup>
+                    <Input
+                      type="textarea"
+                      onBlur={(e) => {
+                        try {
+                          const formElementsJSON = e.currentTarget.value;
+                          const parsed = JSON.parse(formElementsJSON);
+                          if (Array.isArray(parsed.elements)) {
+                            setFormElements(parsed.elements);
+                          }
+                        } catch (err) {
+                          console.log("form parse error: ", err);
+                        }
+                      }}
+                    />
+                  </FormGroup>
+                </Box>
+              </Col>
+              <Col className="4">
+                <Box>
+                  <CopyFormButton>Copy This Form</CopyFormButton>
+                </Box>
+              </Col>
               <Col md="8">
                 <DropableContainer>
                   <FormDesignRenderer />
