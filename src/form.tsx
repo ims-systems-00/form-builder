@@ -1,7 +1,9 @@
 import {
+  Button,
   Col,
   Container,
   DrawerContextProvider,
+  Input,
   Row,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElements } from "./components";
@@ -13,8 +15,12 @@ import { FormBuilderBoard } from "./components/builder/board";
 import { FormDesignRenderer } from "./components/builder/form-design-rederer";
 import { FormPreviewRenderer } from "./components/builder/form-preview-renderer";
 import { Box } from "./components/box";
+import { useState } from "react";
+import { useClipboard } from "@ims-systems-00/ims-react-hooks";
 
 export function Form() {
+  const [formElements, setFormElements] = useState([]);
+  const { copyPlainTextToClipboard } = useClipboard();
   return (
     <DrawerContextProvider>
       <FormBuilderProvider
@@ -31,16 +37,37 @@ export function Form() {
         // onElementRemoved={(event) => {
         //   const { element } = event;
         // }}
-        // elements={[
-        //   FormElements.Header.construct("uniqu-ia-123"),
-        //   FormElements.TextInput.construct("uniqu-ia-123"),
-        //   FormElements.LongText.construct("uniqu-ia-123"),
-        // ]}
+        elements={formElements}
       >
         <FormBuilderBoard>
           <Container className="py-4">
             <Row>
+              <Col md="12">
+                <Input
+                  type="textarea"
+                  onBlur={(e) => {
+                    try {
+                      const formElementsJSON = e.currentTarget.value;
+                      const elements = JSON.parse(formElementsJSON);
+                      if (Array.isArray(elements.elements)) {
+                        setFormElements(elements);
+                      }
+                    } catch (err) {
+                      console.log("form parse error: ", err);
+                    }
+                  }}
+                />
+              </Col>
               <Col md="8">
+                <Button
+                  onClick={() => {
+                    copyPlainTextToClipboard(
+                      JSON.stringify({ elements: formElements })
+                    );
+                  }}
+                >
+                  Copy This Form
+                </Button>
                 <DropableContainer>
                   <FormDesignRenderer />
                 </DropableContainer>
