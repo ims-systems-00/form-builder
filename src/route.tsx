@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./app";
-import { Form } from "./form";
+import { Form } from "./app/form";
 export const router = createBrowserRouter([
   {
     path: "/",
