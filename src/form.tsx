@@ -18,23 +18,24 @@ export function Form() {
   return (
     <DrawerContextProvider>
       <FormBuilderProvider
-      // onDroppedANewElement={(event) => {
-      //   const { element, previousElement, nextElement } = event;
-      // }}
-      // onElementAttributesSaved={(event) => {
-      //   const { elementId, attributes } = event;
-      // }}
-      // onElementOrderChanged={(event) => {
-      //   const { element, previousElement, nextElement } = event;
-      // }}
-      // onElementRemoved={(event) => {
-      //   const { element } = event;
-      // }}
-      // elements={[
-      //   FormElements.Header.construct("uniqu-ia-123"),
-      //   FormElements.TextInput.construct("uniqu-ia-123"),
-      //   FormElements.LongText.construct("uniqu-ia-123"),
-      // ]}
+        googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+        // onDroppedANewElement={(event) => {
+        //   const { element, previousElement, nextElement } = event;
+        // }}
+        // onElementAttributesSaved={(event) => {
+        //   const { elementId, attributes } = event;
+        // }}
+        // onElementOrderChanged={(event) => {
+        //   const { element, previousElement, nextElement } = event;
+        // }}
+        // onElementRemoved={(event) => {
+        //   const { element } = event;
+        // }}
+        // elements={[
+        //   FormElements.Header.construct("uniqu-ia-123"),
+        //   FormElements.TextInput.construct("uniqu-ia-123"),
+        //   FormElements.LongText.construct("uniqu-ia-123"),
+        // ]}
       >
         <FormBuilderBoard>
           <Container className="py-4">
@@ -149,6 +150,30 @@ export function Form() {
                         shape="square"
                         formElement={FormElements.DateInput.construct(
                           "date-input-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.RichContent.construct(
+                          "rick-text-content-sidebard-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Location.construct(
+                          "location-sidebar-button"
+                        )}
+                      />
+                    </Col>
+                    <Col md="3">
+                      <DesingerButton
+                        shape="square"
+                        formElement={FormElements.Consent.construct(
+                          "concent-sidebar-button"
                         )}
                       />
                     </Col>

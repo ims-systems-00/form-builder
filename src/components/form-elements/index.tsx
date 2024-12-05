@@ -11,6 +11,9 @@ import { CheckBoxMultipleChoice } from "./checkbox-multiple-choice";
 import { DateInput } from "./date-input";
 import { DropDown } from "./drop-down";
 import { Alert } from "./alert";
+import { Location } from "./location";
+import { Consent } from "./consent";
+import { RichContent } from "./rich-content";
 import { FormElementTypes } from "./types";
 export const FormElements: FormElementTypes = {
   TextInput,
@@ -26,4 +29,7 @@ export const FormElements: FormElementTypes = {
   DropDown,
   Alert,
   DateInput,
+  Location,
+  Consent,
+  RichContent,
 };

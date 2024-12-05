@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { FormElementInstance } from "../../form-elements/types";
 import { AddElementFnParams, Context, ChangeElementFnParams } from "./context";
 import { DndContext } from "@dnd-kit/core";
+import { useGoogle } from "./useGoogle";
+import { DrawerContextProvider } from "@ims-systems-00/ims-ui-kit";
 
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
@@ -26,10 +28,12 @@ export type FormBuilderProviderProps = {
     beforeElementId?: string | null;
     afterElementId?: string | null;
   }) => void;
+  googleApiKey?: string;
 };
 export function FormBuilderProvider({
   children,
   elements,
+  googleApiKey,
 }: FormBuilderProviderProps) {
   const [_elements, setElements] = useState<FormElementInstance[]>([]);
   const addElement = useCallback(
@@ -115,17 +119,20 @@ export function FormBuilderProvider({
   }, [elements]);
   return (
     <DndContext>
-      <Context.Provider
-        value={{
-          elements: _elements,
-          addElement,
-          updateElement,
-          deleteElement,
-          changeElementOrder,
-        }}
-      >
-        {children}
-      </Context.Provider>
+      <DrawerContextProvider>
+        <Context.Provider
+          value={{
+            elements: _elements,
+            addElement,
+            updateElement,
+            deleteElement,
+            changeElementOrder,
+            ...useGoogle(googleApiKey),
+          }}
+        >
+          {children}
+        </Context.Provider>
+      </DrawerContextProvider>
     </DndContext>
   );
 }

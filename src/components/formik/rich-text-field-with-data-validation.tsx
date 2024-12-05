@@ -1,19 +1,23 @@
 import React from "react";
 import { useFormikContext } from "formik";
-import { FormGroup, Input, Label, FormText } from "@ims-systems-00/ims-ui-kit";
+import {
+  FormGroup,
+  Label,
+  FormText,
+  TextEditor,
+} from "@ims-systems-00/ims-ui-kit";
 
-interface TextFieldWithDataValidationProps {
+interface RichTextFieldWithDataValidationProps {
   name: string;
   label?: string;
-  type: "text" | "number" | "email" | "password" | "color" | "textarea";
   hintText?: string;
   className?: string;
   [key: string]: unknown;
 }
 
-export const TextFieldWithDataValidation: React.FC<
-  TextFieldWithDataValidationProps
-> = ({ name, label, type, hintText, className, ...rest }) => {
+export const RichTextFieldWithDataValidation: React.FC<
+  RichTextFieldWithDataValidationProps
+> = ({ name, label, hintText }) => {
   const { touched, errors, setFieldValue, values, setFieldTouched } =
     useFormikContext<Record<string, unknown>>();
 
@@ -25,15 +29,11 @@ export const TextFieldWithDataValidation: React.FC<
   return (
     <FormGroup>
       {label && <Label htmlFor={name}>{label}</Label>}
-      <Input
-        id={name}
-        type={type}
+      <TextEditor
         value={value}
-        onChange={(e) => setFieldValue(name, e.currentTarget.value)}
-        onBlur={() => setFieldTouched(name)}
-        invalid={Boolean(isTouched && error)}
-        className={className}
-        {...rest}
+        onDataStructureChange={(e: string) => setFieldValue(name, e)}
+        onSubmit={() => setFieldTouched(name)}
+        minimal
       />
       {isTouched && error ? (
         <FormText className="text-danger">{error}</FormText>

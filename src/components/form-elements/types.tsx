@@ -13,7 +13,10 @@ export type ElementType =
   | "CheckBoxMultipleChoice"
   | "DropDown"
   | "Alert"
-  | "DateInput";
+  | "DateInput"
+  | "Location"
+  | "Consent"
+  | "RichContent";
 
 export type ValidateFunction = (
   formElement: FormElementInstance,
