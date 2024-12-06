@@ -10,13 +10,13 @@ import {
 import { useState } from "react";
 import { FormElements } from "../components";
 import { Box } from "../components/box";
-import { FormBuilderBoard } from "../components/builder/board";
+import { FormBoard } from "../components/builder/form-board";
 import { CopyFormButton } from "../components/builder/copy-form-button";
-import { DesingerButton } from "../components/builder/designer-button";
+import { FormDesignerButton } from "../components/builder/form-designer-button";
 import { DragOverLay } from "../components/builder/drag-overlay";
-import { DropableContainer } from "../components/builder/dropable-container";
+import { FormDroppableContainer } from "../components/builder/form-droppable-container";
 import { FormBuilderProvider } from "../components/builder/form-builder/form-builder-provider";
-import { FormDesignRenderer } from "../components/builder/form-design-rederer";
+import { FormDesignRenderer } from "../components/builder/form-design-renderer";
 import { FormPreviewRenderer } from "../components/builder/form-preview-renderer";
 import { FiCopy } from "react-icons/fi";
 
@@ -41,7 +41,7 @@ export function Form() {
         // }}
         elements={formElements}
       >
-        <FormBuilderBoard>
+        <FormBoard>
           <Container className="py-4">
             <Row>
               <Col md="8">
@@ -84,9 +84,9 @@ export function Form() {
               </Col>
               <Col md="8">
                 {formState === "design" && (
-                  <DropableContainer>
+                  <FormDroppableContainer>
                     <FormDesignRenderer />
-                  </DropableContainer>
+                  </FormDroppableContainer>
                 )}
                 {formState === "preview" && (
                   <Box>
@@ -99,37 +99,37 @@ export function Form() {
               </Col>
               <Col md="1">
                 <div className="position-sticky top-0 right-0">
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.Header.construct(
                       "header-text-sidebard-button"
                     )}
                   />
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.RichContent.construct(
                       "rick-text-content-sidebard-button"
                     )}
                   />
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.TextInput.construct(
                       "short-text-sidebard-button"
                     )}
                   />
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.LongText.construct(
                       "long-text-sidebard-button"
                     )}
                   />
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.Location.construct(
                       "location-sidebar-button"
                     )}
                   />
-                  <DesingerButton
+                  <FormDesignerButton
                     shape="square"
                     formElement={FormElements.Consent.construct(
                       "concent-sidebar-button"
@@ -140,7 +140,7 @@ export function Form() {
             </Row>
             <DragOverLay />
           </Container>
-        </FormBuilderBoard>
+        </FormBoard>
       </FormBuilderProvider>
     </DrawerContextProvider>
   );

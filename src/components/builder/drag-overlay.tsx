@@ -3,7 +3,7 @@ import {
   DragOverlay as DndKitDragOverLay,
   useDndMonitor,
 } from "@dnd-kit/core";
-import { DesingerButtonDragOverLay } from "./designer-button";
+import { FormDesignerButtonDragOverLay } from "./form-designer-button";
 import { useState } from "react";
 import { FormElements } from "../form-elements";
 import { ElementType } from "../form-elements/types";
@@ -18,29 +18,29 @@ export function DragOverLay() {
     },
     onDragEnd: (e) => {
       setDraggeditem(null);
-      const isADesignerButtonDroppedOnDesignerDropArea =
+      const isAFormDesignerButtonDroppedOnDesignerDropArea =
         e.over?.data?.current?.isDesignerDropArea &&
-        e.active.data.current?.isDesignerButtonElement;
-      if (isADesignerButtonDroppedOnDesignerDropArea) {
+        e.active.data.current?.isFormDesignerButtonElement;
+      if (isAFormDesignerButtonDroppedOnDesignerDropArea) {
         const type = e.active.data.current?.type as ElementType;
         return addElement({
           element: FormElements[type].construct(uuid()),
         });
       }
-      const isADesignerButtonDroppedOnADesignerElementTopHalf =
+      const isAFormDesignerButtonDroppedOnADesignerElementTopHalf =
         e.over?.data?.current?.isTopHalfDesignerElement &&
-        e.active.data.current?.isDesignerButtonElement;
-      if (isADesignerButtonDroppedOnADesignerElementTopHalf) {
+        e.active.data.current?.isFormDesignerButtonElement;
+      if (isAFormDesignerButtonDroppedOnADesignerElementTopHalf) {
         const type = e.active.data.current?.type as ElementType;
         addElement({
           element: FormElements[type].construct(uuid()),
           beforeElementId: e.over?.data?.current?.elementId,
         });
       }
-      const isADesignerButtonDroppedOnADesignerElementBottomHalf =
+      const isAFormDesignerButtonDroppedOnADesignerElementBottomHalf =
         e.over?.data?.current?.isBottomHalfDesignerElement &&
-        e.active.data.current?.isDesignerButtonElement;
-      if (isADesignerButtonDroppedOnADesignerElementBottomHalf) {
+        e.active.data.current?.isFormDesignerButtonElement;
+      if (isAFormDesignerButtonDroppedOnADesignerElementBottomHalf) {
         const type = e.active.data.current?.type as ElementType;
         addElement({
           element: FormElements[type].construct(uuid()),
@@ -67,12 +67,12 @@ export function DragOverLay() {
   });
 
   let node = <span>No Drag OverLay</span>;
-  const isDesignerButtonElement =
-    draggedItem?.data?.current?.isDesignerButtonElement;
-  if (isDesignerButtonElement) {
+  const isFormDesignerButtonElement =
+    draggedItem?.data?.current?.isFormDesignerButtonElement;
+  if (isFormDesignerButtonElement) {
     const type = draggedItem?.data?.current?.type as ElementType;
     node = (
-      <DesingerButtonDragOverLay
+      <FormDesignerButtonDragOverLay
         formElement={FormElements[type].construct(draggedItem.id.toString())}
       />
     );

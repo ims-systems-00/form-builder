@@ -2,10 +2,10 @@ import { useDroppable } from "@dnd-kit/core";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import classNames from "classnames";
-export type DropableContainerProps = {
+export type FormDroppableContainerProps = {
   children?: React.ReactNode;
 };
-export function DropableContainer({ children }: DropableContainerProps) {
+export function FormDroppableContainer({ children }: FormDroppableContainerProps) {
   const dropable = useDroppable({
     id: "designer-dropable-container",
     data: {

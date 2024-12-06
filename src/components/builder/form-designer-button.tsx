@@ -1,11 +1,11 @@
 import { useDraggable } from "@dnd-kit/core";
 import { FormElementInstance } from "../form-elements/types";
 import { FormElements } from "../form-elements";
-// function Square({ icon, text }: DesingerButtonType) {
+// function Square({ icon, text }: FormDesignerButtonType) {
 //   const dragable = useDraggable({
 //     id: "desinger-btn-" + text,
 //     data: {
-//       isDesignerButtonElement: true,
+//       isFormDesignerButtonElement: true,
 //     },
 //   });
 //   const Icon = icon;
@@ -23,16 +23,16 @@ import { FormElements } from "../form-elements";
 //     </div>
 //   );
 // }
-export type DesingerButtonProps = {
+export type FormDesignerButtonProps = {
   shape?: "square" | "rectangle";
   formElement: FormElementInstance;
 };
-export function DesingerButton({ formElement }: DesingerButtonProps) {
+export function FormDesignerButton({ formElement }: FormDesignerButtonProps) {
   const dragable = useDraggable({
     id: "desinger-btn-" + formElement.type,
     data: {
       type: formElement.type,
-      isDesignerButtonElement: true,
+      isFormDesignerButtonElement: true,
     },
   });
   const Icon = FormElements[formElement.type].designerButtton.icon;
@@ -52,9 +52,9 @@ export function DesingerButton({ formElement }: DesingerButtonProps) {
     </div>
   );
 }
-export function DesingerButtonDragOverLay({
+export function FormDesignerButtonDragOverLay({
   formElement,
-}: DesingerButtonProps) {
+}: FormDesignerButtonProps) {
   const Icon = FormElements[formElement.type].designerButtton.icon;
   const text = FormElements[formElement.type].designerButtton.text;
   return (
