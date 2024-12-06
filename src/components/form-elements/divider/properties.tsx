@@ -3,10 +3,11 @@ import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes, validationSchema } from "./attributes";
 import {
   FormikForm,
-  SelectFieldWithDataValidation,
   SubmitButton,
   TextFieldWithDataValidation,
 } from "../../formik";
+import { FormGroup, Label, Input } from "reactstrap";
+import { LiaSaveSolid } from "react-icons/lia";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -31,34 +32,64 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         }
       }}
     >
-      <SelectFieldWithDataValidation
-        name="paddingTop"
-        label="Top Padding"
-        hintText="This text will be displayed as the Top Padding"
-        options={[
-          { value: "pt-0", label: "None" },
-          { value: "pt-1", label: "Extra Small" },
-          { value: "pt-2", label: "Small" },
-          { value: "pt-3", label: "Medium" },
-          { value: "pt-4", label: "Large" },
-          { value: "pt-5", label: "Extra Large" },
-        ]}
-      />
+      {/* Padding Top */}
+      <FormGroup>
+        <Label for="paddingTop">Top Padding</Label>
+        <Input
+          id="paddingTop"
+          name="paddingTop"
+          type="range"
+          min="0"
+          max="100"
+          defaultValue={attributes.paddingTop}
+          onChange={(e) => {
+            attributes.paddingTop = Number(e.target.value);
+          }}
+        />
+        <small className="form-text text-muted">
+          Current Value: {attributes.paddingTop}px
+        </small>
+      </FormGroup>
 
-      <SelectFieldWithDataValidation
-        name="paddingBottom"
-        label="Bottom Padding"
-        hintText="This text will be displayed as the Bottom Padding"
-        options={[
-          { value: "pb-0", label: "None" },
-          { value: "pb-1", label: "Extra Small" },
-          { value: "pb-2", label: "Small" },
-          { value: "pb-3", label: "Medium" },
-          { value: "pb-4", label: "Large" },
-          { value: "pb-5", label: "Extra Large" },
-        ]}
-      />
+      {/* Padding Bottom */}
+      <FormGroup>
+        <Label for="paddingBottom">Bottom Padding</Label>
+        <Input
+          id="paddingBottom"
+          name="paddingBottom"
+          type="range"
+          min="0"
+          max="100"
+          defaultValue={attributes.paddingBottom}
+          onChange={(e) => {
+            attributes.paddingBottom = Number(e.target.value);
+          }}
+        />
+        <small className="form-text text-muted">
+          Current Value: {attributes.paddingBottom}px
+        </small>
+      </FormGroup>
 
+      {/* Line Width */}
+      <FormGroup>
+        <Label for="lineWidth">Line Width</Label>
+        <Input
+          id="lineWidth"
+          name="lineWidth"
+          type="range"
+          min="1"
+          max="10"
+          defaultValue={attributes.lineWidth}
+          onChange={(e) => {
+            attributes.lineWidth = Number(e.target.value);
+          }}
+        />
+        <small className="form-text text-muted">
+          Current Value: {attributes.lineWidth}px
+        </small>
+      </FormGroup>
+
+      {/* Divider Color */}
       <TextFieldWithDataValidation
         name="color"
         label="Divider Color"
@@ -66,8 +97,12 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
         hintText="This text will be displayed as the Divider Color"
       />
 
+      {/* Save Button */}
       <SubmitButton>
-        <Button block>Save</Button>
+        <Button block>
+          {" "}
+          Save Changes <LiaSaveSolid />
+        </Button>
       </SubmitButton>
     </FormikForm>
   );

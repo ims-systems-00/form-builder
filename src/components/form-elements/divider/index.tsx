@@ -4,11 +4,13 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./response";
 import { Properties } from "./properties";
+import { RxDividerHorizontal } from "react-icons/rx";
+
 const type: ElementType = "Divider";
 export const Divider: FormElement = {
   type,
   designerButtton: {
-    icon: <span style={{ fontWeight: "bold", fontSize: "1.2em" }}>—</span>,
+    icon: ({ size }: { size?: number }) => <RxDividerHorizontal size={size} />,
     text: "Divider",
   },
   construct: (id: string) => ({

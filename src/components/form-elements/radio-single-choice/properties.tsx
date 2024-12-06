@@ -1,8 +1,17 @@
 import React from "react";
-import { Button, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  InputGroup,
+  InputGroupText,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
-import { FaThLarge, FaTh } from "react-icons/fa"; // Icons for layout selection
+import { RiDeleteBinLine } from "react-icons/ri";
+import { BsUiRadiosGrid } from "react-icons/bs";
+import { LiaSaveSolid } from "react-icons/lia";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -12,23 +21,18 @@ export type PropertiesProps = {
 type Custom = FormElementInstance & {
   attributes: Attributes & {
     layout: "full" | "half";
-    inputType: "radio" | "checkbox";
   };
 };
 
 export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   const element = formElement as Custom;
-  const { questionText, options, required, layout, inputType } =
-    element.attributes;
+  const { questionText, options, required } = element.attributes;
 
   const [localQuestionText, setLocalQuestionText] =
     React.useState(questionText);
-  const [localOptions, setLocalOptions] = React.useState(options);
+  const [localOptions, setLocalOptions] = React.useState([...options]);
   const [localRequired, setLocalRequired] = React.useState(required);
-  const [localLayout, setLocalLayout] = React.useState<"full" | "half">(layout);
-  const [localInputType, setLocalInputType] = React.useState<
-    "radio" | "checkbox"
-  >(inputType);
+  // const [localLayout, setLocalLayout] = React.useState<"full" | "half">(layout);
 
   const handleAddOption = () => {
     setLocalOptions([
@@ -48,18 +52,26 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
   };
 
   const saveProperties = () => {
-    if (typeof onAttributeSave === "function")
+    if (typeof onAttributeSave === "function") {
       onAttributeSave(formElement.id, {
         questionText: localQuestionText,
         options: localOptions,
         required: localRequired,
-        layout: localLayout,
-        inputType: localInputType,
+        // layout: localLayout,
       });
+    }
   };
 
   return (
     <React.Fragment>
+      <h5>
+        {" "}
+        <BsUiRadiosGrid size={30} /> Single Choice Element{" "}
+      </h5>
+      <p className="pb-4">
+        Select the associated setting to customize this element.
+      </p>
+
       <FormGroup>
         <Label>Question Text</Label>
         <Input
@@ -72,45 +84,44 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
       <FormGroup>
         <Label>Options</Label>
         {localOptions.map((option, index) => (
-          <Row key={index} className="mb-2 align-items-center">
-            <Col xs="8">
-              <Input
-                type="text"
-                value={option}
-                onChange={(e) => handleEditOption(index, e.target.value)}
-              />
-            </Col>
-            <Col xs="2">
-              <Button color="danger" onClick={() => handleRemoveOption(index)}>
-                Remove
+          <InputGroup>
+            <Input
+              type="text"
+              value={option}
+              onChange={(e) => handleEditOption(index, e.target.value)}
+            />
+            <InputGroupText>
+              <Button
+                className="py-0 px-1 border-0"
+                color="danger"
+                outline
+                onClick={() => handleRemoveOption(index)}
+              >
+                <RiDeleteBinLine />
               </Button>
-            </Col>
-          </Row>
+            </InputGroupText>
+          </InputGroup>
+          // <Row key={index} className="mb-2 align-items-center">
+          //   <Col xs="8">
+          //     <Input
+          //       type="text"
+          //       value={option}
+          //       onChange={(e) => handleEditOption(index, e.target.value)}
+          //     />
+          //   </Col>
+          //   <Col xs="2">
+          //     <Button color="danger" onClick={() => handleRemoveOption(index)}>
+          //       Remove
+          //     </Button>
+          //   </Col>
+          // </Row>
         ))}
         <Button color="primary" onClick={handleAddOption}>
           Add Option
         </Button>
       </FormGroup>
 
-      <FormGroup>
-        <Label>Input Type</Label>
-        <div>
-          <Button
-            color={localInputType === "radio" ? "primary" : "secondary"}
-            onClick={() => setLocalInputType("radio")}
-          >
-            Radio Button
-          </Button>{" "}
-          <Button
-            color={localInputType === "checkbox" ? "primary" : "secondary"}
-            onClick={() => setLocalInputType("checkbox")}
-          >
-            Checkbox
-          </Button>
-        </div>
-      </FormGroup>
-
-      <FormGroup>
+      {/* <FormGroup>
         <Label>Option Layout</Label>
         <div className="d-flex align-items-center">
           <Button
@@ -127,21 +138,23 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
             <FaTh /> Half Screen
           </Button>
         </div>
+      </FormGroup> */}
+
+      <Label>
+        Toggle this switch to mark the field as 'Required' or 'Optional,'
+        ensuring flexibility in your form's input rules.
+      </Label>
+      <FormGroup switch className="pull-right">
+        <Input
+          type="switch"
+          checked={localRequired}
+          onChange={(e) => setLocalRequired(e.target.checked)}
+        />
+        <Label>Required</Label>
       </FormGroup>
 
-      <FormGroup>
-        <Label>
-          <Input
-            type="checkbox"
-            checked={localRequired}
-            onChange={(e) => setLocalRequired(e.target.checked)}
-          />
-          Required
-        </Label>
-      </FormGroup>
-
-      <Button color="success" onClick={saveProperties}>
-        Save
+      <Button color="success" onClick={saveProperties} block>
+        Save Changes <LiaSaveSolid />
       </Button>
     </React.Fragment>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormElementInstance } from "../../builder/types";
+import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 
 export type DesignerProps = {
@@ -12,11 +12,23 @@ type Custom = FormElementInstance & {
 
 export function Designer({ formElement }: DesignerProps) {
   const element = formElement as Custom;
-  const { paddingTop, paddingBottom, color } = element.attributes;
+  const { paddingTop, paddingBottom, color, lineWidth } = element.attributes;
 
   return (
-    <div className={`w-100 ${paddingTop} ${paddingBottom}`}>
-      <hr className="border-1" style={{ borderColor: color }} />
+    <div
+      className="w-100"
+      style={{
+        paddingTop: `${paddingTop}px`,
+        paddingBottom: `${paddingBottom}px`,
+      }}
+    >
+      <hr
+        className=""
+        style={{
+          borderColor: color,
+          borderWidth: `${lineWidth}px`,
+        }}
+      />
     </div>
   );
 }

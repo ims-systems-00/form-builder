@@ -1,5 +1,12 @@
 import React from "react";
-import { FormGroup, Input, Label, Row, Col, FormText } from "reactstrap";
+import {
+  FormGroup,
+  Input,
+  Label,
+  Row,
+  Col,
+  FormText,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 
@@ -18,9 +25,7 @@ export function Designer({ formElement }: DesignerProps) {
   return (
     <React.Fragment>
       <h5>Full Name</h5>
-      <p className="pb-4">
-        Use this element for capturing peoples name.
-      </p>
+      <p className="pb-4">Use this element for capturing peoples name.</p>
       <Row>
         <Col md={6} className="p-3">
           <FormGroup>

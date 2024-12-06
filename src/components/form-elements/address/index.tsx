@@ -1,5 +1,4 @@
-import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { FaRegAddressBook } from "react-icons/fa";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,7 +9,7 @@ const type: ElementType = "Address";
 export const Address: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
+    icon: ({ size }: { size?: number }) => <FaRegAddressBook size={size} />,
     text: "Address",
   },
   construct: (id: string) => ({

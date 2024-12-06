@@ -1,5 +1,5 @@
 import React from "react";
-import { LuTextCursorInput } from "react-icons/lu";
+import { MdOutlineEmail } from "react-icons/md";
 import { FormElement, ElementType } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,7 +10,7 @@ const type: ElementType = "Email";
 export const Email: FormElement = {
   type,
   designerButtton: {
-    icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
+    icon: ({ size }: { size?: number }) => <MdOutlineEmail size={size} />,
     text: "Email",
   },
   construct: (id: string) => ({

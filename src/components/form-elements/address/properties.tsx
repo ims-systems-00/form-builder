@@ -1,7 +1,16 @@
 import React from "react";
-import { Row, Col, FormGroup, Label, Input, Button } from "reactstrap";
+import {
+  Row,
+  Col,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+} from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
+import { FaRegAddressBook } from "react-icons/fa";
+import { LiaSaveSolid } from "react-icons/lia";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -39,6 +48,16 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
 
   return (
     <div>
+      <h5>
+        {" "}
+        <FaRegAddressBook size={30} /> Address Element{" "}
+      </h5>
+      <p className="pb-4">
+        Select the associated setting to customize this element.
+      </p>
+      <Label className="mb-4">
+        <strong>Street Address properties</strong>
+      </Label>
       <FormGroup>
         <Label>Street Address Placeholder</Label>
         <Input
@@ -70,7 +89,9 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           onChange={handleInputChange("streetAddressLine2Label")}
         />
       </FormGroup>
-
+      <Label className="mb-4">
+        <strong>City properties</strong>
+      </Label>
       <Row>
         <Col md={6}>
           <FormGroup>
@@ -91,7 +112,9 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           </FormGroup>
         </Col>
       </Row>
-
+      <Label className="mb-4">
+        <strong>State properties</strong>
+      </Label>
       <Row>
         <Col md={6}>
           <FormGroup>
@@ -112,7 +135,9 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           </FormGroup>
         </Col>
       </Row>
-
+      <Label className="mb-4">
+        <strong>Postal Code properties</strong>
+      </Label>
       <FormGroup>
         <Label>Postal Code Placeholder</Label>
         <Input
@@ -128,20 +153,22 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           onChange={handleInputChange("postalCodeLabel")}
         />
       </FormGroup>
+      <Label>
+        Toggle this switch to mark the field as 'Required' or 'Optional,'
+        ensuring flexibility in your form's input rules.
+      </Label>
 
-      <FormGroup check>
-        <Label check>
-          <Input
-            type="checkbox"
-            checked={localAttributes.required}
-            onChange={handleCheckboxChange}
-          />
-          Required
-        </Label>
+      <FormGroup switch className="pull-right">
+        <Input
+          type="switch"
+          checked={localAttributes.required}
+          onChange={handleCheckboxChange}
+        />
+        <Label>Required</Label>
       </FormGroup>
 
-      <Button color="primary" onClick={saveProperties}>
-        Save
+      <Button color="primary" onClick={saveProperties} block>
+        Save Changes <LiaSaveSolid />
       </Button>
     </div>
   );

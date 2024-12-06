@@ -1,4 +1,5 @@
 import React from "react";
+import { MdOutlinePersonOutline } from "react-icons/md";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
@@ -10,7 +11,9 @@ const type: ElementType = "FullName";
 export const FullName: FormElement = {
   type,
   designerButtton: {
-    icon: <React.Fragment>F</React.Fragment>,
+    icon: ({ size }: { size?: number }) => (
+      <MdOutlinePersonOutline size={size} />
+    ),
     text: "Full Name",
   },
   construct: (id: string) => ({

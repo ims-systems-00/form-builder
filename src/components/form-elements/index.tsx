@@ -6,7 +6,11 @@ import { Divider } from "./divider";
 import { Email } from "./email";
 import { Address } from "./address";
 import { PhoneNumber } from "./phone-number";
-import { MultipleChoice } from "./multiple-choice";
+import { RadioSingleChoice } from "./radio-single-choice";
+import { CheckBoxMultipleChoice } from "./checkbox-multiple-choice";
+import { DateInput } from "./date-input";
+import { DropDown } from "./drop-down";
+import { Alert } from "./alert";
 import { Location } from "./location";
 import { Consent } from "./consent";
 import { RichContent } from "./rich-content";
@@ -20,7 +24,11 @@ export const FormElements: FormElementTypes = {
   Email,
   Address,
   PhoneNumber,
-  MultipleChoice,
+  RadioSingleChoice,
+  CheckBoxMultipleChoice,
+  DropDown,
+  Alert,
+  DateInput,
   Location,
   Consent,
   RichContent,
