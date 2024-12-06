@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Guide to Developing a Block in the Form Builder
@@ -7,6 +7,8 @@ sidebar_position: 1
 This guide explains how to create a new block under the `form-elements` folder in the Form Builder. Follow these steps to structure your code and understand the role of each file.
 
 ---
+
+<h2>This is Header </h2>
 
 ## Steps to Create a New Block
 
@@ -343,62 +345,3 @@ export const TextInput: FormElement = {
 ---
 
 This guide provides a complete example of implementing a block in the form builder. By following the steps and structure outlined, you can create robust and reusable form components.
-
-## FormBuilderProvider
-
-Wrap your form container with FormBuilderProvider in order to render the form. Form Builder provides all the utilities to the child component etc.
-
-```js
-import { FromBuilderProvider } from "lib";
-```
-
-### Using in your code
-
-```js
-// all your imports....
-
-export function Form() {
-  // states api calls and busineess logic
-  return (
-    <FormBuilderProvider>
-      {/* all children for designing the UI goes here  */}
-    </FormBuilderProvider>
-  );
-}
-```
-## Avaibalbe props 
-
-`elements`: allows you to pass a set of default elements to render the form.
-`onAddNewElement`: .... 
-
-
-Refer to the accepted types better understanding
-
-```ts
-export type FormBuilderProviderProps = {
-  children?: React.ReactNode;
-  elements?: FormElementInstance[];
-  onDroppedANewElement?: (event: {
-    element: FormElementInstance;
-    beforeElementId?: string | null;
-    afterElementId?: string | null;
-  }) => void;
-  onElementAttributesSaved?: (event: {
-    elementId: string;
-    attributes?: Record<string, unknown>;
-    afterElementId?: string | null;
-  }) => void;
-  onElementOrderChanged?: (event: {
-    element: FormElementInstance;
-    beforeElementId?: string | null;
-    afterElementId?: string | null;
-  }) => void;
-  onElementRemoved?: (event: {
-    element: FormElementInstance;
-    beforeElementId?: string | null;
-    afterElementId?: string | null;
-  }) => void;
-  googleApiKey?: string;
-};
-
-```
