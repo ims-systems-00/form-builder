@@ -19,13 +19,13 @@ type Custom = FormElementInstance & {
 export function Designer({ formElement }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
-  const { questionText, options } = attributes;
+  const { questionText, options, required } = attributes;
 
   return (
     <FormGroup>
-      {/* Display question text */}
-      <Label>
-        <strong>{questionText}</strong>
+      <Label className="mb-3">
+        {questionText}
+        {required && <span className="text-danger">*</span>}
       </Label>
 
       {/* Non-clickable dropdown */}

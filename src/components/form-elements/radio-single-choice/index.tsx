@@ -6,8 +6,8 @@ import { Designer } from "./designer";
 import { Response } from "./reponse";
 import { Properties } from "./properties";
 export {} from "./types";
-const type: ElementType = "RadioMultipleChoice";
-export const RadioMultipleChoice: FormElement = {
+const type: ElementType = "RadioSingleChoice";
+export const RadioSingleChoice: FormElement = {
   type,
   designerButtton: {
     icon: ({ size }: { size?: number }) => <BsUiRadiosGrid size={size} />,

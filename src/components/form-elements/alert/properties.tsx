@@ -1,5 +1,9 @@
+import { Button, FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
 import React from "react";
-import { FormGroup, Label, Input, Button } from "@ims-systems-00/ims-ui-kit";
+import { FiAlertCircle } from "react-icons/fi";
+import { LiaSaveSolid } from "react-icons/lia";
+import { ColorVarientPicker } from "../../color-varient-picker";
+import { Varients } from "../../color-varient-picker/type";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 
@@ -8,9 +12,13 @@ export type PropertiesProps = {
   onAttributeSave?: OnAttributeSaveFunction;
 };
 
+type Custom = FormElementInstance & {
+  attributes: Attributes & {};
+};
 export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
-  const { attributes } = formElement;
-  const { message, alertType, dismissible } = attributes;
+  const element = formElement as Custom;
+
+  const { message, alertType, dismissible } = element.attributes;
 
   const [localMessage, setLocalMessage] = React.useState(message);
   const [localAlertType, setLocalAlertType] = React.useState(alertType);
@@ -28,6 +36,13 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
 
   return (
     <>
+      <h5>
+        {" "}
+        <FiAlertCircle size={30} /> Alert Element{" "}
+      </h5>
+      <p className="pb-4">
+        Select the associated setting to customize this element.
+      </p>
       <FormGroup>
         <Label>Alert Message</Label>
         <Input
@@ -39,36 +54,56 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
 
       <FormGroup>
         <Label>Alert Type</Label>
+
+        <ColorVarientPicker
+          varient={alertType as Varients}
+          onVarientChange={(varient) => {
+            setLocalAlertType(varient);
+          }}
+        />
+
+        {/* <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          {alertTypeColors.map((item) => (
+            <div
+              key={item.type}
+              onClick={() => setLocalAlertType(item.type)}
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "8px",
+                border:
+                  localAlertType === item.type
+                    ? "3px solid black"
+                    : "1px solid #ccc",
+                backgroundColor: item.color,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
+                color: item.type === "light" ? "#000" : "#fff",
+              }}
+            >
+              {localAlertType === item.type ? "✔" : ""}
+            </div>
+          ))}
+        </div> */}
+      </FormGroup>
+
+      <Label>
+        Enabling this option will allow users to dismiss the alert after it
+        appears.Useful for temporary notifications.
+      </Label>
+      <FormGroup switch className="pull-right mt-2 mb-3">
         <Input
-          type="select"
-          value={localAlertType}
-          onChange={(e) =>
-            setLocalAlertType(e.target.value as Attributes["alertType"])
-          }
-        >
-          <option value="primary">Primary</option>
-          <option value="secondary">Secondary</option>
-          <option value="danger">Danger</option>
-          <option value="warning">Warning</option>
-          <option value="info">Info</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </Input>
+          type="switch"
+          checked={localDismissible}
+          onChange={(e) => setLocalDismissible(e.target.checked)}
+        />
+        <Label>Dismissible</Label>
       </FormGroup>
 
-      <FormGroup>
-        <Label>
-          <Input
-            type="checkbox"
-            checked={localDismissible}
-            onChange={(e) => setLocalDismissible(e.target.checked)}
-          />
-          Dismissible
-        </Label>
-      </FormGroup>
-
-      <Button color="success" onClick={saveProperties}>
-        Save
+      <Button color="success" onClick={saveProperties} block>
+        Save Changes <LiaSaveSolid />
       </Button>
     </>
   );

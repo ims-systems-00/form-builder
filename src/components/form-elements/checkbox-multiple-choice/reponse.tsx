@@ -22,7 +22,7 @@ export function Response({ formElement, onResponse }: ResponseProps) {
   return (
     <FormGroup>
       <Label className="mb-3">
-        {questionText} {required && "*"}
+        {questionText} {required && <span className="text-danger">*</span>}
       </Label>
 
       {options.map((option) => (

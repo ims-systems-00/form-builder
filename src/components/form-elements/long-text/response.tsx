@@ -15,7 +15,8 @@ export function Response({ formElement, onResponse }: DesignerProps) {
   return (
     <FormGroup>
       <Label>
-        {attributes.label} {attributes.required && "*"}
+        {attributes.label}{" "}
+        {attributes.required && <span className="text-danger">*</span>}
       </Label>
       <Input
         type="textarea"

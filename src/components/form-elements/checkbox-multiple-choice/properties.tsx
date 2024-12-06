@@ -11,6 +11,7 @@ import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes } from "./attributes";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { LiaSaveSolid } from "react-icons/lia";
+import { GoTasklist } from "react-icons/go";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;
@@ -63,6 +64,14 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
 
   return (
     <React.Fragment>
+      <h5>
+        {" "}
+        <GoTasklist size={30} /> Multiple Choice Element{" "}
+      </h5>
+      <p className="pb-4">
+        Select the associated setting to customize this element.
+      </p>
+
       <FormGroup>
         <Label>Question Text</Label>
         <Input
@@ -130,7 +139,10 @@ export function Properties({ formElement, onAttributeSave }: PropertiesProps) {
           </Button>
         </div>
       </FormGroup> */}
-      <Label>Optional</Label>
+      <Label>
+        Toggle this switch to mark the field as 'Required' or 'Optional,'
+        ensuring flexibility in your form's input rules.
+      </Label>
       <FormGroup switch className="pull-right">
         <Input
           type="switch"

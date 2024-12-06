@@ -9,7 +9,7 @@ export type ElementType =
   | "Email"
   | "Address"
   | "PhoneNumber"
-  | "RadioMultipleChoice"
+  | "RadioSingleChoice"
   | "CheckBoxMultipleChoice"
   | "DropDown"
   | "Alert"

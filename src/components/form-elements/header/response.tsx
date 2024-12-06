@@ -1,4 +1,3 @@
-import React from "react";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 
@@ -12,13 +11,13 @@ type Custom = FormElementInstance & {
 
 export function Response({ formElement }: ResponseProps) {
   const element = formElement as Custom;
-  const { text, level, alignment } = element.attributes;
+  const { text, headerSize, headerAlignment, required } = element.attributes;
 
-  const HeaderTag = level.value as keyof JSX.IntrinsicElements;
+  const HeaderTag = headerSize as keyof JSX.IntrinsicElements;
 
   return (
-    <HeaderTag className={`text-${alignment.value} font-bold mb-4`}>
-      {text}
+    <HeaderTag className={`text-${headerAlignment} font-bold mb-4`}>
+      {text} {required && <span className="text-danger">*</span>}
     </HeaderTag>
   );
 }

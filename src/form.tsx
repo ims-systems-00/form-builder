@@ -149,8 +149,8 @@ export function Form() {
                       {" "}
                       <DesingerButton
                         shape="square"
-                        formElement={FormElements.RadioMultipleChoice.construct(
-                          "radio-multiple-choice-sidebard-button"
+                        formElement={FormElements.RadioSingleChoice.construct(
+                          "radio-single-choice-sidebard-button"
                         )}
                       />
                     </Col>

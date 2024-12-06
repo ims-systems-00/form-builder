@@ -12,9 +12,9 @@ type Custom = FormElementInstance & {
 
 export function Designer({ formElement }: DesignerProps) {
   const element = formElement as Custom;
-  const { text, level, alignment } = element.attributes;
+  const { text, headerSize, headerAlignment, required } = element.attributes;
 
-  const HeaderTag = level.value as keyof JSX.IntrinsicElements;
+  const HeaderTag = headerSize as keyof JSX.IntrinsicElements;
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -25,8 +25,8 @@ export function Designer({ formElement }: DesignerProps) {
       <p className="pb-4">
         This element is usually used for headline of a section
       </p>
-      <HeaderTag className={`text-${alignment.value} font-bold m-0`}>
-        {text}
+      <HeaderTag className={`text-${headerAlignment} font-bold m-0`}>
+        {text} {required && <span className="text-danger">*</span>}
       </HeaderTag>
     </div>
   );

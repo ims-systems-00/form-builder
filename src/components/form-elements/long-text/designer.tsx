@@ -18,7 +18,8 @@ export function Designer({ formElement }: DesignerProps) {
         Use this element whenever you are asking someone to describe something
       </p>
       <Label>
-        {attributes.label} {attributes.required && "*"}
+        {attributes.label}{" "}
+        {attributes.required && <span className="text-danger">*</span>}
       </Label>
       <Input
         type="textarea"

@@ -20,7 +20,7 @@ export function Designer({ formElement }: DesignerProps) {
   return (
     <FormGroup>
       <Label>
-        {questionText} {required && "*"}
+        {questionText} {required && <span className="text-danger">*</span>}
       </Label>
 
       {options.map((option) => (

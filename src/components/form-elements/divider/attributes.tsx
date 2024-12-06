@@ -1,49 +1,27 @@
 import * as yup from "yup";
 
 export type Attributes = {
-  paddingTop: {
-    label:
-      | "None"
-      | "Extra Small"
-      | "Small"
-      | "Medium"
-      | "Large"
-      | "Extra Large";
-    value: "pt-0" | "pt-1" | "pt-2" | "pt-3" | "pt-4" | "pt-5";
-  };
-  paddingBottom: {
-    label:
-      | "None"
-      | "Extra Small"
-      | "Small"
-      | "Medium"
-      | "Large"
-      | "Extra Large";
-    value: "pb-0" | "pb-1" | "pb-2" | "pb-3" | "pb-4" | "pb-5";
-  };
+  paddingTop: number;
+  paddingBottom: number;
   color: string;
+  lineWidth: number;
 };
 
 export const attributes: Attributes = {
-  paddingTop: {
-    label: "Small",
-    value: "pt-3",
-  },
-  paddingBottom: {
-    label: "Small",
-    value: "pb-3",
-  },
+  paddingTop: 30,
+  paddingBottom: 30,
   color: "#e5e7eb",
+  lineWidth: 2,
 };
 
 export const validationSchema = yup.object().shape({
-  paddingTop: yup.object().shape({
-    label: yup.string().label("Label"),
-    value: yup.string().label("Value"),
-  }),
-  paddingBottom: yup.object().shape({
-    label: yup.string().label("Label"),
-    value: yup.string().label("Value"),
-  }),
-  color: yup.string().label("Color"),
+  paddingTop: yup.number().min(0).max(100).required().label("Padding Top"),
+  paddingBottom: yup
+    .number()
+    .min(0)
+    .max(100)
+    .required()
+    .label("Padding Bottom"),
+  color: yup.string().required().label("Divider Color"),
+  lineWidth: yup.number().min(1).max(10).required().label("Line Width"),
 });
