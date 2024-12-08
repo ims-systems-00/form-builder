@@ -1,10 +1,9 @@
-import React from "react";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./response";
 import { Properties } from "./properties";
+import { Response } from "./response";
 export {} from "./types";
 const type: ElementType = "FullName";
 

@@ -26,7 +26,6 @@ export function Designer({ formElement }: DesignerProps) {
         rows={4}
         disabled
         placeholder={attributes.placeholder}
-        defaultValue={attributes.defaultValue}
       />
       <Label>
         <small>{attributes.subLabel}</small>

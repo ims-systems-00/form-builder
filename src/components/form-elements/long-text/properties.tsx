@@ -1,14 +1,15 @@
-import { Button, Label, FormGroup, Input } from "@ims-systems-00/ims-ui-kit";
-import { FormElementInstance, OnAttributeSaveFunction } from "../types";
-import { Attributes, validationSchema } from "./attributes";
+import { Button } from "@ims-systems-00/ims-ui-kit";
+import { LiaSaveSolid } from "react-icons/lia";
+import { LuText } from "react-icons/lu";
 import {
   FormikForm,
   SubmitButton,
+  SwitchButtonWithDataValidation,
   TextFieldWithDataValidation,
 } from "../../formik";
-import { LuText } from "react-icons/lu";
-import { useState } from "react";
-import { LiaSaveSolid } from "react-icons/lia";
+import { FormElementInstance, OnAttributeSaveFunction } from "../types";
+import { Attributes, validationSchema } from "./attributes";
+
 export type DesignerProps = {
   formElement: FormElementInstance;
   onAttributeSave?: OnAttributeSaveFunction;
@@ -20,7 +21,6 @@ type Custom = FormElementInstance & {
 export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
-  const [localRequired, setLocalRequired] = useState(attributes.required);
   return (
     <FormikForm
       initialValues={attributes}
@@ -59,18 +59,11 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
         type="text"
         hintText="This text will be displayed at the bottom of the input field"
       />
-      <Label>
-        Toggle this switch to mark the field as 'Required' or 'Optional,'
-        ensuring flexibility in your form's input rules.
-      </Label>
-      <FormGroup switch className="pull-right">
-        <Input
-          type="switch"
-          checked={localRequired}
-          onChange={(e) => setLocalRequired(e.target.checked)}
-        />
-        <Label>Required</Label>
-      </FormGroup>
+      <SwitchButtonWithDataValidation
+        name="required"
+        label="Toggle this switch to mark the field as 'Required' or 'Optional,'
+        ensuring flexibility in your form's input rules."
+      />
 
       <SubmitButton>
         <Button color="primary" block>

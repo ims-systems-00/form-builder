@@ -16,7 +16,6 @@ export const attributes: Attributes = {
 export const validationSchema = yup.object().shape({
   label: yup.string().required().label("Label"),
   placeholder: yup.string().required().label("Placeholder"),
-  defaultValue: yup.string().label("Default Value"),
   subLabel: yup.string().required().label("Sub Label"),
   required: yup.boolean().label("Required"),
 });

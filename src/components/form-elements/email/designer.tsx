@@ -19,12 +19,7 @@ export function Designer({ formElement }: DesignerProps) {
         {attributes.label}{" "}
         {attributes.required && <span className="text-danger">*</span>}
       </Label>
-      <Input
-        type="text"
-        disabled
-        placeholder={attributes.placeholder}
-        defaultValue={attributes.defaultValue}
-      />
+      <Input type="text" disabled placeholder={attributes.placeholder} />
       <FormText>{attributes.subLabel}</FormText>
     </FormGroup>
   );

@@ -14,19 +14,12 @@ export function Designer({ formElement }: DesignerProps) {
   return (
     <FormGroup>
       <h5>Text Input</h5>
-      <p className="pb-4">
-        Use this element for capturing short answers.
-      </p>
+      <p className="pb-4">Use this element for capturing short answers.</p>
       <Label>
         {attributes.label}{" "}
         {attributes.required && <span className="text-danger">*</span>}
       </Label>
-      <Input
-        type="text"
-        disabled
-        placeholder={attributes.placeholder}
-        defaultValue={attributes.defaultValue}
-      />
+      <Input type="text" disabled placeholder={attributes.placeholder} />
       <FormText>{attributes.subLabel}</FormText>
     </FormGroup>
   );

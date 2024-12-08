@@ -1,10 +1,9 @@
-import React from "react";
+import { TbHeading } from "react-icons/tb";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./response";
 import { Properties } from "./properties";
-import { TbHeading } from "react-icons/tb";
+import { Response } from "./response";
 const type: ElementType = "Header";
 export const Header: FormElement = {
   type,

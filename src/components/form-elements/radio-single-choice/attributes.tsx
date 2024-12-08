@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export type Attributes = {
   questionText: string;
   options: string[];
@@ -11,3 +13,9 @@ export const attributes: Attributes = {
   required: false,
   // layout: "half",
 };
+
+export const validationSchema = yup.object().shape({
+  questionText: yup.string().required().label("questionText"),
+  options: yup.array().required().label("options"),
+  required: yup.boolean().label("Required"),
+});

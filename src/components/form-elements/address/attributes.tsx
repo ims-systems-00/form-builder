@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export type Attributes = {
   streetAddressPlaceholder: string;
   streetAddressLabel: string;
@@ -13,15 +15,41 @@ export type Attributes = {
 };
 
 export const attributes: Attributes = {
-  streetAddressPlaceholder: "+880XXXXXXXXXX",
+  streetAddressPlaceholder: "+28 Old Brompton Road",
   streetAddressLabel: "Street Address",
-  streetAddressLine2Placeholder: "+880XXXXXXXXXX",
+  streetAddressLine2Placeholder: "South Kensington",
   streetAddressLine2Label: "Street Address Label 2",
-  cityPlaceholder: "+880XXXXXXXXXX",
+  cityPlaceholder: "London",
   cityLabel: "City",
-  statePlaceholder: "+880XXXXXXXXXX",
+  statePlaceholder: "London",
   stateLabel: "state",
-  postalCodePlaceholder: "+880XXXXXXXXXX",
+  postalCodePlaceholder: "SW7 3SS",
   postalCodeLabel: "postal code",
   required: false,
 };
+
+export const validationSchema = yup.object().shape({
+  streetAddressPlaceholder: yup
+    .string()
+    .required()
+    .label("Street Address Placeholder"),
+  streetAddressLabel: yup.string().required().label("Street Address Label"),
+  streetAddressLine2Placeholder: yup
+    .string()
+    .required()
+    .label("Street Address Line2 Placeholder"),
+  streetAddressLine2Label: yup
+    .string()
+    .required()
+    .label("Street Address Line2 Label"),
+  cityPlaceholder: yup.string().required().label("City Placeholder"),
+  cityLabel: yup.string().required().label("City Label"),
+  statePlaceholder: yup.string().required().label("State Placeholder"),
+  stateLabel: yup.string().required().label("State Label"),
+  postalCodePlaceholder: yup
+    .string()
+    .required()
+    .label("Postal Code Placeholder"),
+  postalCodeLabel: yup.string().required().label("Postal Code Label"),
+  required: yup.boolean().label("Required"),
+});

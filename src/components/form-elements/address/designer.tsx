@@ -1,5 +1,5 @@
+import { Col, FormGroup, Input, Label, Row } from "@ims-systems-00/ims-ui-kit";
 import React from "react";
-import { FormGroup, Input, Label, Row, Col } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 

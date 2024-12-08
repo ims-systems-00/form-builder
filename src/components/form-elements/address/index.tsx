@@ -2,8 +2,8 @@ import { FaRegAddressBook } from "react-icons/fa";
 import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./response";
 import { Properties } from "./properties";
+import { Response } from "./response";
 export {} from "./types";
 const type: ElementType = "Address";
 export const Address: FormElement = {

@@ -1,10 +1,9 @@
-import React from "react";
 import { BsUiRadiosGrid } from "react-icons/bs";
-import { FormElement, ElementType } from "../types";
+import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./reponse";
 import { Properties } from "./properties";
+import { Response } from "./reponse";
 export {} from "./types";
 const type: ElementType = "RadioSingleChoice";
 export const RadioSingleChoice: FormElement = {
