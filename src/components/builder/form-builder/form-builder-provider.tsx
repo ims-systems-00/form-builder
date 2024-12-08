@@ -130,7 +130,9 @@ export function FormBuilderProvider({
             ...useGoogle(googleApiKey),
           }}
         >
+        <div className="iforms">
           {children}
+        </div>
         </Context.Provider>
       </DrawerContextProvider>
     </DndContext>
