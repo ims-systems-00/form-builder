@@ -1,10 +1,9 @@
-import React from "react";
 import {
   FormGroup,
   Label,
-  Select,
   ListGroup,
   ListGroupItem,
+  Select,
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";

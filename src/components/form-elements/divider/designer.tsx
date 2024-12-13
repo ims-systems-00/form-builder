@@ -1,4 +1,3 @@
-import React from "react";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 

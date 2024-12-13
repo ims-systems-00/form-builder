@@ -21,7 +21,6 @@ export function Response({ formElement, onResponse }: DesignerProps) {
       <Input
         type="text"
         placeholder={attributes.placeholder}
-        defaultValue={attributes.defaultValue}
         onChange={(e) => {
           if (typeof onResponse === "function")
             onResponse(formElement.id, e.currentTarget.value);

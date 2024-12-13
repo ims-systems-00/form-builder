@@ -22,7 +22,6 @@ export function Response({ formElement, onResponse }: DesignerProps) {
         type="textarea"
         rows={4}
         placeholder={attributes.placeholder}
-        defaultValue={attributes.defaultValue}
         onChange={(e) => {
           if (typeof onResponse === "function")
             onResponse(formElement.id, e.currentTarget.value);

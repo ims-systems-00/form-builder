@@ -1,11 +1,10 @@
-import React from "react";
 import { IoCalendarNumberOutline } from "react-icons/io5";
-import { FormElement, ElementType } from "../types";
+import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
-import { Response } from "./reponse";
 import { Properties } from "./properties";
-export {} from "./types";
+import { Response } from "./reponse";
+export { } from "./types";
 const type: ElementType = "DateInput";
 export const DateInput: FormElement = {
   type,
