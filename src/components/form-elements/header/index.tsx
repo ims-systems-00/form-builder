@@ -4,6 +4,8 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./response";
+import React from "react";
+
 const type: ElementType = "Header";
 export const Header: FormElement = {
   type,

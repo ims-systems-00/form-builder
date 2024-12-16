@@ -4,7 +4,9 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./response";
+import React from "react";
 export {} from "./types";
+
 const type: ElementType = "Address";
 export const Address: FormElement = {
   type,

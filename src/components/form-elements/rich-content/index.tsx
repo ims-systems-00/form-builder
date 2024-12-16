@@ -4,6 +4,8 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Response } from "./reponse";
 import { Properties } from "./properties";
+import React from "react";
+
 const type: ElementType = "RichContent";
 export const RichContent: FormElement = {
   type,

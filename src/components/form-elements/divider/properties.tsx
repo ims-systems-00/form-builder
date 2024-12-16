@@ -8,6 +8,7 @@ import {
 } from "../../formik";
 import { FormGroup, Label, Input } from "reactstrap";
 import { LiaSaveSolid } from "react-icons/lia";
+import React from "react";
 
 export type PropertiesProps = {
   formElement: FormElementInstance;

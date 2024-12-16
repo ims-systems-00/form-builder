@@ -3,6 +3,7 @@ import usePlacesAutocomplete from "use-places-autocomplete";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
 import { useFormBuilder } from "../../builder/form-builder/useFormBuilder";
+import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
@@ -29,7 +30,7 @@ export function Response({ formElement, onResponse }: DesignerProps) {
 
   const handleChange = (selectedItem: unknown): void => {
     if (typeof onResponse === "function") {
-      const value = selectedItem ? (selectedItem as any).value : null;
+      const value = selectedItem ? (selectedItem as {label:string,value:string}).value : null;
       onResponse(formElement.id, value);
     }
   };

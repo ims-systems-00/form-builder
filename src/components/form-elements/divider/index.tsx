@@ -4,6 +4,7 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./response";
+import React from "react";
 
 const type: ElementType = "Divider";
 export const Divider: FormElement = {

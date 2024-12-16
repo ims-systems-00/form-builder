@@ -12,6 +12,7 @@ import { Attributes } from "./attributes";
 import { LiaSaveSolid } from "react-icons/lia";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { HiSelector } from "react-icons/hi";
+
 type PropertiesProps = {
   formElement: FormElementInstance;
   onAttributeSave?: OnAttributeSaveFunction;

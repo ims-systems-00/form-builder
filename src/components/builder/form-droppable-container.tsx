@@ -1,7 +1,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
 import classNames from "classnames";
+import React from "react";
 export type FormDroppableContainerProps = {
   children?: React.ReactNode;
 };

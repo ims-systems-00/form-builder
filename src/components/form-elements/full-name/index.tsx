@@ -4,7 +4,8 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./response";
-export {} from "./types";
+import React from "react";
+
 const type: ElementType = "FullName";
 
 export const FullName: FormElement = {

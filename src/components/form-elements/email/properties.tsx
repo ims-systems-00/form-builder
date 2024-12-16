@@ -9,6 +9,7 @@ import {
 } from "../../formik";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes, validationSchema } from "./attributes";
+import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;

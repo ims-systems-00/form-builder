@@ -5,6 +5,7 @@ export type DesignerProps = {
   formElement: FormElementInstance;
   onResponse?: OnResponseFunction;
 };
+import React from "react";
 
 type Custom = FormElementInstance & {
   attributes: Attributes;

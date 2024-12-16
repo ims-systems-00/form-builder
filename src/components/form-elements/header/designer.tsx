@@ -1,6 +1,7 @@
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 import { TbHeading } from "react-icons/tb";
+import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;

@@ -4,7 +4,7 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./reponse";
-export { } from "./types";
+import React from "react";
 const type: ElementType = "DateInput";
 export const DateInput: FormElement = {
   type,

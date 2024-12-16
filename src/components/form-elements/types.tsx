@@ -23,7 +23,10 @@ export type ValidateFunction = (
   currectValue: string
 ) => boolean;
 
-export type OnResponseFunction = (key: string, currectValue: string) => void;
+export type OnResponseFunction = (
+  key: string,
+  currectValue: string | null
+) => void;
 export type OnAttributeSaveFunction = (
   key: string,
   attributes: Record<string, unknown>

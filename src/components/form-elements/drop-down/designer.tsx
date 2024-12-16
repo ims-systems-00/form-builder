@@ -7,6 +7,7 @@ import {
 } from "@ims-systems-00/ims-ui-kit";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
+import React from "react";
 export type DesignerProps = {
   formElement: FormElementInstance;
 };

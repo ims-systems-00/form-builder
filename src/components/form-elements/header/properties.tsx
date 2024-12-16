@@ -10,6 +10,8 @@ import { FormElementInstance, OnAttributeSaveFunction } from "../types";
 import { Attributes, validationSchema } from "./attributes";
 import { TbHeading } from "react-icons/tb";
 import { LiaSaveSolid } from "react-icons/lia";
+import React from "react";
+
 export type PropertiesProps = {
   formElement: FormElementInstance;
   onAttributeSave: OnAttributeSaveFunction;

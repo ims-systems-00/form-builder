@@ -6,6 +6,7 @@ import {
   SubmitButton,
   RichTextFieldWithDataValidation,
 } from "../../formik";
+import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;

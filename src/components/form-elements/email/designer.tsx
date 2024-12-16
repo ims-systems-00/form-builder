@@ -4,6 +4,7 @@ import { Attributes } from "./attributes";
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
+import React from "react";
 
 type Custom = FormElementInstance & {
   attributes: Attributes;

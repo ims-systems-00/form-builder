@@ -8,6 +8,8 @@ import {
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
 import { useFormBuilder } from "../../builder/form-builder/useFormBuilder";
+import React from "react";
+
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
