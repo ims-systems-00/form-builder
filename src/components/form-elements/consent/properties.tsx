@@ -7,6 +7,7 @@ import {
   SubmitButton,
   TextFieldWithDataValidation,
 } from "../../formik";
+import React from "react";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
