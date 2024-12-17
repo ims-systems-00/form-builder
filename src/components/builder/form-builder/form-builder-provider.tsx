@@ -5,6 +5,7 @@ import { DndContext } from "@dnd-kit/core";
 import { useGoogle } from "./useGoogle";
 import { DrawerContextProvider } from "@ims-systems-00/ims-ui-kit";
 import React from "react";
+import { FormDragOverLay } from "../form-drag-overlay";
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
   elements?: FormElementInstance[];
@@ -130,9 +131,8 @@ export function FormBuilderProvider({
             ...useGoogle(googleApiKey),
           }}
         >
-        <div className="iforms">
-          {children}
-        </div>
+          <div className="iforms">{children}</div>
+          <FormDragOverLay />
         </Context.Provider>
       </DrawerContextProvider>
     </DndContext>

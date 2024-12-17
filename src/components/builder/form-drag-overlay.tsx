@@ -9,7 +9,7 @@ import { FormElements } from "../form-elements";
 import { ElementType } from "../form-elements/types";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 import { v6 as uuid } from "uuid";
-export function DragOverLay() {
+export function FormDragOverLay() {
   const { addElement, changeElementOrder } = useFormBuilder();
   const [draggedItem, setDraggeditem] = useState<Active | null>(null);
   useDndMonitor({

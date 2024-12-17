@@ -3,14 +3,11 @@ import { Button } from "@ims-systems-00/ims-ui-kit";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 import React from "react";
 import { FaRegCircleCheck } from "react-icons/fa6";
-
-export function CopyFormButton({
-  children,
-  onCopyForm,
-}: {
+export type FormCopyButtonProps = {
   children: React.ReactNode;
   onCopyForm?: (copiedText: string) => void;
-}) {
+};
+export function FormCopyButton({ children, onCopyForm }: FormCopyButtonProps) {
   const { elements } = useFormBuilder();
   const { copyPlainTextToClipboard, copySuccess } = useClipboard();
   return (

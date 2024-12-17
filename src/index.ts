@@ -6,3 +6,5 @@ export { FormPreviewRenderer } from "./components/builder/form-preview-renderer"
 export { FormDesignerButton } from "./components/builder/form-designer-button";
 export { FormDroppableContainer } from "./components/builder/form-droppable-container";
 export { FormBoard } from "./components/builder/form-board";
+export { FormCopyButton } from "./components/builder/form-copy-button";
+

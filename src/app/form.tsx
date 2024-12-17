@@ -11,9 +11,8 @@ import { useState } from "react";
 import { FormElements } from "../components";
 import { Box } from "../components/box";
 import { FormBoard } from "../components/builder/form-board";
-import { CopyFormButton } from "../components/builder/copy-form-button";
+import { FormCopyButton } from "../components/builder/form-copy-button";
 import { FormDesignerButton } from "../components/builder/form-designer-button";
-import { DragOverLay } from "../components/builder/drag-overlay";
 import { FormDroppableContainer } from "../components/builder/form-droppable-container";
 import { FormBuilderProvider } from "../components/builder/form-builder/form-builder-provider";
 import { FormDesignRenderer } from "../components/builder/form-design-renderer";
@@ -67,9 +66,9 @@ export function Form() {
               </Col>
               <Col className="4">
                 <Box>
-                  <CopyFormButton>
+                  <FormCopyButton>
                     <FiCopy />
-                  </CopyFormButton>
+                  </FormCopyButton>
                   <FormGroup switch className="pull-right">
                     <Input
                       type="switch"
@@ -243,7 +242,7 @@ export function Form() {
                 </div>
               </Col>
             </Row>
-            <DragOverLay />
+            {/* <FormDragOverLay /> */}
           </Container>
         </FormBoard>
       </FormBuilderProvider>
