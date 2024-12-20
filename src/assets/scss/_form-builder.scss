@@ -13,23 +13,6 @@
       border: $primary 1px solid;
     }
   }
-  .designer-button-square {
-    height: 100px;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: $card-bg;
-    border-radius: $border-radius-lg;
-    cursor: grab;
-    margin-bottom: $margin-base-vertical;
-    border: transparent 1px solid;
-    transition: all 0.3s ease;
-    &:hover {
-      border: $primary 1px solid;
-    }
-  }
   .desinger-element {
     transition: all 0.3s ease;
     border: $secondary-light 2px dashed;
