@@ -2,10 +2,23 @@ import { useDroppable } from "@dnd-kit/core";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import classNames from "classnames";
 import React from "react";
+import styled from "styled-components";
 export type FormDroppableContainerProps = {
   children?: React.ReactNode;
 };
-export function FormDroppableContainer({ children }: FormDroppableContainerProps) {
+const Container = styled.div`
+  border: transparent 1px solid;
+  transition: all 0.3s ease;
+  min-height: 80vh;
+  border-radius: 16px;
+  padding: 12px;
+  &.over {
+    border: transparent 1px solid;
+  }
+`;
+export function FormDroppableContainer({
+  children,
+}: FormDroppableContainerProps) {
   const dropable = useDroppable({
     id: "designer-dropable-container",
     data: {
@@ -14,16 +27,13 @@ export function FormDroppableContainer({ children }: FormDroppableContainerProps
   });
   const [setAutoAnimateNode] = useAutoAnimate();
   return (
-    <div
+    <Container
       ref={dropable.setNodeRef}
-      className={classNames(
-        "desginer-dropable-container rounded-3 p-3 bg-light",
-        {
-          "over ": dropable.isOver,
-        }
-      )}
+      className={classNames({
+        "over ": dropable.isOver,
+      })}
     >
-      <div  ref={setAutoAnimateNode}>
+      <div ref={setAutoAnimateNode}>
         {children}
         {dropable.isOver && (
           <div className="bg-primary-light border border-primary rounded-3 py-5 text-center">
@@ -31,6 +41,6 @@ export function FormDroppableContainer({ children }: FormDroppableContainerProps
           </div>
         )}
       </div>
-    </div>
+    </Container>
   );
 }

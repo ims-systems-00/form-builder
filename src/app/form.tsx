@@ -102,6 +102,7 @@ export function Form() {
                   <Row>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="emerald"
                         formElement={FormElements.Header.construct(
                           "header-text-sidebard-button"
                         )}
@@ -109,7 +110,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
-                        accent='indigo'
+                        accent="indigo"
                         formElement={FormElements.TextInput.construct(
                           "short-text-sidebard-button"
                         )}
@@ -119,7 +120,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
-                      accent='purple'
+                        accent="purple"
                         formElement={FormElements.LongText.construct(
                           "long-text-sidebard-button"
                         )}
@@ -137,6 +138,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="amber"
                         formElement={FormElements.Email.construct(
                           "email-sidebard-button"
                         )}
@@ -145,6 +147,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="green"
                         formElement={FormElements.Divider.construct(
                           "divider-sidebard-button"
                         )}
@@ -153,6 +156,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="cyan"
                         formElement={FormElements.PhoneNumber.construct(
                           "phone-number-sidebard-button"
                         )}
@@ -161,6 +165,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="sky"
                         formElement={FormElements.Address.construct(
                           "address-sidebard-button"
                         )}
@@ -169,6 +174,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="teal"
                         formElement={FormElements.RadioSingleChoice.construct(
                           "radio-single-choice-sidebard-button"
                         )}
@@ -177,6 +183,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="stone"
                         formElement={FormElements.CheckBoxMultipleChoice.construct(
                           "checkbox-multiple-choice-sidebard-button"
                         )}
@@ -185,6 +192,7 @@ export function Form() {
                     <Col md="3">
                       {" "}
                       <FormDesignerButton
+                        accent="pink"
                         formElement={FormElements.DropDown.construct(
                           "dropdown-sidebard-button"
                         )}
@@ -192,6 +200,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="purple"
                         formElement={FormElements.Alert.construct(
                           "alert-sidebard-button"
                         )}
@@ -199,6 +208,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="fuchsia"
                         formElement={FormElements.DateInput.construct(
                           "date-input-sidebard-button"
                         )}
@@ -206,6 +216,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="blue"
                         formElement={FormElements.RichContent.construct(
                           "rick-text-content-sidebard-button"
                         )}
@@ -213,6 +224,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="lime"
                         formElement={FormElements.Location.construct(
                           "location-sidebar-button"
                         )}
@@ -220,6 +232,7 @@ export function Form() {
                     </Col>
                     <Col md="3">
                       <FormDesignerButton
+                        accent="violet"
                         formElement={FormElements.Consent.construct(
                           "concent-sidebar-button"
                         )}

@@ -1,18 +1,66 @@
 import React from "react";
 import classNames from "classnames";
 import { ElementType, FormElementInstance } from "../form-elements/types";
-import { DrawerOpener, DrawerRight, Button } from "@ims-systems-00/ims-ui-kit";
+import { DrawerOpener, DrawerRight } from "@ims-systems-00/ims-ui-kit";
 import { FormElements } from "../form-elements";
 import { FormElement } from "../form-elements/types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoDuplicateOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
-// import { useDualStateController } from "@ims-systems-00/ims-react-hooks";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
+import { DesignerComponentContainer } from "./designer-component-container";
+import styled from "styled-components";
 export type DesginerElementProps = {
   formElement: FormElementInstance;
 };
+const ToolButton = styled.button`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ElementToolBar = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  margin: 8px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row-reverse;
+  &.invisible {
+    visibility: hidden;
+  }
+`;
+
+const DraggingElementCurrentPositionIndicator = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: yellow;
+  opacity: 0.75;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const DragIntersectionTrackerTop = styled.div`
+  position: absolute;
+  top: 0;
+  height: 50%;
+  width: 100%;
+`;
+const DragIntersectionTrackerBottom = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+`;
 function DesignerElementDropPreview({
   formElement,
 }: {
@@ -85,7 +133,7 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
     <React.Fragment>
       {elementPreviewTop}
       <div
-        className="position-relative"
+        style={{ position: "relative" }}
         onMouseOver={() => isSetHovering(true)}
         onMouseOut={() => isSetHovering(false)}
       >
@@ -93,81 +141,64 @@ export function DesginerElement({ formElement }: DesginerElementProps) {
           ref={dragable.setNodeRef}
           {...dragable.listeners}
           {...dragable.attributes}
-          className="position-relative"
+          style={{ position: "relative" }}
         >
-          <div
+          <DragIntersectionTrackerTop
             ref={topHalf.setNodeRef}
-            className={classNames("position-absolute h-50 w-100 top-0", {
+            className={classNames({
               // "bg-success opacity-25": topHalf.isOver && !dragable.isDragging,
             })}
-          ></div>
-          <div
+          />
+          <DragIntersectionTrackerBottom
             ref={bottomHalf.setNodeRef}
-            className={classNames("position-absolute h-50 w-100 bottom-0", {
+            className={classNames({
               // "bg-success opacity-25":
               //   bottomHalf.isOver && !dragable.isDragging,
             })}
-          ></div>
+          />
           {dragable.isDragging && (
-            <div
-              className={classNames(
-                "position-absolute top-0 h-100 w-100 bg-warning opacity-25 rounded-3 d-flex justify-content-center align-items-center"
-              )}
-            >
+            <DraggingElementCurrentPositionIndicator>
               <h3>Current Position</h3>
-            </div>
+            </DraggingElementCurrentPositionIndicator>
           )}
-          <div
-            className={classNames("desinger-element my-1 rounded-3", {
-              hover: isHovering,
-            })}
-          >
+          <DesignerComponentContainer>
             <DesignerComponent formElement={formElement} />
-          </div>
+          </DesignerComponentContainer>
         </div>
-        <div
-          className={classNames(
-            "position-absolute bg-light m-2 rounded-3 top-0 right-0",
-            {
-              " invisible ": !isHovering,
-            }
-          )}
+        <ElementToolBar
+          className={classNames({
+            " invisible ": !isHovering,
+          })}
         >
-          <div className="d-flex flex-row-reverse">
-            <DrawerOpener drawerId={formElement.id}>
-              <Button size="sm" className="border-0" outline>
-                <IoSettingsOutline />
-              </Button>
-            </DrawerOpener>
-            <Button size="sm" className="border-0" outline>
-              <IoDuplicateOutline />
-            </Button>
-            <Button
-              color="danger"
-              size="sm"
-              className="border-0"
-              outline
-              onClick={() => {
-                deleteElement({ element: formElement });
-              }}
-            >
-              <RiDeleteBin6Line />
-            </Button>
-          </div>
-          <DrawerRight size={27} drawerId={formElement.id}>
-            <PropertiesComponent
-              formElement={formElement}
-              onAttributeSave={(_, attributes) => {
-                updateElement({
-                  element: {
-                    ...formElement,
-                    attributes,
-                  },
-                });
-              }}
-            />
-          </DrawerRight>
-        </div>
+          <DrawerOpener drawerId={formElement.id}>
+            <ToolButton>
+              <IoSettingsOutline />
+            </ToolButton>
+          </DrawerOpener>
+          <ToolButton>
+            <IoDuplicateOutline />
+          </ToolButton>
+          <ToolButton
+            onClick={() => {
+              deleteElement({ element: formElement });
+            }}
+          >
+            <RiDeleteBin6Line />
+          </ToolButton>
+        </ElementToolBar>
+        <DrawerRight size={27} drawerId={formElement.id}>
+          <PropertiesComponent
+            formElement={formElement}
+            onAttributeSave={(_, attributes) => {
+              updateElement({
+                element: {
+                  ...formElement,
+                  attributes,
+                },
+              });
+            }}
+          />
+        </DrawerRight>
       </div>
       {elementPreviewBottom}
     </React.Fragment>

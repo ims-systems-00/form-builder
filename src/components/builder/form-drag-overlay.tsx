@@ -9,6 +9,7 @@ import { FormElements } from "../form-elements";
 import { ElementType } from "../form-elements/types";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 import { v6 as uuid } from "uuid";
+import { DesignerComponentContainer } from "./designer-component-container";
 export function FormDragOverLay() {
   const { addElement, changeElementOrder } = useFormBuilder();
   const [draggedItem, setDraggeditem] = useState<Active | null>(null);
@@ -82,11 +83,11 @@ export function FormDragOverLay() {
     const type = draggedItem?.data?.current?.type as ElementType;
     const FormElement = FormElements[type];
     node = (
-      <div className="desinger-element my-1 rounded-3 bg-light">
+      <DesignerComponentContainer>
         <FormElement.DesignerComponent
           formElement={FormElement.construct(draggedItem.id.toString())}
         />
-      </div>
+      </DesignerComponentContainer>
     );
   }
   return <DndKitDragOverLay>{node}</DndKitDragOverLay>;

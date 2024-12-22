@@ -26,8 +26,8 @@ const ButtonBase = styled.div<{ accent: ColorName }>`
   transition: all 0.3s ease;
   &:hover {
     background-color: ${(props) => colors[props.accent as ColorName].base};
-    color: ${(props) => colors[props.accent as ColorName].darker};
-    border: ${(props) => colors[props.accent as ColorName].darker} 1px solid;
+    color: ${(props) => colors[props.accent as ColorName].darkest};
+    border: ${(props) => colors[props.accent as ColorName].darkest} 1px solid;
   }
 `;
 const ButtonText = styled.span`
