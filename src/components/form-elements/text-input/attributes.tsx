@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 
 export type Attributes = {
   label: string;
@@ -6,6 +6,7 @@ export type Attributes = {
   subLabel: string;
   required: boolean;
 };
+
 export const attributes: Attributes = {
   label: "[Field Label]",
   placeholder: "[Place holder]",
@@ -13,9 +14,18 @@ export const attributes: Attributes = {
   required: true,
 };
 
-export const validationSchema = yup.object().shape({
-  label: yup.string().required().label("Label"),
-  placeholder: yup.string().required().label("Placeholder"),
-  subLabel: yup.string().required().label("Sub Label"),
-  required: yup.boolean().label("Required"),
+export const attributeValidationSchema = z.object({
+  label: z.string({
+    required_error: "Label is required",
+  }),
+  placeholder: z.string({
+    required_error: "Placeholder is required",
+  }),
+  subLabel: z.string({
+    required_error: "Sub Label is required",
+  }),
+  required: z.boolean(),
 });
+
+// You can also infer the type from the schema if needed
+export type AttributesattributeValidationSchema = z.infer<typeof attributeValidationSchema>;

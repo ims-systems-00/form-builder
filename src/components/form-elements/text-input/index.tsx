@@ -4,7 +4,6 @@ import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
 import { Response } from "./reponse";
-import React from "react";
 
 const type: ElementType = "TextInput";
 export const TextInput: FormElement = {

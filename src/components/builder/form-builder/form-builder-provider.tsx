@@ -1,11 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { FormElementInstance } from "../../form-elements/types";
-import { AddElementFnParams, Context, ChangeElementFnParams } from "./context";
 import { DndContext } from "@dnd-kit/core";
-import { useGoogle } from "./useGoogle";
-import { DrawerContextProvider } from "@ims-systems-00/ims-ui-kit";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { FormElementInstance } from "../../form-elements/types";
 import { FormDragOverLay } from "../form-drag-overlay";
+import { AddElementFnParams, ChangeElementFnParams, Context } from "./context";
+import { useGoogle } from "./useGoogle";
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
   elements?: FormElementInstance[];
@@ -120,21 +118,19 @@ export function FormBuilderProvider({
   }, [elements]);
   return (
     <DndContext>
-      <DrawerContextProvider>
-        <Context.Provider
-          value={{
-            elements: _elements,
-            addElement,
-            updateElement,
-            deleteElement,
-            changeElementOrder,
-            ...useGoogle(googleApiKey),
-          }}
-        >
-          <div className="iforms">{children}</div>
-          <FormDragOverLay />
-        </Context.Provider>
-      </DrawerContextProvider>
+      <Context.Provider
+        value={{
+          elements: _elements,
+          addElement,
+          updateElement,
+          deleteElement,
+          changeElementOrder,
+          ...useGoogle(googleApiKey),
+        }}
+      >
+        <div className="iforms">{children}</div>
+        <FormDragOverLay />
+      </Context.Provider>
     </DndContext>
   );
 }

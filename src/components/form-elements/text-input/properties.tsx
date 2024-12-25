@@ -1,16 +1,19 @@
-import { Button } from "@ims-systems-00/ims-ui-kit";
-import { LiaSaveSolid } from "react-icons/lia";
-import { LuTextCursorInput } from "react-icons/lu";
-import React from "react";
-
-import {
-  FormikForm,
-  SubmitButton,
-  SwitchButtonWithDataValidation,
-  TextFieldWithDataValidation,
-} from "../../formik";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormElementInstance, OnAttributeSaveFunction } from "../types";
-import { Attributes, validationSchema } from "./attributes";
+import { Attributes, attributeValidationSchema } from "./attributes";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 
 export type DesignerProps = {
   formElement: FormElementInstance;
@@ -23,54 +26,97 @@ type ThisElementInstance = FormElementInstance & {
 export function Properties({ formElement, onAttributeSave }: DesignerProps) {
   const element = formElement as ThisElementInstance;
   const attributes = element.attributes;
+  const form = useForm<Attributes>({
+    resolver: zodResolver(attributeValidationSchema),
+    defaultValues: {
+      ...attributes,
+    },
+    mode: "all",
+  });
   return (
-    <FormikForm
-      initialValues={attributes}
-      enableReinitialize
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        if (typeof onAttributeSave === "function") {
-          onAttributeSave(formElement.id, values);
-        }
-      }}
-    >
-      <h5>
-        {" "}
-        <LuTextCursorInput size={30} /> Text Input Element{" "}
-      </h5>
-      <p className="pb-4">
-        Select the associated setting to customize this element.
-      </p>
-      <TextFieldWithDataValidation
-        name="label"
-        label="Question/Label"
-        type="text"
-        hintText="This text will be displayed at the top of the input field"
-      />
-
-      <TextFieldWithDataValidation
-        name="placeholder"
-        label="Hint/Placeholder"
-        type="text"
-        hintText="This text will be displayed as a hint in the input field"
-      />
-
-      <TextFieldWithDataValidation
-        name="subLabel"
-        label="Helper Text/Sub-Label"
-        type="text"
-        hintText="This text will be displayed at the bottom of the input field"
-      />
-      <SwitchButtonWithDataValidation
-        name="required"
-        label="Toggle this switch to mark the field as 'Required' or 'Optional,'
-        ensuring flexibility in your form's input rules."
-      />
-      <SubmitButton>
-        <Button color="primary" block>
-          Save Changes <LiaSaveSolid />
-        </Button>
-      </SubmitButton>
-    </FormikForm>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit((values) => {
+          console.log(values);
+          if (typeof onAttributeSave === "function") {
+            onAttributeSave(formElement.id, values);
+          }
+        })}
+        className="space-y-8"
+      >
+        <FormField
+          control={form.control}
+          name="label"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Question/Label</FormLabel>
+              <FormControl>
+                <Input type="text" {...field} />
+              </FormControl>
+              <FormDescription>
+                This text will be displayed at the top of the input field
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="placeholder"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Hint/Placeholder"</FormLabel>
+              <FormControl>
+                <Input type="text" {...field} />
+              </FormControl>
+              <FormDescription>
+                This text will be displayed as a hint in the input field
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="subLabel"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Helper Text/Sub-Label"</FormLabel>
+              <FormControl>
+                <Input type="text" {...field} />
+              </FormControl>
+              <FormDescription>
+                This text will be displayed at the bottom of the input field"
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="required"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">Required Field</FormLabel>
+                <FormDescription>
+                  Make this field mandatory for form submission
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full">
+          Save
+        </Button>{" "}
+      </form>
+    </Form>
   );
 }

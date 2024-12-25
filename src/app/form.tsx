@@ -1,251 +1,77 @@
-import {
-  Col,
-  Container,
-  DrawerContextProvider,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-} from "@ims-systems-00/ims-ui-kit";
-import { useState } from "react";
 import { FormElements } from "../components";
-import { Box } from "../components/box";
 import { FormBoard } from "../components/builder/form-board";
-import { FormCopyButton } from "../components/builder/form-copy-button";
-import { FormDesignerButton } from "../components/builder/form-designer-button";
-import { FormDroppableContainer } from "../components/builder/form-droppable-container";
 import { FormBuilderProvider } from "../components/builder/form-builder/form-builder-provider";
 import { FormDesignRenderer } from "../components/builder/form-design-renderer";
+import { FormDesignerButton } from "../components/builder/form-designer-button";
+import { FormDroppableContainer } from "../components/builder/form-droppable-container";
 import { FormPreviewRenderer } from "../components/builder/form-preview-renderer";
-import React from "react";
 
-import { FiCopy } from "react-icons/fi";
 export function Form() {
-  const [formElements, setFormElements] = useState([]);
-  const [formState, setFormState] = useState<"design" | "preview">("preview");
   return (
-    <DrawerContextProvider>
-      <FormBuilderProvider
-        googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-        // onDroppedANewElement={(event) => {
-        //   const { element, previousElement, nextElement } = event;
-        // }}
-        // onElementAttributesSaved={(event) => {
-        //   const { elementId, attributes } = event;
-        // }}
-        // onElementOrderChanged={(event) => {
-        //   const { element, previousElement, nextElement } = event;
-        // }}
-        // onElementRemoved={(event) => {
-        //   const { element } = event;
-        // }}
-        elements={formElements}
-      >
-        <FormBoard>
-          <Container className="py-4">
-            <Row>
-              <Col md="8">
-                <Box>
-                  <FormGroup>
-                    <Input
-                      type="textarea"
-                      onBlur={(e) => {
-                        try {
-                          const formElementsJSON = e.currentTarget.value;
-                          const parsed = JSON.parse(formElementsJSON);
-                          if (Array.isArray(parsed.elements)) {
-                            setFormElements(parsed.elements);
-                          }
-                        } catch (err) {
-                          console.log("form parse error: ", err);
-                        }
-                      }}
-                    />
-                  </FormGroup>
-                </Box>
-              </Col>
-              <Col className="4">
-                <Box>
-                  <FormCopyButton>
-                    <FiCopy />
-                  </FormCopyButton>
-                  <FormGroup switch className="pull-right">
-                    <Input
-                      type="switch"
-                      checked={formState === "preview"}
-                      onChange={() => {
-                        if (formState === "design") setFormState("preview");
-                        if (formState === "preview") setFormState("design");
-                      }}
-                    />
-                    <Label>Preview Form</Label>
-                  </FormGroup>
-                </Box>
-              </Col>
-              <Col md="8">
-                {formState === "design" && (
-                  <FormDroppableContainer>
-                    <FormDesignRenderer />
-                  </FormDroppableContainer>
-                )}
-                {formState === "preview" && (
-                  <Box>
-                    <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
-                      Form Preview
-                    </h4>
-                    <FormPreviewRenderer />
-                  </Box>
-                )}
-              </Col>
-              <Col md="4">
-                <div className="position-sticky top-0 right-0">
-                  <Row>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="emerald"
-                        formElement={FormElements.Header.construct(
-                          "header-text-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="indigo"
-                        formElement={FormElements.TextInput.construct(
-                          "short-text-sidebard-button"
-                        )}
-                      />
-                    </Col>
-
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="purple"
-                        formElement={FormElements.LongText.construct(
-                          "long-text-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="orange"
-                        formElement={FormElements.FullName.construct(
-                          "full-name-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="amber"
-                        formElement={FormElements.Email.construct(
-                          "email-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="green"
-                        formElement={FormElements.Divider.construct(
-                          "divider-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="cyan"
-                        formElement={FormElements.PhoneNumber.construct(
-                          "phone-number-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="sky"
-                        formElement={FormElements.Address.construct(
-                          "address-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="teal"
-                        formElement={FormElements.RadioSingleChoice.construct(
-                          "radio-single-choice-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="stone"
-                        formElement={FormElements.CheckBoxMultipleChoice.construct(
-                          "checkbox-multiple-choice-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      {" "}
-                      <FormDesignerButton
-                        accent="pink"
-                        formElement={FormElements.DropDown.construct(
-                          "dropdown-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="purple"
-                        formElement={FormElements.Alert.construct(
-                          "alert-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="fuchsia"
-                        formElement={FormElements.DateInput.construct(
-                          "date-input-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="blue"
-                        formElement={FormElements.RichContent.construct(
-                          "rick-text-content-sidebard-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="lime"
-                        formElement={FormElements.Location.construct(
-                          "location-sidebar-button"
-                        )}
-                      />
-                    </Col>
-                    <Col md="3">
-                      <FormDesignerButton
-                        accent="violet"
-                        formElement={FormElements.Consent.construct(
-                          "concent-sidebar-button"
-                        )}
-                      />
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            </Row>
-            {/* <FormDragOverLay /> */}
-          </Container>
-        </FormBoard>
-      </FormBuilderProvider>
-    </DrawerContextProvider>
+    <FormBuilderProvider
+      googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+      // onDroppedANewElement={(event) => {
+      //   const { element, previousElement, nextElement } = event;
+      // }}
+      // onElementAttributesSaved={(event) => {
+      //   const { elementId, attributes } = event;
+      // }}
+      // onElementOrderChanged={(event) => {
+      //   const { element, previousElement, nextElement } = event;
+      // }}
+      // onElementRemoved={(event) => {
+      //   const { element } = event;
+      // }}
+      elements={[
+        {
+          id: "1efc1d82-66cb-6590-ae4e-bed64207ea1b",
+          type: "TextInput",
+          attributes: {
+            label: "Full Name",
+            placeholder: "Enter your full name",
+            subLabel: "Please provide your legal name as it appears on ID.",
+            required: true,
+          },
+        },
+      ]}
+    >
+      <FormBoard>
+        <div className="flex gap-2 w-full">
+          <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+            <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+              Form Preview
+            </h4>
+            <FormPreviewRenderer />
+          </div>
+          <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+            <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+              Form Designer
+            </h4>
+            <FormDroppableContainer>
+              <FormDesignRenderer />
+            </FormDroppableContainer>
+          </div>
+          <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+            <FormDesignerButton
+              accent="indigo"
+              formElement={FormElements.TextInput.construct(
+                "short-text-sidebard-button"
+              )}
+            />
+          </div>
+        </div>
+        {/* <div className="grid grid-rows-3 grid-flow-col gap-4">
+          <div className="row-start-1 row-end-4 rounded-lg bg-white">
+           
+          </div>
+          <div className="row-start-1 row-end-4 rounded-lg bg-white">
+           
+          </div>
+          <div className="row-start-1 row-end-4 rounded-lg bg-white">
+            
+          </div>
+        </div> */}
+      </FormBoard>
+    </FormBuilderProvider>
   );
 }

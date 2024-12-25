@@ -1,8 +1,14 @@
-import { FormGroup, Input, Label, FormText } from "@ims-systems-00/ims-ui-kit";
+import { Input } from "@/components/ui/input";
 import { FormElementInstance } from "../types";
 import { Attributes } from "./attributes";
-import React from "react";
-
+import {
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+  Form,
+} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
 export type DesignerProps = {
   formElement: FormElementInstance;
 };
@@ -13,16 +19,19 @@ type Custom = FormElementInstance & {
 export function Designer({ formElement }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
+  const form = useForm();
   return (
-    <FormGroup>
-      <h5>Text Input</h5>
-      <p className="pb-4">Use this element for capturing short answers.</p>
-      <Label>
-        {attributes.label}{" "}
-        {attributes.required && <span className="text-danger">*</span>}
-      </Label>
-      <Input type="text" disabled placeholder={attributes.placeholder} />
-      <FormText>{attributes.subLabel}</FormText>
-    </FormGroup>
+    <Form {...form}>
+      <FormItem>
+        <FormLabel>
+          {attributes.label}{" "}
+          {attributes.required && <span className="text-red-500">*</span>}
+        </FormLabel>
+        <FormControl>
+          <Input type="text" disabled placeholder={attributes.placeholder} />
+        </FormControl>
+        <FormDescription>This is your public display name.</FormDescription>
+      </FormItem>
+    </Form>
   );
 }

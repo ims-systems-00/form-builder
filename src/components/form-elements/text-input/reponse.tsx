@@ -1,8 +1,14 @@
-import { FormGroup, Input, Label } from "@ims-systems-00/ims-ui-kit";
+import { useForm } from "react-hook-form";
 import { FormElementInstance, OnResponseFunction } from "../types";
 import { Attributes } from "./attributes";
-import React from "react";
-
+import {
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+  Form,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 export type DesignerProps = {
   formElement: FormElementInstance;
   onResponse?: OnResponseFunction;
@@ -11,26 +17,22 @@ export type DesignerProps = {
 type Custom = FormElementInstance & {
   attributes: Attributes;
 };
-export function Response({ formElement, onResponse }: DesignerProps) {
+export function Response({ formElement }: DesignerProps) {
   const element = formElement as Custom;
   const attributes = element.attributes;
+  const form = useForm();
   return (
-    <FormGroup>
-      <Label>
-        {attributes.label}{" "}
-        {attributes.required && <span className="text-danger">*</span>}
-      </Label>
-      <Input
-        type="text"
-        placeholder={attributes.placeholder}
-        onChange={(e) => {
-          if (typeof onResponse === "function")
-            onResponse(formElement.id, e.currentTarget.value);
-        }}
-      />
-      <Label>
-        <small>{attributes.subLabel}</small>
-      </Label>
-    </FormGroup>
+    <Form {...form}>
+      <FormItem>
+        <FormLabel>
+          {attributes.label}{" "}
+          {attributes.required && <span className="text-red-500">*</span>}
+        </FormLabel>
+        <FormControl>
+          <Input type="text" placeholder={attributes.placeholder} />
+        </FormControl>
+        <FormDescription>This is your public display name.</FormDescription>
+      </FormItem>
+    </Form>
   );
 }

@@ -2,21 +2,22 @@ import React from "react";
 
 export type ElementType =
   | "TextInput"
-  | "LongText"
-  | "FullName"
-  | "Header"
-  | "Divider"
-  | "Email"
-  | "Address"
-  | "PhoneNumber"
-  | "RadioSingleChoice"
-  | "CheckBoxMultipleChoice"
-  | "DropDown"
-  | "Alert"
-  | "DateInput"
-  | "Location"
-  | "Consent"
-  | "RichContent";
+  // | "LongText"
+  // | "FullName"
+  // | "Header"
+  // | "Divider"
+  // | "Email"
+  // | "Address"
+  // | "PhoneNumber"
+  // | "RadioSingleChoice"
+  // | "CheckBoxMultipleChoice"
+  // | "DropDown"
+  // | "Alert"
+  // | "DateInput"
+  // | "Location"
+  // | "Consent"
+  // | "RichContent"
+  ;
 
 export type ValidateFunction = (
   formElement: FormElementInstance,
