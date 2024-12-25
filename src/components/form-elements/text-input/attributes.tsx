@@ -27,4 +27,6 @@ export const attributeValidationSchema = z.object({
   required: z.boolean(),
 });
 
-export type AttributesattributeValidationSchema = z.infer<typeof attributeValidationSchema>;
+export type AttributesattributeValidationSchema = z.infer<
+  typeof attributeValidationSchema
+>;

@@ -1,5 +1,5 @@
 import { useClipboard } from "@ims-systems-00/ims-react-hooks";
-import { Button } from "@ims-systems-00/ims-ui-kit";
+import { Button } from "@/components/ui/button";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 import React from "react";
 import { FaRegCircleCheck } from "react-icons/fa6";

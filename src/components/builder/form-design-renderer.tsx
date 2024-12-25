@@ -1,4 +1,3 @@
-import React from "react";
 import { DesginerElement } from "./designer-element";
 import { useFormBuilder } from "./form-builder/useFormBuilder";
 
