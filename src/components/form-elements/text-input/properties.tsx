@@ -37,7 +37,6 @@ export function Properties({ formElement, onAttributeSave }: DesignerProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => {
-          console.log(values);
           if (typeof onAttributeSave === "function") {
             onAttributeSave(formElement.id, values);
           }

@@ -27,5 +27,4 @@ export const attributeValidationSchema = z.object({
   required: z.boolean(),
 });
 
-// You can also infer the type from the schema if needed
 export type AttributesattributeValidationSchema = z.infer<typeof attributeValidationSchema>;

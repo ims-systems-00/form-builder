@@ -1,9 +1,8 @@
 import { useDraggable } from "@dnd-kit/core";
-import { FormElementInstance } from "../form-elements/types";
-import { FormElements } from "../form-elements";
-import { ColorName, colors } from "../colors";
 import styled from "styled-components";
-import React from "react";
+import { ColorName, colors } from "../colors";
+import { FormElements } from "../form-elements";
+import { FormElementInstance } from "../form-elements/types";
 
 export type FormDesignerButtonProps = {
   accent?: ColorName;
