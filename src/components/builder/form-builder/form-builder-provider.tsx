@@ -1,12 +1,13 @@
 import { DndContext } from "@dnd-kit/core";
 import React, { useCallback, useEffect, useState } from "react";
-import { FormElementInstance } from "../../form-elements/types";
+import { FormElementInstance, FormElement } from "../../form-elements/types";
 import { FormDragOverLay } from "../form-drag-overlay";
 import { AddElementFnParams, ChangeElementFnParams, Context } from "./context";
 import { useGoogle } from "./useGoogle";
 export type FormBuilderProviderProps = {
   children?: React.ReactNode;
   elements?: FormElementInstance[];
+  registeredBlocks: FormElement[];
   onDroppedANewElement?: (event: {
     element: FormElementInstance;
     beforeElementId?: string | null;
@@ -32,6 +33,7 @@ export type FormBuilderProviderProps = {
 export function FormBuilderProvider({
   children,
   elements,
+  registeredBlocks,
   googleApiKey,
 }: FormBuilderProviderProps) {
   const [_elements, setElements] = useState<FormElementInstance[]>([]);
@@ -121,6 +123,7 @@ export function FormBuilderProvider({
       <Context.Provider
         value={{
           elements: _elements,
+          registeredBlocks,
           addElement,
           updateElement,
           deleteElement,

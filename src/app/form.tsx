@@ -22,6 +22,7 @@ export function Form() {
       // onElementRemoved={(event) => {
       //   const { element } = event;
       // }}
+      registeredBlocks={[]}
       elements={[
         {
           id: "1efc1d82-66cb-6590-ae4e-bed64207ea1b",

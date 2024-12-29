@@ -1,5 +1,5 @@
 import React from "react";
-import { FormElementInstance } from "../../form-elements/types";
+import { FormElement, FormElementInstance } from "../../form-elements/types";
 
 export type AddElementFnParams = {
   element: FormElementInstance;
@@ -16,6 +16,7 @@ export type BuilderUtils = {
   isGoogleJsAPILoaded: boolean;
   googleJsAPIError: Error | undefined;
   elements: FormElementInstance[];
+  registeredBlocks: FormElement[];
   addElement: (params: AddElementFnParams) => void;
   updateElement: (params: { element: FormElementInstance }) => void;
   deleteElement: (params: { element: FormElementInstance }) => void;
@@ -29,4 +30,5 @@ export const Context = React.createContext<BuilderUtils>({
   updateElement: () => {},
   deleteElement: () => {},
   changeElementOrder: () => {},
+  registeredBlocks: [],
 });
