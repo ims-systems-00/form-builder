@@ -10,15 +10,27 @@ export function Form() {
   return (
     <FormBuilderProvider
       googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-      // onDroppedANewElement={(event) => {
-      //   const { element, previousElement, nextElement } = event;
-      // }}
+      onDroppedANewElement={(event) => {
+        const { element, previousElementId, nextElementId } = event;
+        console.log(
+          "onDroppedANewElement",
+          element,
+          previousElementId,
+          nextElementId
+        );
+      }}
       // onElementAttributesSaved={(event) => {
       //   const { elementId, attributes } = event;
       // }}
-      // onElementOrderChanged={(event) => {
-      //   const { element, previousElement, nextElement } = event;
-      // }}
+      onElementOrderChanged={(event) => {
+        const { element, previousElementId, nextElementId } = event;
+        console.log(
+          "onElementOrderChanged",
+          element,
+          previousElementId,
+          nextElementId
+        );
+      }}
       // onElementRemoved={(event) => {
       //   const { element } = event;
       // }}
