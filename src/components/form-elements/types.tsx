@@ -1,15 +1,22 @@
 import React from "react";
 
 export type ElementType = "TextInput";
-
+export type AnyValidJSObject =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Array<AnyValidJSObject>
+  | { [key: string]: AnyValidJSObject };
 export type ValidateFunction = (
   formElement: FormElementInstance,
-  currectValue: string
+  currentValue: AnyValidJSObject
 ) => boolean;
 
 export type OnResponseFunction = (
   key: string,
-  currectValue: string | null
+  currentValue: AnyValidJSObject
 ) => void;
 export type OnAttributeSaveFunction = (
   key: string,
@@ -22,7 +29,7 @@ export type FormDesignerButtonType = {
 export type FormElement = {
   type: ElementType;
   construct: (id: string) => FormElementInstance;
-  designerButtton: FormDesignerButtonType;
+  designerButton: FormDesignerButtonType;
   DesignerComponent: React.FC<{
     formElement: FormElementInstance;
   }>;

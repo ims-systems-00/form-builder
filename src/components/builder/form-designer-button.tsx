@@ -44,8 +44,8 @@ export function FormDesignerButton({
       isFormDesignerButtonElement: true,
     },
   });
-  const Icon = FormElements[formElement.type].designerButtton.icon;
-  const text = FormElements[formElement.type].designerButtton.text;
+  const Icon = FormElements[formElement.type].designerButton.icon;
+  const text = FormElements[formElement.type].designerButton.text;
 
   return (
     <ButtonBase
@@ -67,8 +67,8 @@ export function FormDesignerButtonDragOverLay({
   accent,
   className,
 }: FormDesignerButtonProps) {
-  const Icon = FormElements[formElement.type].designerButtton.icon;
-  const text = FormElements[formElement.type].designerButtton.text;
+  const Icon = FormElements[formElement.type].designerButton.icon;
+  const text = FormElements[formElement.type].designerButton.text;
   return (
     <ButtonBase accent={accent || "gray"} className={className}>
       <span className="m-2">

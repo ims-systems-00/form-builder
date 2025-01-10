@@ -8,7 +8,7 @@ import { Response } from "./reponse";
 const type: ElementType = "TextInput";
 export const TextInput: FormElement = {
   type,
-  designerButtton: {
+  designerButton: {
     icon: ({ size }: { size?: number }) => <LuTextCursorInput size={size} />,
     text: "Text input",
   },
