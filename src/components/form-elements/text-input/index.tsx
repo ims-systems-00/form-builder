@@ -3,7 +3,7 @@ import { ElementType, FormElement } from "../types";
 import { attributes } from "./attributes";
 import { Designer } from "./designer";
 import { Properties } from "./properties";
-import { Response } from "./reponse";
+import { Response } from "./response";
 
 const type: ElementType = "TextInput";
 export const TextInput: FormElement = {

@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { TbSend } from "react-icons/tb";
 import { FormElements } from "../components";
 import { FormBoard } from "../components/builder/form-board";
 import { FormBuilderProvider } from "../components/builder/form-builder/form-builder-provider";
@@ -5,86 +8,147 @@ import { FormDesignRenderer } from "../components/builder/form-design-renderer";
 import { FormDesignerButton } from "../components/builder/form-designer-button";
 import { FormDroppableContainer } from "../components/builder/form-droppable-container";
 import { FormPreviewRenderer } from "../components/builder/form-preview-renderer";
+import { FormElementInstance } from "../components/form-elements/types";
+// import { handlers } from "./responseControler";
 
 export function Form() {
+  const [formElements] = useState<FormElementInstance[]>([
+    {
+      id: "1efc1d82-66cb-6590-ae4e-45d64207ea1b",
+      type: "TextInput",
+      attributes: {
+        label: "Full Name",
+        placeholder: "Enter your full name",
+        subLabel: "Please provide your legal name as it appears on ID.",
+        required: true,
+      },
+    },
+    {
+      id: "1efc1d82-66cb-6590-ae4e-12d64207ea1b",
+      type: "TextInput",
+      attributes: {
+        label: "Full Name",
+        placeholder: "Enter your full name",
+        subLabel: "Please provide your legal name as it appears on ID.",
+        required: true,
+      },
+    },
+    {
+      id: "1efc1d82-66cb-6590-ae4e-bed64207ea1b",
+      type: "TextInput",
+      attributes: {
+        label: "Full Name",
+        placeholder: "Enter your full name",
+        subLabel: "Please provide your legal name as it appears on ID.",
+        required: true,
+      },
+    },
+  ]);
   return (
-    <FormBuilderProvider
-      googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-      onDroppedANewElement={(event) => {
-        const { element, previousElementId, nextElementId } = event;
-        console.log(
-          "onDroppedANewElement",
-          element,
-          previousElementId,
-          nextElementId
-        );
-      }}
-      // onElementAttributesSaved={(event) => {
-      //   const { elementId, attributes } = event;
-      // }}
-      onElementOrderChanged={(event) => {
-        const { element, previousElementId, nextElementId } = event;
-        console.log(
-          "onElementOrderChanged",
-          element,
-          previousElementId,
-          nextElementId
-        );
-      }}
-      // onElementRemoved={(event) => {
-      //   const { element } = event;
-      // }}
-      registeredBlocks={[]}
-      elements={[
-        {
-          id: "1efc1d82-66cb-6590-ae4e-bed64207ea1b",
-          type: "TextInput",
-          attributes: {
-            label: "Full Name",
-            placeholder: "Enter your full name",
-            subLabel: "Please provide your legal name as it appears on ID.",
-            required: true,
+    <div>
+      <FormBuilderProvider
+        googleApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+        onDroppedANewElement={(event) => {
+          const { element, previousElementId, nextElementId } = event;
+          console.log(
+            "onDroppedANewElement",
+            element,
+            previousElementId,
+            nextElementId
+          );
+        }}
+        // onElementAttributesSaved={(event) => {
+        //   const { elementId, attributes } = event;
+        // }}
+        onElementOrderChanged={(event) => {
+          const { element, previousElementId, nextElementId } = event;
+          console.log(
+            "onElementOrderChanged",
+            element,
+            previousElementId,
+            nextElementId
+          );
+        }}
+        // onElementRemoved={(event) => {
+        //   const { element } = event;
+        // }}
+        registeredBlocks={[]}
+        elements={[
+          {
+            id: "1efc1d82-66cb-6590-ae4e-bed64207ea1b",
+            type: "TextInput",
+            attributes: {
+              label: "Full Name",
+              placeholder: "Enter your full name",
+              subLabel: "Please provide your legal name as it appears on ID.",
+              required: true,
+            },
           },
-        },
-      ]}
-    >
+        ]}
+      >
+        <FormBoard>
+          <div className="flex gap-2 w-full">
+            <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+              <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+                Form Preview
+              </h4>
+              <FormPreviewRenderer />
+            </div>
+            <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+              <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
+                Form Designer
+              </h4>
+              <FormDroppableContainer>
+                <FormDesignRenderer />
+              </FormDroppableContainer>
+            </div>
+            <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
+              <FormDesignerButton
+                accent="indigo"
+                formElement={FormElements.TextInput.construct(
+                  "short-text-sidebard-button"
+                )}
+              />
+            </div>
+          </div>
+        </FormBoard>
+      </FormBuilderProvider>
       <FormBoard>
-        <div className="flex gap-2 w-full">
+        <div className="flex gap-2 w-full bg-transparent p-4">
+          <div className="flex-1 p-4"></div>
           <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
             <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
-              Form Preview
+              Form Response
             </h4>
-            <FormPreviewRenderer />
+            <form
+              className="space-y-8"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const data = Object.fromEntries(formData);
+                console.log(data)
+              }}
+            >
+              {formElements.map((element) => {
+                const Element = FormElements[element.type];
+                return (
+                  <Element.ResponseComponent
+                    key={element.id}
+                    formElement={element}
+                    // onResponse={(element, response) => {
+                    //   handlers[element.type]?.(element, response);
+                    // }}
+                  />
+                );
+              })}
+              <Button type="submit">
+                Submit response <TbSend />
+              </Button>
+            </form>
           </div>
-          <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
-            <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
-              Form Designer
-            </h4>
-            <FormDroppableContainer>
-              <FormDesignRenderer />
-            </FormDroppableContainer>
-          </div>
-          <div className="flex-1 rounded-lg border border-slate-300 bg-white p-4">
-            <FormDesignerButton
-              accent="indigo"
-              formElement={FormElements.TextInput.construct(
-                "short-text-sidebard-button"
-              )}
-            />
-          </div>
+          <div className="flex-1 p-4"></div>
         </div>
-        {/* <div className="grid grid-rows-3 grid-flow-col gap-4">
-          <div className="row-start-1 row-end-4 rounded-lg bg-white">
-           
-          </div>
-          <div className="row-start-1 row-end-4 rounded-lg bg-white">
-           
-          </div>
-          <div className="row-start-1 row-end-4 rounded-lg bg-white">
-            
-          </div>
-        </div> */}
       </FormBoard>
-    </FormBuilderProvider>
+    </div>
   );
 }
