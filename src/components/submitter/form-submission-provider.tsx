@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Context, SubmissionData } from "./context";
 export type FormSubmissionProviderProps = {
   children?: React.ReactNode;
@@ -29,6 +29,9 @@ export function FormSubmissionProvider({
     },
     []
   );
+  useEffect(()=>{
+    setSubmissionData(submissionData)
+  },[submissionData])
   return (
     <Context.Provider
       value={{
