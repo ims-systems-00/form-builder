@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { FormSubmissionButton } from "@/components/submitter/form-submission-button";
+import { FormSubmissionElement } from "@/components/submitter/form-submission-element";
+import { FormSubmissionProvider } from "@/components/submitter/form-submission-provider";
 import { useState } from "react";
 import { TbSend } from "react-icons/tb";
 import { FormElements } from "../components";
@@ -119,30 +121,37 @@ export function Form() {
             <h4 className="text-center rounded bg-secondary-light py-2 mb-4">
               Form Response
             </h4>
-            <form
-              className="space-y-8"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const data = Object.fromEntries(formData);
-                console.log(data)
-              }}
-            >
-              {formElements.map((element) => {
-                const Element = FormElements[element.type];
-                return (
-                  <Element.ResponseComponent
-                    key={element.id}
-                    formElement={element}
-                    // onResponse={(element, response) => {
-                    //   handlers[element.type]?.(element, response);
-                    // }}
-                  />
-                );
-              })}
-              <Button type="submit">
-                Submit response <TbSend />
-              </Button>
+            <form className="space-y-8">
+              <FormSubmissionProvider
+                submissionData={formElements.map((element) => {
+                  return {
+                    element: element,
+                    responseValue: {},
+                  };
+                })}
+                onSubmit={(data) => {
+                  console.log(data);
+                }}
+              >
+                {formElements.map((element) => {
+                  return (
+                    <FormSubmissionElement
+                      key={element.id}
+                      submissionData={{
+                        element: element,
+                        responseValue: {},
+                      }}
+                      onResponse={(data) => {
+                        console.log(data);
+                      }}
+                    />
+                  );
+                })}
+
+                <FormSubmissionButton>
+                  Submit response <TbSend />
+                </FormSubmissionButton>
+              </FormSubmissionProvider>
             </form>
           </div>
           <div className="flex-1 p-4"></div>
